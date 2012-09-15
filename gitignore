@@ -1,0 +1,8 @@
+.DS_Store
+.svn
+*.cache
+*.*~
+Debug
+tags
+.tags*
+cscope.out
