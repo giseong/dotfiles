@@ -4,7 +4,7 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = /Users/giseong/.gitignore
+	excludesfile = ~/.gitignore
 [color]
   ui = true
 [color "branch"]
