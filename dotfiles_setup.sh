@@ -26,7 +26,12 @@ else
   link $DOTFILES_PATH/vimrc ~/.vimrc
 
   # tmux
-  link $DOTFILES_PATH/tmux.conf ~/.tmux.conf
+  if [[ `uname` == "Darwin" ]]; then
+    link $DOTFILES_PATH/tmux_osx.conf ~/.tmux.conf
+  elif [[ `uname` == "Linux" ]]; then
+    link $DOTFILES_PATH/tmux_linux.conf ~/.tmux.conf
+  fi
+  link $DOTFILES_PATH/tmux_shared.conf ~/.tmux_shared.conf
   link $DOTFILES_PATH/tmux ~/.tmux
 
   # pandoc
