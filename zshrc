@@ -5,7 +5,7 @@ ZSH_THEME="mortalscumbag"
 if [[ `uname` == "Darwin" ]]; then
   plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump osx sublime brew)
 elif [[ `uname` == "Linux" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump command-not-found)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump)
 fi
 
 source $ZSH/oh-my-zsh.sh
