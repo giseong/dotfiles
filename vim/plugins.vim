@@ -32,9 +32,9 @@ if count(g:bundle_groups, 'general')
   Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
-  Bundle 'myusuf3/numbers.vim'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'w0ng/vim-hybrid'
+  "Bundle 'myusuf3/numbers.vim'
 endif
 
 " General Programming
