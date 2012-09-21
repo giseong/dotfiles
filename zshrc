@@ -3,9 +3,9 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="mortalscumbag"
 
 if [[ `uname` == "Darwin" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search osx sublime brew autojump)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump osx sublime brew)
 elif [[ `uname` == "Linux" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump command-not-found)
 fi
 
 source $ZSH/oh-my-zsh.sh
