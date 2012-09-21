@@ -11,10 +11,10 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 cd $HOME/dotfiles
-git pull origin master
+git pull
 
 #cd $HOME/.csl
-#git pull origin master
+#git pull
 
 popd
 
