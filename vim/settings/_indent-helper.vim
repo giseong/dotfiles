@@ -44,7 +44,7 @@ endfunction
 
 function! WrapStyle_nowrap()
   set nowrap
-  set formatoptions=cqrnj1
+  set formatoptions=cqrn1
   set colorcolumn=+1 "highlight column after 'textwidth'
   set list
 endfunction
