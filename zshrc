@@ -15,12 +15,11 @@ export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 
 # Colors
-export TERM=xterm-256color
 export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # Editors
 export EDITOR='vim'
-alias e=$EDITOR
 
 if [[ `uname` == "Darwin" ]]; then
   export PAGER=vimpager
