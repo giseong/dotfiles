@@ -129,32 +129,24 @@ set splitbelow splitright
 
 " ================= Appearance ======================
 if has('gui_running')
-  set background=dark
-
   set guioptions=ce
   set antialias           " Antialias font
   set columns=90 lines=60 " Default size of window
   set gtl=%t gtt=%F       " Tab headings
-
   autocmd VimResized * wincmd =
 
   if has("gui_macvim")
     "macmenu &File.Open\ Tab\.\.\.   key=<nop>
     "set guifont=Ubuntu\ Mono\ for\ Powerline:h14
     set guifont=Inconsolata\ LGC\ for\ Powerline:h12
-  elseif has("gui_gtk2")
-  elseif has("x11")
   elseif has("gui_win32")
     set guifont=Consolas:h10
   endif
-
-  colorscheme hybrid
 else
-  set background=dark
   set t_Co=256
-  "colorscheme solarized
-  colorscheme hybrid
 endif
+set background=dark
+colorscheme hybrid
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
