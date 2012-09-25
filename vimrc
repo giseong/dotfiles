@@ -150,9 +150,10 @@ if has('gui_running')
 
   colorscheme hybrid
 else
-  set background=light
+  set background=dark
   set t_Co=256
-  colorscheme solarized
+  "colorscheme solarized
+  colorscheme hybrid
 endif
 
 " ======= Helper Funtions and Plugin Settings =======
