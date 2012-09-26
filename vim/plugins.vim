@@ -17,7 +17,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'tpope/vim-repeat'
   Bundle 'scrooloose/nerdtree'
   Bundle 'chrisbra/NrrwRgn'
-  Bundle 'jeetsukumaran/vim-buffergator'
   Bundle 'kien/ctrlp.vim'
   Bundle 'mileszs/ack.vim'
   Bundle 'henrik/vim-indexed-search'
@@ -34,7 +33,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'sessionman.vim'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'w0ng/vim-hybrid'
-  "Bundle 'myusuf3/numbers.vim'
 endif
 
 " General Programming
