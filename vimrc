@@ -28,9 +28,10 @@ set clipboard=unnamed           "share windows clipboard
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
 set cmdheight=2                 "status bar height
-set cursorline                  "shows the horizontal cursor line
+"set cursorline                  "shows the horizontal cursor line
 set tags=.tags;,tags;
 set encoding=utf-8
+set spellfile="~/.vim/spell/en.utf-8.add"
 set fileformats=unix,dos,mac    "support all three, in this order
 
 " This makes vim act like all other editors, buffers can

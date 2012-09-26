@@ -27,7 +27,6 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <silent> <F3> :call WrapStyle_toggle()<CR>
-nnoremap <silent> <F6> :set spell!<CR>
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
