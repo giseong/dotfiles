@@ -15,9 +15,7 @@ fi
 
 cd $HOME/dotfiles
 git pull
-
-#cd $HOME/.csl
-#git pull
+git submodule update
 
 popd
 
