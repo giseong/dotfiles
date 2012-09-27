@@ -10,6 +10,10 @@ else
   }
 
   DOTFILES_PATH=~/dotfiles
+  cd $DOTFILES_PATH
+  git submodule init
+  git submodule update
+  cd $HOME
 
   # zsh
   rm -rf ~/.oh-my-zsh
