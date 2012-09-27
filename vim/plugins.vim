@@ -33,6 +33,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'sessionman.vim'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/vim-tomorrow-theme'
+  Bundle 'chriskempson/base16-vim'
   Bundle 'nanotech/jellybeans.vim'
   Bundle 'w0ng/vim-hybrid'
 endif

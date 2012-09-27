@@ -11,6 +11,9 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # env
+DOTFILES_PATH=$HOME/dotfiles
+BASE16_SHELL=$DOTFILES_PATH/base16-shell
+
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 
@@ -21,6 +24,7 @@ if [[ `uname` == "Darwin" ]]; then
 elif [[ `uname` == "Linux" ]]; then
   export LS_COLORS='di=01;34;49:ln=35;49:so=32;49:pi=33;49:ex=31;49:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
+source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
 export EDITOR='vim'

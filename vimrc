@@ -28,7 +28,7 @@ set clipboard=unnamed           "share windows clipboard
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
 set cmdheight=2                 "status bar height
-"set cursorline                  "shows the horizontal cursor line
+set cursorline                  "shows the horizontal cursor line
 set tags=.tags;,tags;
 set encoding=utf-8
 set fileformats=unix,dos,mac    "support all three, in this order
@@ -146,7 +146,8 @@ else
   set t_Co=256
 endif
 set background=dark
-colorscheme hybrid
+let base16colorspace=256
+colorscheme base16-default
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
