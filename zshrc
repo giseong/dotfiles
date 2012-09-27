@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="mortalscumbag"
 
 if [[ `uname` == "Darwin" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist osx sublime brew)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist osx sublime brew rbenv)
 elif [[ `uname` == "Linux" ]]; then
   plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist)
 fi
