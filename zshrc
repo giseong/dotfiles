@@ -3,9 +3,9 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="mortalscumbag"
 
 if [[ `uname` == "Darwin" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump osx sublime brew)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist fasd osx sublime brew)
 elif [[ `uname` == "Linux" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump)
+  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist fasd)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -24,7 +24,6 @@ fi
 
 # Editors
 export EDITOR='vim'
-alias e=$EDITOR
 
 if [[ `uname` == "Darwin" ]]; then
   export PAGER=vimpager
