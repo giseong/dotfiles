@@ -58,10 +58,14 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 # Path
-if [ -d $DOTFILES_PATH/bin ]; then
-  export PATH=$PATH:$DOTFILES_PATH/bin
+if [ -d $HOME/bin ]; then
+  PATH=$PATH:$HOME/bin
 fi
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
+
+# Alias
+alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
+alias e=$EDITOR
 
