@@ -1,19 +1,37 @@
 # oh-my-zsh configuration.
 DOTFILES_PATH=$HOME/dotfiles
-ZSH=$DOTFILES_PATH/oh-my-zsh
-BASE16_SHELL=$DOTFILES_PATH/base16-shell
+ANTIGEN=$DOTFILES_PATH/antigen
 
-ZSH_THEME="mortalscumbag"
-DISABLE_AUTO_UPDATE="true"
-COMPLETION_WAITING_DOTS="true"
+source $ANTIGEN/antigen.zsh
 
+# Load the oh-my-zsh's library.
+antigen-lib
+
+# Bundles
 if [[ `uname` == "Darwin" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist osx sublime brew rbenv)
-elif [[ `uname` == "Linux" ]]; then
-  plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist)
+  antigen-bundle osx
+  antigen-bundle sublime
+  antigen-bundle brew
+  antigen-bundle rbenv
 fi
+antigen-bundle git
+antigen-bundle gnu-utils
+antigen-bundle vi-mode
+antigen-bundle vundle
+antigen-bundle extract
+antigen-bundle autojump
+antigen-bundle dircycle
+antigen-bundle dirpersist
+antigen-bundle zsh-users/zsh-history-substring-search
 
-source $ZSH/oh-my-zsh.sh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen-theme mortalscumbag
+
+# Tell antigen that you're done.
+antigen-apply
 
 # env
 export SHELL=`which zsh`
@@ -26,24 +44,22 @@ if [[ `uname` == "Darwin" ]]; then
 elif [[ `uname` == "Linux" ]]; then
   export LS_COLORS='di=01;34;49:ln=35;49:so=32;49:pi=33;49:ex=31;49:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
+BASE16_SHELL=$DOTFILES_PATH/base16-shell
 source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
 export EDITOR='vim'
-alias e=$EDITOR
 
 if [[ `uname` == "Darwin" ]]; then
   export PAGER=vimpager
-  alias less=$PAGER
-  alias zless=$PAGER
 
   # Rbenv
   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 fi
 
 # Path
-if [ -d $HOME/bin ]; then
-  export PATH=$PATH:$HOME/bin
+if [ -d $DOTFILES_PATH/bin ]; then
+  export PATH=$PATH:$DOTFILES_PATH/bin
 fi
 
 # Remove duplicated paths

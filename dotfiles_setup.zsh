@@ -63,7 +63,4 @@ else
   link $DOTFILES_PATH/editrc ~/.editrc
   #link $DOTFILES_PATH/Xresources ~/.Xresources
 
-  # usr bin
-  rm -rf ~/bin
-  link $DOTFILES_PATH/bin ~/bin
 fi
