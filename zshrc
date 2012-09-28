@@ -10,9 +10,7 @@ antigen-lib
 # Bundles
 if [[ `uname` == "Darwin" ]]; then
   antigen-bundle osx
-  antigen-bundle sublime
   antigen-bundle brew
-  antigen-bundle rbenv
 fi
 antigen-bundle git
 antigen-bundle gnu-utils
@@ -36,6 +34,7 @@ antigen-apply
 # env
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
+alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
 
 # Colors
 export CLICOLOR=1
@@ -49,13 +48,16 @@ source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
 export EDITOR='vim'
+alias e=$EDITOR
 
+# Misc
 if [[ `uname` == "Darwin" ]]; then
   export PAGER=vimpager
 
   # Rbenv
   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 fi
+
 
 # Path
 if [ -d $HOME/bin ]; then
@@ -64,8 +66,4 @@ fi
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
-
-# Alias
-alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
-alias e=$EDITOR
 
