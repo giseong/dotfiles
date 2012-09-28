@@ -19,7 +19,6 @@ if [[ `uname` == "Darwin" ]]; then
   antigen-bundle brew
 fi
 antigen-bundle git
-antigen-bundle gnu-utils
 antigen-bundle vi-mode
 antigen-bundle vundle
 antigen-bundle extract
@@ -28,7 +27,7 @@ antigen-bundle dircycle
 antigen-bundle dirpersist
 antigen-bundle zsh-users/zsh-history-substring-search
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
