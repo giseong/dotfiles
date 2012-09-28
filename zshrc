@@ -4,6 +4,12 @@ ANTIGEN=$DOTFILES_PATH/antigen
 
 source $ANTIGEN/antigen.zsh
 
+# Set to this to use case-sensitive completion
+CASE_SENSITIVE="true"
+# Comment this out to disable weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
 # Load the oh-my-zsh's library.
 antigen-lib
 
@@ -57,7 +63,6 @@ if [[ `uname` == "Darwin" ]]; then
   # Rbenv
   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 fi
-
 
 # Path
 if [ -d $HOME/bin ]; then
