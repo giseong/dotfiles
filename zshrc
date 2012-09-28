@@ -1,6 +1,11 @@
 # oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+DOTFILES_PATH=$HOME/dotfiles
+ZSH=$DOTFILES_PATH/oh-my-zsh
+BASE16_SHELL=$DOTFILES_PATH/base16-shell
+
 ZSH_THEME="mortalscumbag"
+DISABLE_AUTO_UPDATE="true"
+COMPLETION_WAITING_DOTS="true"
 
 if [[ `uname` == "Darwin" ]]; then
   plugins=(gnu-utils git vi-mode vundle extract history-substring-search autojump dircycle dirpersist osx sublime brew rbenv)
@@ -11,9 +16,6 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # env
-DOTFILES_PATH=$HOME/dotfiles
-BASE16_SHELL=$DOTFILES_PATH/base16-shell
-
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 

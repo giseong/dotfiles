@@ -17,7 +17,6 @@ else
 
   # zsh
   rm -rf ~/.oh-my-zsh
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   link $DOTFILES_PATH/zshrc ~/.zshrc
 
   # git
