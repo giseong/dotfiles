@@ -40,10 +40,5 @@ function! RedrawScreen()
 endfunction
 
 " redraw screen
-nnoremap <silent> <F1> :call RedrawScreen()<CR>
-
-"if has("mac")
-  "nnoremap <silent> <D-F> :!open -a Finder "%:p:h"<CR><CR>
-  "nnoremap <silent> <D-T> :!~/.vim/scripts/iTerm.sh <CR><CR>
-"endif
+nnoremap <silent> <F2> :call RedrawScreen()<CR>
 
