@@ -42,3 +42,6 @@ endfunction
 " redraw screen
 nnoremap <silent> <F2> :call RedrawScreen()<CR>
 
+" paste mode
+nnoremap <F4> :set invpaste paste?<CR>
+set pastetoggle=<F4>
