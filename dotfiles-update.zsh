@@ -8,7 +8,7 @@ if [[ `uname` == "Darwin" ]]; then
   brew update
   brew upgrade
   brew cleanup --force
-  #gem update --system
+  gem update --system
   gem update
 fi
 
