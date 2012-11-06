@@ -5,7 +5,7 @@ ANTIGEN=$DOTFILES_PATH/antigen
 source $ANTIGEN/antigen.zsh
 
 # Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
@@ -17,6 +17,8 @@ antigen-lib
 if [[ `uname` == "Darwin" ]]; then
   antigen-bundle osx
   antigen-bundle brew
+  antigen-bundle sublime
+  [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
 antigen-bundle git
 antigen-bundle vi-mode
