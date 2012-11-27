@@ -18,7 +18,6 @@ if [[ `uname` == "Darwin" ]]; then
   antigen-bundle osx
   antigen-bundle brew
   antigen-bundle sublime
-  [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
 antigen-bundle git
 antigen-bundle vi-mode
