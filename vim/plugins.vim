@@ -31,7 +31,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
-  Bundle 'myusuf3/numbers.vim'
+  "Bundle 'myusuf3/numbers.vim'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/vim-tomorrow-theme'
   Bundle 'chriskempson/base16-vim'
