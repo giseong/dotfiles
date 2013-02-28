@@ -22,6 +22,6 @@ function! ToggleDistractionFreeWriting()
 endfunction
 
 if has("gui_running")
-  map <F2> :call ToggleDistractionFreeWriting()<CR>
+  map <F7> :call ToggleDistractionFreeWriting()<CR>
 endif
 
