@@ -25,6 +25,8 @@ nnoremap <C-l> <C-W>l
 
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 nnoremap <silent> <F3> :call WrapStyle_toggle()<CR>
 

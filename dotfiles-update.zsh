@@ -10,6 +10,7 @@ if [[ `uname` == "Darwin" ]]; then
   brew cleanup --force
   gem update --system
   gem update
+  gem cleanup
 fi
 
 cd $HOME/dotfiles
