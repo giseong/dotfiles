@@ -15,7 +15,6 @@ fi
 
 cd $HOME/dotfiles
 git pull --recurse-submodules
-git submodule update --recursive
 
 antigen-update
 vundle-update
