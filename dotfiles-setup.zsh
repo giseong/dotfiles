@@ -11,8 +11,7 @@ else
 
   DOTFILES_PATH=~/dotfiles
   cd $DOTFILES_PATH
-  git submodule init
-  git submodule update
+  git submodule update --init
   cd $HOME
 
   # zsh
@@ -42,9 +41,8 @@ else
   link $DOTFILES_PATH/tmux ~/.tmux
 
   # pandoc
-  #rm -rf ~/.csl
-  #git clone git://github.com/citation-style-language/styles.git ~/.csl
-  #link $DOTFILES_PATH/pandoc ~/.pandoc
+  link $DOTFILES_PATH/csl ~/.csl
+  link $DOTFILES_PATH/pandoc ~/.pandoc
 
   # ruby
   link $DOTFILES_PATH/rvmrc ~/.rvmrc
