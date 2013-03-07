@@ -59,7 +59,8 @@ endif
 if count(g:bundle_groups, 'composing')
   Bundle 'VOoM'
   Bundle 'jcf/vim-latex'
-  Bundle 'tpope/vim-markdown'
+  "Bundle 'tpope/vim-markdown'
+  Bundle 'vim-pandoc/vim-pandoc'
 endif
 
 " PHP
