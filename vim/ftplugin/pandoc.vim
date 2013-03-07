@@ -1,3 +1,4 @@
+setlocal equalprg=pandoc\ -t\ markdown\ --reference-links\ --no-wrap
 nnoremap <buffer> <Right> :VoomToggle<CR>
 nnoremap <buffer> <F8> :MarkdownTidy<CR>
 "nnoremap <buffer> <Leader>bm :!pandoc
