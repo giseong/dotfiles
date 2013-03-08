@@ -14,7 +14,8 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 cd $HOME/dotfiles
-git pull --recurse-submodules
+git pull
+git submodule foreach git pull
 
 antigen-update
 vundle-update
