@@ -74,10 +74,10 @@ fi
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
 
 #if [[ `uname` == "Linux" ]]; then
-  ## Start tmux on every shell login
-  #if which tmux 2>&1 >/dev/null; then
-    ##if not inside a tmux session, and if no session is started, start a new session
-    #test -z "$TMUX" && (tmux attach || tmux new-session)
-  #fi
+# Start tmux on every shell login
+if which tmux 2>&1 >/dev/null; then
+  #if not inside a tmux session, and if no session is started, start a new session
+  test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
 #fi
 
