@@ -131,7 +131,7 @@ set splitbelow splitright
 if has('gui_running')
   set guioptions=ce
   set antialias           " Antialias font
-  set columns=90 lines=60 " Default size of window
+  set columns=98 lines=50 " Default size of window
   set linespace=3
   set gtl=%t gtt=%F       " Tab headings
   autocmd VimResized * wincmd =
