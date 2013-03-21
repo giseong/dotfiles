@@ -37,6 +37,9 @@ if count(g:bundle_groups, 'general')
   Bundle 'chriskempson/base16-vim'
   Bundle 'nanotech/jellybeans.vim'
   Bundle 'w0ng/vim-hybrid'
+  Bundle 'noahfrederick/Hemisu'
+  Bundle 'pyte'
+  Bundle 'jacekd/vim-iawriter'
 endif
 
 " General Programming

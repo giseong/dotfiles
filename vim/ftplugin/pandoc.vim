@@ -1,4 +1,4 @@
-setlocal equalprg=pandoc\ -t\ markdown\ -s\ --normalize\ --reference-links\ --atx-headers\ --no-wrap
+setlocal equalprg=pandoc\ -t\ markdown\ -s\ --normalize\ --reference-links\ --no-wrap
 nnoremap <buffer> <Right> :VoomToggle<CR>
 nnoremap <buffer> <Leader>pf :!pandoc
       \ --latex-engine=xelatex
