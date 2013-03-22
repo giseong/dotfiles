@@ -1,7 +1,7 @@
 if has("gui_running")
   function! DistractionFreeWriting()
     set number!
-    set columns=90
+    set columns=120
     set linespace=5
     set fuoptions=maxvert
     set laststatus=0                   " don't show status line

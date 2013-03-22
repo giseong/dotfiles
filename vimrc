@@ -154,6 +154,7 @@ else " Terminal
   colorscheme base16-default
 endif
 
+
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
   exe 'source' f

@@ -1,8 +1,10 @@
-setlocal equalprg=pandoc\ -t\ markdown\ -s\ --normalize\ --reference-links\ --no-wrap
+setlocal equalprg=pandoc\ -t\ markdown\ -s\ --normalize\ --reference-links\ --atx-headers\ --no-wrap
 nnoremap <buffer> <Right> :VoomToggle<CR>
 nnoremap <buffer> <Leader>pf :!pandoc
       \ --latex-engine=xelatex
       \ --number-sections
+      \ --no-tex-ligatures
+      \ --smart
       \ --include-in-header ~/.pandoc/header-includes.latex
       \ --bibliography ~/.pandoc/default.bib
       \ --highlight-style=pygments
@@ -16,3 +18,4 @@ nnoremap <buffer> <Leader>pf :!pandoc
 if has("mac")
   nnoremap <buffer><silent> <Leader>pv :!open "%:p:r.pdf"<CR><CR>
 endif
+
