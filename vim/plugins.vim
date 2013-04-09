@@ -32,6 +32,8 @@ if count(g:bundle_groups, 'general')
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
   "Bundle 'myusuf3/numbers.vim'
+
+  " Color Schemes
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/vim-tomorrow-theme'
   Bundle 'chriskempson/base16-vim'
@@ -64,6 +66,7 @@ if count(g:bundle_groups, 'composing')
   Bundle 'jcf/vim-latex'
   "Bundle 'tpope/vim-markdown'
   Bundle 'vim-pandoc/vim-pandoc'
+  Bundle 'taskpaper.vim'
 endif
 
 " PHP

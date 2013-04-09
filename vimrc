@@ -144,16 +144,14 @@ if has('gui_running')
     set guifont=Consolas:h10
   endif
 
-  set background=light
-  colorscheme solarized
 else " Terminal
   set t_Co=256
 
-  set background=dark
-  let base16colorspace=256
-  colorscheme base16-default
 endif
 
+set background=dark
+let base16colorspace=256
+colorscheme base16-default
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')

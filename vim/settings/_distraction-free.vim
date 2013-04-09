@@ -5,6 +5,8 @@ if has("gui_running")
     set linespace=5
     set fuoptions=maxvert
     set laststatus=0                   " don't show status line
+    "set guifont=Cousine:h16
+
     set fullscreen                     " go to fullscreen editing mode
   endfunction
 
@@ -14,6 +16,7 @@ if has("gui_running")
       let s:prev_linespace = &linespace
       let s:prev_fuoptions = &fuoptions
       let s:prev_laststatus = &laststatus
+      "let s:prev_guifont = &guifont
 
       call DistractionFreeWriting()
     else
@@ -21,6 +24,7 @@ if has("gui_running")
       exec "set linespace=".s:prev_linespace
       exec "set fuoptions=".s:prev_fuoptions
       exec "set laststatus=".s:prev_laststatus
+      "exec "set guifont=".s:prev_guifont
 
       set number
       set fullscreen!
