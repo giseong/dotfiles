@@ -8,7 +8,7 @@ Bundle 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
-  let g:bundle_groups=['general', 'programming', 'composing']
+  let g:bundle_groups=['general', 'programming', 'composing', 'mac']
 endif
 
 " General
@@ -32,7 +32,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
   "Bundle 'myusuf3/numbers.vim'
-
   " Color Schemes
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/vim-tomorrow-theme'
@@ -96,9 +95,15 @@ if count(g:bundle_groups, 'html')
   Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 endif
 
-" Ruby
+" ruby
 if count(g:bundle_groups, 'ruby')
-  Bundle 'tpope/vim-rails'
+  bundle 'tpope/vim-rails'
+endif
+
+" mac specific
+if count(g:bundle_groups, 'mac')
+  Bundle 'rizzatti/funcoo.vim'
+  Bundle 'rizzatti/dash.vim'
 endif
 
 " Misc
