@@ -11,7 +11,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 # Load the oh-my-zsh's library.
-antigen-lib
+antigen-use oh-my-zsh
 
 # Bundles
 if [[ `uname` == "Darwin" ]]; then
