@@ -3,9 +3,11 @@
 set nocompatible
 filetype off
 
-" Leader
+" Map leader and localleader key to comma
 let mapleader = ","
+let g:mapleader = ","
 let maplocalleader = ","
+let g:maplocalleader = ","
 
 " Activate plugins
 source ~/.vim/plugins.vim
@@ -72,9 +74,15 @@ set listchars=""           " Reset the listchars
 set listchars=tab:▸\ ,eol:¬
 set listchars+=trail:.     " show trailing spaces as dots
 set listchars+=extends:>   " The character to show in the last column when wrap is
-                           " off and the line continues beyond the right of the screen
+" off and the line continues beyond the right of the screen
 set listchars+=precedes:<  " The character to show in the last column when wrap is
-                           " off and the line continues beyond the right of the screen
+" off and the line continues beyond the right of the screen
+
+
+augroup filetype_setting
+  au!
+  autocmd BufNewFile,BufRead *.txt   set filetype=pandoc
+augroup END
 
 augroup tabstop_setting
   au!
@@ -124,8 +132,20 @@ set wildignore+=*.pyc                            " Python byte code
 set sidescrolloff=15
 set sidescroll=1
 
-" =========== Windows and Buffers ===================
+" =========== Windows and Buffers ====================
 set splitbelow splitright
+
+" ================ Cursor settings ===================
+" This makes terminal vim sooo much nicer!
+" Tmux will only forward escape sequences to the terminal if surrounded by a DCS
+" sequence
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " ================= Appearance ======================
 if has('gui_running')
@@ -138,20 +158,22 @@ if has('gui_running')
 
   if has("gui_macvim")
     "macmenu &File.Open\ Tab\.\.\.   key=<nop>
-    set guifont=Ubuntu\ Mono:h14
-    "set guifont=Inconsolata:h14
+    set guifont=Consolas:h13
+    set guifontwide=NanumGothicCoding:h13
   elseif has("gui_win32")
     set guifont=Consolas:h10
+    set guifontwide=NanumGothicCoding:h10
   endif
 
+  set background=light
 else " Terminal
   set t_Co=256
 
+  set background=dark
+  "let base16colorspace=256
 endif
 
-set background=dark
-let base16colorspace=256
-colorscheme base16-default
+colorscheme solarized
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')

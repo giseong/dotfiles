@@ -21,6 +21,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'mileszs/ack.vim'
   Bundle 'henrik/vim-indexed-search'
   Bundle 'Lokaltog/vim-easymotion'
+  Bundle 'terryma/vim-multiple-cursors'
   Bundle 'Lokaltog/vim-powerline'
   Bundle 'sjl/gundo.vim'
   Bundle 'sjl/clam.vim'
@@ -28,19 +29,13 @@ if count(g:bundle_groups, 'general')
   Bundle 'benmills/vimux'
   Bundle 'Raimondi/delimitMate'
   Bundle 'ervandew/supertab'
+  "Bundle 'Valloric/YouCompleteMe'
   Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
   "Bundle 'myusuf3/numbers.vim'
-  " Color Schemes
   Bundle 'altercation/vim-colors-solarized'
-  Bundle 'chriskempson/vim-tomorrow-theme'
   Bundle 'chriskempson/base16-vim'
-  Bundle 'nanotech/jellybeans.vim'
-  Bundle 'w0ng/vim-hybrid'
-  Bundle 'noahfrederick/Hemisu'
-  Bundle 'pyte'
-  Bundle 'jacekd/vim-iawriter'
 endif
 
 " General Programming
@@ -52,7 +47,6 @@ if count(g:bundle_groups, 'programming')
   Bundle 'majutsushi/tagbar'
   Bundle 'scrooloose/syntastic'
   Bundle 'AutoTag'
-  Bundle 'honza/vim-snippets'
   Bundle 'SirVer/ultisnips'
   Bundle 'Align'
   Bundle 'AutoAlign'
@@ -63,9 +57,8 @@ endif
 if count(g:bundle_groups, 'composing')
   Bundle 'VOoM'
   Bundle 'jcf/vim-latex'
-  "Bundle 'tpope/vim-markdown'
   Bundle 'vim-pandoc/vim-pandoc'
-  Bundle 'taskpaper.vim'
+  Bundle 'dhruvasagar/vim-table-mode'
 endif
 
 " PHP

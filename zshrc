@@ -28,6 +28,9 @@ antigen-bundle dircycle
 antigen-bundle dirpersist
 antigen-bundle zsh-users/zsh-history-substring-search
 
+ZSH_TMUX_AUTOSTART=true
+antigen-bundle tmux
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
 
@@ -49,8 +52,8 @@ if [[ `uname` == "Darwin" ]]; then
 elif [[ `uname` == "Linux" ]]; then
   export LS_COLORS='di=01;34;49:ln=35;49:so=32;49:pi=33;49:ex=31;49:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
-BASE16_SHELL=$DOTFILES_PATH/base16-shell
-source $BASE16_SHELL/base16-default.dark.sh
+#BASE16_SHELL=$DOTFILES_PATH/base16-shell
+#source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
 export EDITOR='vim'
@@ -73,12 +76,4 @@ fi
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
-
-#if [[ `uname` == "Linux" ]]; then
-# Start tmux on every shell login
-if which tmux 2>&1 >/dev/null; then
-  #if not inside a tmux session, and if no session is started, start a new session
-  test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
-#fi
 
