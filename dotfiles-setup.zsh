@@ -23,6 +23,8 @@ else
     link $DOTFILES_PATH/gitconfig_osx ~/.gitconfig
   elif [[ `uname` == "Linux" ]]; then
     link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
+  elif [[ `uname` == "CYGWIN_NT_6.1" ]]; then
+    link $DOTFILES_PATH/gitconfig_windows ~/.gitconfig
   fi
   link $DOTFILES_PATH/gitignore ~/.gitignore
   link $DOTFILES_PATH/gitattributes ~/.gitattributes
@@ -59,6 +61,9 @@ else
   link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
   link $DOTFILES_PATH/inputrc ~/.inputrc
   link $DOTFILES_PATH/editrc ~/.editrc
+  if [[ `uname` == "CYGWIN_NT_6.1" ]]; then
+    link $DOTFILES_PATH/minttyrc ~/.minttyrc
+  fi
   #link $DOTFILES_PATH/Xresources ~/.Xresources
 
 fi
