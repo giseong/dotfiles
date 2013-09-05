@@ -22,14 +22,15 @@ if [[ `uname` == "Darwin" ]]; then
   ZSH_TMUX_AUTOSTART=true
   antigen-bundle tmux
 
+  antigen-bundle extract
+  antigen-bundle autojump
 fi
 antigen-bundle git
 antigen-bundle vi-mode
-antigen-bundle vundle
-antigen-bundle extract
-antigen-bundle autojump
 antigen-bundle dircycle
 antigen-bundle dirpersist
+
+antigen-bundle vundle
 antigen-bundle zsh-users/zsh-history-substring-search
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
