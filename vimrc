@@ -3,6 +3,7 @@
 set nocompatible
 filetype off
 
+let $lang = 'en'
 " Map leader and localleader key to comma
 let mapleader = ","
 let g:mapleader = ","

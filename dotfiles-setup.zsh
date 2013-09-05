@@ -61,9 +61,6 @@ else
   link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
   link $DOTFILES_PATH/inputrc ~/.inputrc
   link $DOTFILES_PATH/editrc ~/.editrc
-  if [[ `uname` == "CYGWIN_NT_6.1" ]]; then
-    link $DOTFILES_PATH/minttyrc ~/.minttyrc
-  fi
   #link $DOTFILES_PATH/Xresources ~/.Xresources
 
 fi

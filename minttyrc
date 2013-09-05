@@ -26,3 +26,5 @@ BoldWhite=253,246,227
 CursorType=block
 Columns=104
 Rows=57
+Locale=C
+Charset=UTF-8

@@ -18,6 +18,10 @@ if [[ `uname` == "Darwin" ]]; then
   antigen-bundle osx
   antigen-bundle brew
   antigen-bundle sublime
+
+  ZSH_TMUX_AUTOSTART=true
+  antigen-bundle tmux
+
 fi
 antigen-bundle git
 antigen-bundle vi-mode
@@ -27,9 +31,6 @@ antigen-bundle autojump
 antigen-bundle dircycle
 antigen-bundle dirpersist
 antigen-bundle zsh-users/zsh-history-substring-search
-
-ZSH_TMUX_AUTOSTART=true
-antigen-bundle tmux
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
