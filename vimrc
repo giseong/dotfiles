@@ -68,7 +68,7 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 set linebreak
-set textwidth=79
+set textwidth=80
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
@@ -80,10 +80,10 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 " off and the line continues beyond the right of the screen
 
 
-augroup filetype_setting
-  au!
-  autocmd BufNewFile,BufRead *.txt   set filetype=pandoc
-augroup END
+"augroup filetype_setting
+  "au!
+  "autocmd BufNewFile,BufRead *.txt   set filetype=pandoc
+"augroup END
 
 augroup tabstop_setting
   au!
