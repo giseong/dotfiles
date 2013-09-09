@@ -29,12 +29,11 @@ antigen-bundle git
 antigen-bundle vi-mode
 antigen-bundle dircycle
 antigen-bundle dirpersist
-
 antigen-bundle vundle
-antigen-bundle zsh-users/zsh-history-substring-search
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle zsh-users/zsh-history-substring-search
 
 # Load the theme.
 antigen-theme mortalscumbag
@@ -51,7 +50,7 @@ alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
 export CLICOLOR=1
 if [[ `uname` == "Darwin" ]]; then
   export LSCOLORS=Exfxcxdxbxegedabagacad
-elif [[ `uname` == "Linux" ]]; then
+else
   export LS_COLORS='di=01;34;49:ln=35;49:so=32;49:pi=33;49:ex=31;49:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
 BASE16_SHELL=$DOTFILES_PATH/base16-shell
