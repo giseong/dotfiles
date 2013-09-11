@@ -26,5 +26,5 @@ Rows=57
 Locale=C
 Charset=UTF-8
 CopyAsRTF=no
-CursorBlinks=no
+CursorBlinks=yes
 Scrollbar=none
