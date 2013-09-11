@@ -1,10 +1,10 @@
 [user]
-	name = Giseong Bak
-	email = giseong.bak@gmail.com
+  name = Giseong Bak
+  email = giseong.bak@gmail.com
 [credential]
-	helper = cache
+  helper = cache
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [color]
   ui = true
 [color "branch"]
@@ -17,4 +17,4 @@
   old = red bold
   new = green bold
 [push]
-	default = matching
+  default = matching
