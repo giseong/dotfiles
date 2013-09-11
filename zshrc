@@ -19,12 +19,15 @@ if [[ `uname` == "Darwin" ]]; then
   antigen-bundle brew
   antigen-bundle sublime
 
+  antigen-bundle extract
+  antigen-bundle autojump
+
+elif [[ `uname` == "Linux" ]]; then
   ZSH_TMUX_AUTOSTART=true
   antigen-bundle tmux
 
-  antigen-bundle extract
-  antigen-bundle autojump
 fi
+
 antigen-bundle git
 antigen-bundle vi-mode
 antigen-bundle dircycle
