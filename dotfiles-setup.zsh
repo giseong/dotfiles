@@ -23,8 +23,6 @@ else
     link $DOTFILES_PATH/gitconfig_osx ~/.gitconfig
   elif [[ `uname` == "Linux" ]]; then
     link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
-  elif [[ `uname` == "CYGWIN_NT_6.1" ]]; then
-    link $DOTFILES_PATH/gitconfig_windows ~/.gitconfig
   fi
   link $DOTFILES_PATH/gitignore ~/.gitignore
   link $DOTFILES_PATH/gitattributes ~/.gitattributes
@@ -42,25 +40,26 @@ else
   link $DOTFILES_PATH/tmux_shared.conf ~/.tmux_shared.conf
   link $DOTFILES_PATH/tmux ~/.tmux
 
-  # pandoc
-  link $DOTFILES_PATH/csl ~/.csl
-  link $DOTFILES_PATH/pandoc ~/.pandoc
+  if [[ `uname` == "Darwin" ]]; then
+    # pandoc
+    link $DOTFILES_PATH/pandoc ~/.pandoc
 
-  # ruby
-  link $DOTFILES_PATH/rvmrc ~/.rvmrc
-  link $DOTFILES_PATH/pryrc ~/.pryrc
-  link $DOTFILES_PATH/aprc ~/.aprc
+    # ruby
+    link $DOTFILES_PATH/rvmrc ~/.rvmrc
+    link $DOTFILES_PATH/pryrc ~/.pryrc
+    link $DOTFILES_PATH/aprc ~/.aprc
 
-  # heskell
-  rm -rf ~/.cabal
-  mkdir ~/.cabal
-  link $DOTFILES_PATH/cabal/config ~/.cabal/config
+    # heskell
+    rm -rf ~/.cabal
+    mkdir ~/.cabal
+    link $DOTFILES_PATH/cabal/config ~/.cabal/config
 
-  # Misc
-  link $DOTFILES_PATH/ackrc ~/.ackrc
-  link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
-  link $DOTFILES_PATH/inputrc ~/.inputrc
-  link $DOTFILES_PATH/editrc ~/.editrc
-  #link $DOTFILES_PATH/Xresources ~/.Xresources
+    # Misc
+    link $DOTFILES_PATH/ackrc ~/.ackrc
+    link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
+    link $DOTFILES_PATH/inputrc ~/.inputrc
+    link $DOTFILES_PATH/editrc ~/.editrc
+    #link $DOTFILES_PATH/Xresources ~/.Xresources
+  fi
 
 fi

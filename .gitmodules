@@ -4,6 +4,3 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "csl"]
-	path = csl
-	url = git://github.com/citation-style-language/styles.git
