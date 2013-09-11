@@ -63,10 +63,6 @@ set nowb
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
 set linebreak
 set textwidth=80
 set cinoptions=:0,g0,(0,Ws,l1
@@ -89,12 +85,13 @@ augroup tabstop_setting
   au!
   autocmd FileType *                         set sts=2 ts=2 sw=2
   autocmd FileType python,pandoc,markdown    set sts=4 ts=4 sw=4
+  autocmd FileType c                         set sts=8 ts=8 sw=8
 augroup END
 
 augroup expandtab_setting
   au!
   autocmd FileType *                set expandtab
-  autocmd FileType make             set noexpandtab
+  autocmd FileType c,make           set noexpandtab
 augroup END
 
 augroup csrc
