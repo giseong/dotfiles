@@ -30,8 +30,6 @@ fi
 
 antigen-bundle git
 antigen-bundle vi-mode
-antigen-bundle dircycle
-antigen-bundle dirpersist
 antigen-bundle vundle
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
