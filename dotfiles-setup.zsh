@@ -26,6 +26,7 @@ else
   fi
   link $DOTFILES_PATH/gitignore ~/.gitignore
   link $DOTFILES_PATH/gitattributes ~/.gitattributes
+  link $DOTFILES_PATH/tigrc ~/.tigrc
 
   # vim
   link $DOTFILES_PATH/vim ~/.vim

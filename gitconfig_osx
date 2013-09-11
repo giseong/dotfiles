@@ -1,10 +1,11 @@
 [user]
-	name = Giseong Bak
-	email = giseong.bak@gmail.com
+  name = Giseong Bak
+  email = giseong.bak@gmail.com
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
+  editor = vim
 [color]
   ui = true
 [color "branch"]
@@ -17,4 +18,4 @@
   old = red bold
   new = green bold
 [push]
-	default = simple
+  default = simple

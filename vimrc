@@ -83,9 +83,9 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 
 augroup tabstop_setting
   au!
-  autocmd FileType *                         set sts=2 ts=2 sw=2
-  autocmd FileType python,pandoc,markdown    set sts=4 ts=4 sw=4
-  autocmd FileType c                         set sts=8 ts=8 sw=8
+  autocmd FileType *                              set sts=2 ts=2 sw=2
+  autocmd FileType python,pandoc,markdown,java    set sts=4 ts=4 sw=4
+  autocmd FileType c                              set sts=8 ts=8 sw=8
 augroup END
 
 augroup expandtab_setting
