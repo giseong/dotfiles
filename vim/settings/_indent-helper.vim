@@ -66,6 +66,6 @@ endfunction
 
 augroup wrap_style
   au!
-  autocmd FileType *                                call WrapStyle_nowrap()
-  autocmd FileType qf,pandoc,tex,man,markdown       call WrapStyle_wrap()
+  autocmd FileType *                                     call WrapStyle_nowrap()
+  autocmd FileType qf,pandoc,tex,man,markdown,text       call WrapStyle_wrap()
 augroup END
