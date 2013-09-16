@@ -85,13 +85,13 @@ augroup tabstop_setting
   au!
   autocmd FileType *                              set sts=2 ts=2 sw=2
   autocmd FileType python,pandoc,markdown,java    set sts=4 ts=4 sw=4
-  autocmd FileType c                              set sts=8 ts=8 sw=8
+  autocmd FileType c,cpp                          set sts=8 ts=8 sw=8
 augroup END
 
 augroup expandtab_setting
   au!
   autocmd FileType *                set expandtab
-  autocmd FileType c,make           set noexpandtab
+  autocmd FileType c,cpp,make       set noexpandtab
 augroup END
 
 augroup csrc
