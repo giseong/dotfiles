@@ -42,30 +42,3 @@ function! Stab()
   endtry
 endfunction
 
-function! WrapStyle_nowrap()
-  set nowrap
-  set formatoptions=cqron1
-  set colorcolumn=+1 "highlight column after 'textwidth'
-  set list
-endfunction
-
-function! WrapStyle_wrap()
-  set wrap
-  set formatoptions=ro1
-  set colorcolumn=""
-  set nolist
-endfunction
-
-function! WrapStyle_toggle()
-  if (&wrap)
-    call WrapStyle_nowrap()
-  else
-    call WrapStyle_wrap()
-  endif
-endfunction
-
-augroup wrap_style
-  au!
-  autocmd FileType *                                     call WrapStyle_nowrap()
-  autocmd FileType qf,pandoc,tex,man,markdown,text,help    call WrapStyle_wrap()
-augroup END
