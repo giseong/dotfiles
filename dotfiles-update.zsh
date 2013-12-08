@@ -15,7 +15,7 @@ fi
 
 cd $HOME/dotfiles
 git pull
-git submodule foreach git pull
+git submodule foreach git pull origin master
 
 antigen-update
 vundle-update
