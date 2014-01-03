@@ -84,14 +84,18 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 function! WrapStyle_nowrap()
   set nowrap
   set formatoptions=cqron1
-  set colorcolumn=+1 "highlight column after 'textwidth'
+  if v:version > 702
+    set colorcolumn=+1 "highlight column after 'textwidth'
+  endif
   set list
 endfunction
 
 function! WrapStyle_wrap()
   set wrap
   set formatoptions=ro1
-  set colorcolumn=""
+  if v:version > 702
+    set colorcolumn=""
+  endif
   set nolist
 endfunction
 
