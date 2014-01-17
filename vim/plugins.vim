@@ -22,7 +22,8 @@ if count(g:bundle_groups, 'general')
   Bundle 'henrik/vim-indexed-search'
   Bundle 'Lokaltog/vim-easymotion'
   Bundle 'terryma/vim-multiple-cursors'
-  Bundle 'Lokaltog/vim-powerline'
+  "Bundle 'Lokaltog/vim-powerline'
+  Bundle 'bling/vim-airline'
   Bundle 'sjl/gundo.vim'
   Bundle 'sjl/clam.vim'
   Bundle 'sjl/vitality.vim'
@@ -58,6 +59,9 @@ if count(g:bundle_groups, 'composing')
   Bundle 'VOoM'
   Bundle 'jcf/vim-latex'
   Bundle 'vim-pandoc/vim-pandoc'
+  "Bundle 'vim-pandoc/vim-pandoc-syntax'
+  "Bundle 'vim-pandoc/vim-pantondoc'
+  "Bundle 'vim-pandoc/vim-pandoc-after'
   Bundle 'dhruvasagar/vim-table-mode'
 endif
 
