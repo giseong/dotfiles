@@ -73,8 +73,7 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell
 source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
-export EDITOR='vim'
-#export EDITOR='mvim -f -c "au VimLeave * !open -a iTerm"'
+export EDITOR='subl -n -w'
 alias e=$EDITOR
 
 # Misc
