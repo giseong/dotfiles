@@ -31,6 +31,7 @@ fi
 antigen-bundle git
 antigen-bundle vi-mode
 antigen-bundle vundle
+antigen-bundle dirpersist
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
