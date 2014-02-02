@@ -19,19 +19,15 @@ if [[ `uname` == "Darwin" ]]; then
   antigen-bundle brew
   antigen-bundle sublime
 
-  antigen-bundle extract
-  antigen-bundle autojump
-
 elif [[ `uname` == "Linux" ]]; then
   ZSH_TMUX_AUTOSTART=true
   antigen-bundle tmux
 
 fi
-
 antigen-bundle git
 antigen-bundle vi-mode
 antigen-bundle vundle
-antigen-bundle dirpersist
+antigen-bundle common-aliases
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
@@ -74,7 +70,11 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell
 source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
-export EDITOR='subl -n -w'
+if [[ `uname` == "Darwin" ]]; then
+  export EDITOR='subl -n -w'
+else
+  export EDITOR='vim'
+fi
 alias e=$EDITOR
 
 # Misc
