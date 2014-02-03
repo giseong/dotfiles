@@ -1,5 +1,5 @@
 set com=s1:/*,mb:*,ex:*/,://,b:#.,:%,:XCOMM,n:>,b:-
-setlocal equalprg=pandoc\ -t\ markdown\ -s\ --normalize\ --reference-links\ --atx-headers\ --no-wrap
+setlocal equalprg=pandoc\ -t\ markdown_mmd\ -s\ --normalize\ --atx-headers\ --no-wrap
 nnoremap <buffer> <Right> :VoomToggle<CR>
 nnoremap <buffer> <Leader>pf :!pandoc
       \ --latex-engine=xelatex

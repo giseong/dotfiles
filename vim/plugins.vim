@@ -33,8 +33,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'sjl/vitality.vim'
   Bundle 'benmills/vimux'
   Bundle 'Raimondi/delimitMate'
-  Bundle 'ervandew/supertab'
-  "Bundle 'Valloric/YouCompleteMe'
   Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
   Bundle 'sessionman.vim'
@@ -52,6 +50,14 @@ if count(g:bundle_groups, 'programming')
   Bundle 'majutsushi/tagbar'
   Bundle 'scrooloose/syntastic'
   Bundle 'AutoTag'
+  "if has("lua")
+    "Bundle 'Shougo/neocomplete'
+    "Bundle 'Shougo/neosnippet'
+    "Bundle 'Shougo/neosnippet-snippets'
+  "else
+    "Bundle 'Valloric/YouCompleteMe'
+  "endif
+  Bundle 'ervandew/supertab'
   Bundle 'SirVer/ultisnips'
   Bundle 'Align'
   Bundle 'AutoAlign'
@@ -62,10 +68,13 @@ endif
 if count(g:bundle_groups, 'composing')
   Bundle 'VOoM'
   Bundle 'jcf/vim-latex'
+  "if v:version >= 704
+    "Bundle 'vim-pandoc/vim-pandoc-syntax'
+    "Bundle 'vim-pandoc/vim-pantondoc'
+    "Bundle 'vim-pandoc/vim-pandoc-after'
+  "else
   Bundle 'vim-pandoc/vim-pandoc'
-  "Bundle 'vim-pandoc/vim-pandoc-syntax'
-  "Bundle 'vim-pandoc/vim-pantondoc'
-  "Bundle 'vim-pandoc/vim-pandoc-after'
+  "endif
   Bundle 'dhruvasagar/vim-table-mode'
 endif
 

@@ -84,7 +84,7 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 function! WrapStyle_nowrap()
   set nowrap
   set formatoptions=cqron1
-  if v:version > 702
+  if v:version >= 703
     set colorcolumn=+1 "highlight column after 'textwidth'
   endif
   set list
@@ -176,11 +176,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-"let &t_ti.="\e[1 q"
-"let &t_SI.="\e[5 q"
-"let &t_EI.="\e[1 q"
-"let &t_te.="\e[0 q"
 
 " ================= Appearance ======================
 if has('gui_running')
