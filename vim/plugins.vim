@@ -69,9 +69,9 @@ if count(g:bundle_groups, 'composing')
   Bundle 'VOoM'
   Bundle 'jcf/vim-latex'
   "if v:version >= 704
-    "Bundle 'vim-pandoc/vim-pandoc-syntax'
-    "Bundle 'vim-pandoc/vim-pantondoc'
-    "Bundle 'vim-pandoc/vim-pandoc-after'
+  "Bundle 'vim-pandoc/vim-pandoc-syntax'
+  "Bundle 'vim-pandoc/vim-pantondoc'
+  "Bundle 'vim-pandoc/vim-pandoc-after'
   "else
   Bundle 'vim-pandoc/vim-pandoc'
   "endif

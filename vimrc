@@ -75,12 +75,6 @@ set listchars+=extends:>   " The character to show in the last column when wrap 
 set listchars+=precedes:<  " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
 
-
-"augroup filetype_setting
-  "au!
-  "autocmd BufNewFile,BufRead *.txt   set filetype=pandoc
-"augroup END
-"
 function! WrapStyle_nowrap()
   set nowrap
   set formatoptions=cqron1
@@ -121,15 +115,15 @@ augroup END
 
 augroup tabstop_setting
   au!
-  autocmd FileType *                              set sts=4 ts=4 sw=4
-  autocmd FileType taskpaper                      set sts=2 ts=2 sw=2
+  autocmd FileType *                              set sts=2 ts=2 sw=2
+  autocmd FileType pandoc,java,python             set sts=4 ts=4 sw=4
   autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
 augroup END
 
 augroup expandtab_setting
   au!
-  autocmd FileType *                              set noexpandtab
-  autocmd FileType python                         set expandtab
+  autocmd FileType *                              set expandtab
+  autocmd FileType make,pandoc,taskpaper          set noexpandtab
 augroup END
 
 augroup csrc
