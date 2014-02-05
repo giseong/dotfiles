@@ -21,6 +21,7 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set noshowmode                  "Show current mode down the bottom
+set lazyredraw
 set ttyfast
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
@@ -106,29 +107,35 @@ function! WrapStyle_toggle()
   endif
 endfunction
 
+augroup ftdetect
+  au!
+  autocmd BufRead,BufNewFile *.txt                set filetype=pandoc
+  autocmd BufRead,BufNewFile *.todolist.txt       set filetype=taskpaper
+augroup END
+
 augroup wrap_style
   au!
   autocmd FileType *                                     call WrapStyle_nowrap()
-  autocmd FileType qf,pandoc,tex,man,markdown,text,help    call WrapStyle_wrap()
+  autocmd FileType qf,pandoc,tex,man,text,help,taskpaper call WrapStyle_wrap()
 augroup END
 
 augroup tabstop_setting
   au!
-  autocmd FileType *                              set sts=2 ts=2 sw=2
-  autocmd FileType python,pandoc,markdown,java    set sts=4 ts=4 sw=4
-  autocmd FileType c,cpp,text,help                set sts=8 ts=8 sw=8
+  autocmd FileType *                              set sts=4 ts=4 sw=4
+  autocmd FileType taskpaper                      set sts=2 ts=2 sw=2
+  autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
 augroup END
 
 augroup expandtab_setting
   au!
-  autocmd FileType *                                     set expandtab
-  autocmd FileType c,cpp,text,help,make,markdown,pandoc  set noexpandtab
+  autocmd FileType *                              set noexpandtab
+  autocmd FileType python                         set expandtab
 augroup END
 
 augroup csrc
   au!
-  autocmd FileType *                set nocindent
-  autocmd FileType c,cpp            set cindent
+  autocmd FileType *                              set nocindent
+  autocmd FileType c,cpp                          set cindent
 augroup END
 
 " ================ Folds ============================

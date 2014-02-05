@@ -76,6 +76,7 @@ if count(g:bundle_groups, 'composing')
   Bundle 'vim-pandoc/vim-pandoc'
   "endif
   Bundle 'dhruvasagar/vim-table-mode'
+  Bundle 'davidoc/taskpaper.vim'
 endif
 
 " PHP

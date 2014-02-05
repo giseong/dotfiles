@@ -70,7 +70,9 @@ source $BASE16_SHELL/base16-default.dark.sh
 
 # Editors
 if [[ `uname` == "Darwin" ]]; then
-  export EDITOR='subl -n -w'
+  #export EDITOR='subl -n -w'
+  #export EDITOR='vim'
+  export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 else
   export EDITOR='vim'
 fi
@@ -92,4 +94,3 @@ fi
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
-
