@@ -121,8 +121,8 @@ augroup END
 
 augroup expandtab_setting
   au!
-  autocmd FileType *                          set expandtab
-  autocmd FileType c,cpp,text,help,make       set noexpandtab
+  autocmd FileType *                                     set expandtab
+  autocmd FileType c,cpp,text,help,make,markdown,pandoc  set noexpandtab
 augroup END
 
 augroup csrc
