@@ -123,7 +123,7 @@ augroup END
 augroup expandtab_setting
   au!
   autocmd FileType *                              set expandtab
-  autocmd FileType make,pandoc,taskpaper          set noexpandtab
+  autocmd FileType c,cpp,make,pandoc,taskpaper    set noexpandtab
 augroup END
 
 augroup csrc

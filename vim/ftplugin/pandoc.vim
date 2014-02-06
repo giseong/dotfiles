@@ -1,5 +1,6 @@
 set com=s1:/*,mb:*,ex:*/,://,b:#.,:%,:XCOMM,n:>,b:-
-setlocal equalprg=pandoc\ -t\ markdown_mmd\ --standalone\ --normalize\ --preserve-tabs\ --atx-headers\ --no-wrap
+"setlocal equalprg=pandoc\ -t\ markdown_mmd\ --standalone\ --normalize\ --preserve-tabs\ --atx-headers\ --no-wrap
+setlocal equalprg=""
 nnoremap <buffer> <Right> :VoomToggle<CR>
 nnoremap <buffer> <Leader>pf :!pandoc
       \ --latex-engine=xelatex
@@ -14,7 +15,7 @@ nnoremap <buffer> <Leader>pf :!pandoc
       \ --variable=fontsize:11pt
       \ --variable=mainfont:Georgia
       \ --variable=sansfont:Verdana
-      \ --variable=monofont:Cousine
+      \ --variable=monofont:Consolas
       \ -o "%:p:r.pdf" "%:p"<CR>
 nnoremap <buffer> <Leader>bm :!pandoc
       \ --latex-engine=xelatex
