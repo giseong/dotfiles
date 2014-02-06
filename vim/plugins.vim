@@ -26,7 +26,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'henrik/vim-indexed-search'
   Bundle 'Lokaltog/vim-easymotion'
   Bundle 'terryma/vim-multiple-cursors'
-  "Bundle 'Lokaltog/vim-powerline'
   Bundle 'bling/vim-airline'
   Bundle 'sjl/gundo.vim'
   Bundle 'sjl/clam.vim'
@@ -35,8 +34,6 @@ if count(g:bundle_groups, 'general')
   Bundle 'Raimondi/delimitMate'
   Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
-  Bundle 'sessionman.vim'
-  "Bundle 'myusuf3/numbers.vim'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/base16-vim'
 endif
@@ -75,8 +72,8 @@ if count(g:bundle_groups, 'composing')
   "else
   Bundle 'vim-pandoc/vim-pandoc'
   "endif
-  Bundle 'dhruvasagar/vim-table-mode'
   Bundle 'davidoc/taskpaper.vim'
+  "Bundle 'dhruvasagar/vim-table-mode'
 endif
 
 " PHP
