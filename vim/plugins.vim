@@ -27,6 +27,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'Lokaltog/vim-easymotion'
   Bundle 'terryma/vim-multiple-cursors'
   Bundle 'bling/vim-airline'
+  Bundle 'mhinz/vim-signify'
   Bundle 'sjl/gundo.vim'
   Bundle 'sjl/clam.vim'
   Bundle 'sjl/vitality.vim'
@@ -38,7 +39,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'chriskempson/base16-vim'
 endif
 
-" General Programming
+" Programming
 if count(g:bundle_groups, 'programming')
   Bundle 'tpope/vim-fugitive'
   Bundle 'tpope/vim-endwise'
