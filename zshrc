@@ -27,6 +27,7 @@ fi
 antigen-bundle git
 antigen-bundle vi-mode
 antigen-bundle vundle
+antigen-bundle fasd
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen-bundle zsh-users/zsh-syntax-highlighting
@@ -71,12 +72,11 @@ source $BASE16_SHELL/base16-default.dark.sh
 # Editors
 if [[ `uname` == "Darwin" ]]; then
   #export EDITOR='subl -n -w'
-  #export EDITOR='vim'
-  export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+  #export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+  export EDITOR='vim'
 else
   export EDITOR='vim'
 fi
-alias e=$EDITOR
 
 # Misc
 if [[ `uname` == "Darwin" ]]; then
