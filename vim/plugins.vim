@@ -33,7 +33,7 @@ if count(g:bundle_groups, 'general')
   Bundle 'sjl/vitality.vim'
   Bundle 'benmills/vimux'
   Bundle 'Raimondi/delimitMate'
-  Bundle 'YankRing.vim'
+  "Bundle 'YankRing.vim'
   Bundle 'matchit.zip'
   Bundle 'altercation/vim-colors-solarized'
   Bundle 'chriskempson/base16-vim'

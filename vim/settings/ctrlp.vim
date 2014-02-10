@@ -16,6 +16,6 @@ let g:ctrlp_custom_ignore       = {
   "nnoremap <Leader>r :CtrlPBufTag<CR>
 "endif
 
-let g:ctrlp_map     = '<Leader>cp'
+"let g:ctrlp_map     = '<Leader>cp'
 nnoremap <silent> <Leader>bt :CtrlPBufTag<CR>
 nnoremap <silent> <Leader>be :CtrlPBuffer<CR>
