@@ -49,7 +49,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
-antigen-theme ys
+antigen-theme mortalscumbag
 
 # Tell antigen that you're done.
 antigen-apply
