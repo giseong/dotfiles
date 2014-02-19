@@ -82,6 +82,7 @@ fi
 
 # Misc
 if [[ `uname` == "Darwin" ]]; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
   export PAGER=vimpager
   alias less=$PAGER
   alias zless=$PAGER
