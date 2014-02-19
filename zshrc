@@ -11,29 +11,31 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 # Load the oh-my-zsh's library.
-antigen-use oh-my-zsh
+antigen use oh-my-zsh
 
 # Bundles
 if [[ `uname` == "Darwin" ]]; then
-  antigen-bundle osx
-  antigen-bundle brew
-  antigen-bundle sublime
+  antigen bundle osx
+  antigen bundle brew
+  antigen bundle sublime
 
 elif [[ `uname` == "Linux" ]]; then
   ZSH_TMUX_AUTOSTART=true
-  antigen-bundle tmux
+  antigen bundle tmux
 
 fi
-antigen-bundle git
-antigen-bundle vi-mode
-antigen-bundle vundle
-antigen-bundle fasd
+antigen bundle git
+antigen bundle vi-mode
+antigen bundle vundle
+antigen bundle fasd
+
+antigen bundle zsh-users/zsh-completions src
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
 
 # zsh-history-substring-search
-antigen-bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-history-substring-search
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
@@ -49,10 +51,10 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
-antigen-theme mortalscumbag
+antigen theme mortalscumbag
 
 # Tell antigen that you're done.
-antigen-apply
+antigen apply
 
 # env
 export SHELL=`which zsh`
