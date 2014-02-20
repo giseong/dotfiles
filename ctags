@@ -1,0 +1,11 @@
+--recurse=yes
+--tag-relative=yes
+--fields=+l
+
+--exclude=*.git*
+--exclude=*.pyc
+--exclude=*.pyo
+--exclude=.DS_Store
+--exclude=*.md
+
+-f .tags

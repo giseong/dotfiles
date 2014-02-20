@@ -46,17 +46,9 @@ if count(g:bundle_groups, 'programming')
   Bundle 'nathanaelkane/vim-indent-guides'
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'majutsushi/tagbar'
-  Bundle 'scrooloose/syntastic'
-  Bundle 'AutoTag'
-  "if has("lua")
-    "Bundle 'Shougo/neocomplete'
-    "Bundle 'Shougo/neosnippet'
-    "Bundle 'Shougo/neosnippet-snippets'
-  "else
-    "Bundle 'Valloric/YouCompleteMe'
-  "endif
-  Bundle 'ervandew/supertab'
+  "Bundle 'scrooloose/syntastic'
   Bundle 'SirVer/ultisnips'
+  Bundle 'Valloric/YouCompleteMe'
   Bundle 'Align'
   Bundle 'AutoAlign'
   Bundle 'DoxygenToolkit.vim'
@@ -74,7 +66,6 @@ if count(g:bundle_groups, 'composing')
   Bundle 'vim-pandoc/vim-pandoc'
   "endif
   Bundle 'davidoc/taskpaper.vim'
-  "Bundle 'dhruvasagar/vim-table-mode'
 endif
 
 " PHP
@@ -88,7 +79,7 @@ if count(g:bundle_groups, 'python')
   Bundle 'klen/python-mode'
   Bundle 'python.vim'
   Bundle 'python_match.vim'
-  Bundle 'pythoncomplete'
+  Bundle 'davidhalter/jedi'
 endif
 
 " Javascript
@@ -109,7 +100,7 @@ if count(g:bundle_groups, 'ruby')
   bundle 'tpope/vim-rails'
 endif
 
-" mac specific
+" Mac specific
 if count(g:bundle_groups, 'mac')
   Bundle 'rizzatti/funcoo.vim'
   Bundle 'rizzatti/dash.vim'

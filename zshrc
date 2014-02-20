@@ -17,13 +17,13 @@ antigen use oh-my-zsh
 if [[ `uname` == "Darwin" ]]; then
   antigen bundle osx
   antigen bundle brew
-  antigen bundle sublime
+fi
 
-elif [[ `uname` == "Linux" ]]; then
+if [[ `uname` == "Linux" ]]; then
   ZSH_TMUX_AUTOSTART=true
   antigen bundle tmux
-
 fi
+
 antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
@@ -68,8 +68,10 @@ if [[ `uname` == "Darwin" ]]; then
 else
   export LS_COLORS='di=01;34;49:ln=35;49:so=32;49:pi=33;49:ex=31;49:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
-BASE16_SHELL=$DOTFILES_PATH/base16-shell
-source $BASE16_SHELL/base16-default.dark.sh
+# Base16 Shell
+BASE16_SCHEME="default"
+BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
 # Editors
 if [[ `uname` == "Darwin" ]]; then
