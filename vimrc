@@ -191,7 +191,7 @@ if has('gui_running')
   set guioptions=ce
   set antialias           " Antialias font
   set columns=98 lines=50 " Default size of window
-  set linespace=0
+  set linespace=3
   set gtl=%t gtt=%F       " Tab headings
   autocmd VimResized * wincmd =
 
