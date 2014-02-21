@@ -40,6 +40,7 @@ flags = [
 '-Werror',
 '-std=c99',
 '-I./include',
+'-I./arch/arm/include',
 ]
 
 
