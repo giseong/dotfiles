@@ -61,7 +61,7 @@ else
     link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
     link $DOTFILES_PATH/inputrc ~/.inputrc
     link $DOTFILES_PATH/editrc ~/.editrc
-    link $DOTFILES_PATH/ycm_extra_conf.py ~/.ycm_extra_conf
+    #link $DOTFILES_PATH/ycm_extra_conf.py ~/.ycm_extra_conf
     #link $DOTFILES_PATH/Xresources ~/.Xresources
   fi
 
