@@ -103,7 +103,7 @@ endfunction
 
 augroup ftdetect
   au!
-  autocmd BufRead,BufNewFile *.txt                set filetype=pandoc
+  autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
   autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
 augroup END
 
@@ -123,7 +123,7 @@ augroup END
 augroup expandtab_setting
   au!
   autocmd FileType *                              set expandtab
-  autocmd FileType c,cpp,make,pandoc,taskpaper    set noexpandtab
+  autocmd FileType c,cpp,make,taskpaper           set noexpandtab
 augroup END
 
 augroup csrc

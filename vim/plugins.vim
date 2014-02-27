@@ -48,7 +48,7 @@ if count(g:bundle_groups, 'programming')
   Bundle 'majutsushi/tagbar'
   "Bundle 'scrooloose/syntastic'
   Bundle 'SirVer/ultisnips'
-  if v:version >= 704
+  if has("mac")
     Bundle 'Valloric/YouCompleteMe'
   else
     Bundle 'ervandew/supertab'
