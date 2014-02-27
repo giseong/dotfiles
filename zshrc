@@ -85,15 +85,18 @@ fi
 # Misc
 if [[ `uname` == "Darwin" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
+fi
+
+if which vimpager > /dev/null; then
   export PAGER=vimpager
   alias less=$PAGER
   alias zless=$PAGER
-  # Rbenv
-  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 fi
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Path
-if [ -d $HOME/bin ]; then
+if [[ -d $HOME/bin ]]; then
   PATH=$PATH:$HOME/bin
 fi
 
