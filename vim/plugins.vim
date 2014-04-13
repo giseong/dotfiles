@@ -46,13 +46,9 @@ if count(g:bundle_groups, 'programming')
   Bundle 'nathanaelkane/vim-indent-guides'
   Bundle 'scrooloose/nerdcommenter'
   Bundle 'majutsushi/tagbar'
-  "Bundle 'scrooloose/syntastic'
+  Bundle 'scrooloose/syntastic'
   Bundle 'SirVer/ultisnips'
-  if has("mac")
-    Bundle 'Valloric/YouCompleteMe'
-  else
-    Bundle 'ervandew/supertab'
-  endif
+  Bundle 'ervandew/supertab'
   Bundle 'Align'
   Bundle 'AutoAlign'
   Bundle 'DoxygenToolkit.vim'
