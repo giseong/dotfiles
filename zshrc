@@ -71,7 +71,8 @@ else
 fi
 # Base16 Shell
 BASE16_SCHEME="default"
-BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+BASE16_BG="dark"
+BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.$BASE16_BG.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
 # Editors
