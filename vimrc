@@ -200,7 +200,8 @@ if has('gui_running')
     set guifont=Powerline\ Consolas:h13
     set guifontwide=NanumGothicCoding:h13
   elseif has("gui_win32")
-    set guifont=Consolas:h10
+    "set guifont=Consolas:h10
+    set guifont=Powerline\ Consolas:h13
     set guifontwide=NanumGothicCoding:h10
   endif
 
