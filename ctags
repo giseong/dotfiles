@@ -8,4 +8,3 @@
 --exclude=.DS_Store
 --exclude=*.md
 
--f .tags
