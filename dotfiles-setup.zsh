@@ -57,7 +57,7 @@ else
 
     # Misc
     link $DOTFILES_PATH/ackrc ~/.ackrc
-    link $DOTFILES_PATH/ctags ~/.ctags
+    #link $DOTFILES_PATH/ctags ~/.ctags
     link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
     link $DOTFILES_PATH/inputrc ~/.inputrc
     link $DOTFILES_PATH/editrc ~/.editrc
