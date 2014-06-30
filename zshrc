@@ -25,7 +25,7 @@ if [[ `uname` == "Linux" ]]; then
 fi
 
 antigen bundle git
-antigen bundle vi-mode
+#antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle fasd
 
