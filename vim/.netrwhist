@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/giseong/.tmux'
 let g:netrw_dirhist_2='/etc'
 let g:netrw_dirhist_3='/home/giseong.bak/work/msm8974_kk_release/android/device/lge'
 let g:netrw_dirhist_4='/home/giseong.bak/work/msm8974_kk_release/android/device/qcom'
 let g:netrw_dirhist_5='/home/giseong.bak/work/msm8974_kk_release/android/vendor/lge/apps/SmartPM/Android.mk'
 let g:netrw_dirhist_6='/home/giseong.bak/work/msm8974_kk_release/android/build'
+let g:netrw_dirhist_7='/home/giseong.bak/work/msm8974_kk_release/android/vendor/lge/apps/HeightMapProfiler'
