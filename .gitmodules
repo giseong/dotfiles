@@ -4,6 +4,3 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "oh-my-zsh-powerline-theme"]
-	path = oh-my-zsh-powerline-theme
-	url = https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme.git
