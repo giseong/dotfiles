@@ -53,6 +53,8 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Load the theme.
 #antigen theme mortalscumbag
 #antigen theme agnoster
+#POWERLINE_DETECT_SSH="true"
+#antigen theme jeremyFreeAgent/oh-my-zsh-powerline-theme powerline
 
 # Tell antigen that you're done.
 antigen apply
