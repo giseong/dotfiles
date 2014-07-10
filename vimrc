@@ -103,7 +103,7 @@ endfunction
 
 augroup ftdetect
   au!
-  autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+  "autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
   autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
 augroup END
 

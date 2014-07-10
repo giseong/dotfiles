@@ -2,9 +2,9 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " Deps
-Bundle 'gmarik/vundle'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
+Plugin 'gmarik/vundle'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
@@ -17,98 +17,100 @@ endif
 
 " General
 if count(g:bundle_groups, 'general')
-  Bundle 'tpope/vim-surround'
-  Bundle 'tpope/vim-repeat'
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'chrisbra/NrrwRgn'
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'mileszs/ack.vim'
-  Bundle 'henrik/vim-indexed-search'
-  Bundle 'Lokaltog/vim-easymotion'
-  Bundle 'terryma/vim-multiple-cursors'
-  Bundle 'bling/vim-airline'
-  Bundle 'mhinz/vim-signify'
-  Bundle 'sjl/gundo.vim'
-  Bundle 'sjl/clam.vim'
-  Bundle 'sjl/vitality.vim'
-  Bundle 'benmills/vimux'
-  Bundle 'Raimondi/delimitMate'
-  "Bundle 'YankRing.vim'
-  Bundle 'matchit.zip'
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'chriskempson/base16-vim'
+  Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'chrisbra/NrrwRgn'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'mileszs/ack.vim'
+  Plugin 'henrik/vim-indexed-search'
+  Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'terryma/vim-multiple-cursors'
+  Plugin 'bling/vim-airline'
+  Plugin 'mhinz/vim-signify'
+  Plugin 'sjl/gundo.vim'
+  Plugin 'sjl/clam.vim'
+  Plugin 'sjl/vitality.vim'
+  Plugin 'benmills/vimux'
+  Plugin 'Raimondi/delimitMate'
+  "Plugin 'YankRing.vim'
+  Plugin 'matchit.zip'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'chriskempson/base16-vim'
 endif
 
 " Programming
 if count(g:bundle_groups, 'programming')
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'tpope/vim-endwise'
-  Bundle 'nathanaelkane/vim-indent-guides'
-  Bundle 'scrooloose/nerdcommenter'
-  Bundle 'majutsushi/tagbar'
-  Bundle 'scrooloose/syntastic'
-  Bundle 'SirVer/ultisnips'
-  Bundle 'ervandew/supertab'
-  Bundle 'Align'
-  Bundle 'AutoAlign'
-  Bundle 'DoxygenToolkit.vim'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'nathanaelkane/vim-indent-guides'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'ervandew/supertab'
+  Plugin 'Align'
+  Plugin 'AutoAlign'
+  Plugin 'DoxygenToolkit.vim'
 endif
 
 " Composing
 if count(g:bundle_groups, 'composing')
-  Bundle 'VOoM'
-  Bundle 'jcf/vim-latex'
+  Plugin 'VOoM'
+  Plugin 'jcf/vim-latex'
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
   "if v:version >= 704
-  "Bundle 'vim-pandoc/vim-pandoc-syntax'
-  "Bundle 'vim-pandoc/vim-pantondoc'
-  "Bundle 'vim-pandoc/vim-pandoc-after'
+  "Plugin 'vim-pandoc/vim-pandoc-syntax'
+  "Plugin 'vim-pandoc/vim-pantondoc'
+  "Plugin 'vim-pandoc/vim-pandoc-after'
   "else
-  Bundle 'vim-pandoc/vim-pandoc'
+  "Plugin 'vim-pandoc/vim-pandoc'
   "endif
-  Bundle 'davidoc/taskpaper.vim'
+  Plugin 'davidoc/taskpaper.vim'
 endif
 
 " PHP
 if count(g:bundle_groups, 'php')
-  Bundle 'spf13/PIV'
+  Plugin 'spf13/PIV'
 endif
 
 " Python
 if count(g:bundle_groups, 'python')
   " Pick either python-mode or pyflakes & pydoc
-  Bundle 'klen/python-mode'
-  Bundle 'python.vim'
-  Bundle 'python_match.vim'
-  Bundle 'davidhalter/jedi'
+  Plugin 'klen/python-mode'
+  Plugin 'python.vim'
+  Plugin 'python_match.vim'
+  Plugin 'davidhalter/jedi'
 endif
 
 " Javascript
 if count(g:bundle_groups, 'javascript')
-  Bundle 'leshill/vim-json'
-  Bundle 'groenewege/vim-less'
-  Bundle 'taxilian/vim-web-indent'
+  Plugin 'leshill/vim-json'
+  Plugin 'groenewege/vim-less'
+  Plugin 'taxilian/vim-web-indent'
 endif
 
 " HTML
 if count(g:bundle_groups, 'html')
-  Bundle 'amirh/HTML-AutoCloseTag'
-  Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+  Plugin 'amirh/HTML-AutoCloseTag'
+  Plugin 'ChrisYip/Better-CSS-Syntax-for-Vim'
 endif
 
 " ruby
 if count(g:bundle_groups, 'ruby')
-  bundle 'tpope/vim-rails'
+  Plugin 'tpope/vim-rails'
 endif
 
 " Mac specific
 if count(g:bundle_groups, 'mac')
-  Bundle 'rizzatti/funcoo.vim'
-  Bundle 'rizzatti/dash.vim'
+  Plugin 'rizzatti/funcoo.vim'
+  Plugin 'rizzatti/dash.vim'
 endif
 
 " Misc
 if count(g:bundle_groups, 'misc')
-  Bundle 'tpope/vim-cucumber'
-  Bundle 'Puppet-Syntax-Highlighting'
+  Plugin 'tpope/vim-cucumber'
+  Plugin 'Puppet-Syntax-Highlighting'
 endif
 

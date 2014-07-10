@@ -51,7 +51,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
-#antigen theme mortalscumbag
+antigen theme mortalscumbag
 #antigen theme agnoster
 #POWERLINE_DETECT_SSH="true"
 #antigen theme jeremyFreeAgent/oh-my-zsh-powerline-theme powerline
