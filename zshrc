@@ -86,6 +86,9 @@ else
   export EDITOR='vim'
 fi
 
+# Alias
+[[ -s ~/.zsh_alias ]] && . ~/.zsh_alias
+
 # Misc
 if [[ `uname` == "Darwin" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
