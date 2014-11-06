@@ -20,6 +20,7 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 if [[ `uname` == "Linux" ]]; then
+  export TERM="xterm-256color"
   ZSH_TMUX_AUTOSTART=true
   antigen bundle tmux
 fi
