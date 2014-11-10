@@ -24,13 +24,15 @@ if [[ `uname` == "Linux" ]]; then
   ZSH_TMUX_AUTOSTART=true
   antigen bundle tmux
   antigen bundle debian
+  antigen bundle command-not-found
 fi
 
 antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle colored-man
-antigen bundle autojump
+antigen bundle web-search
+antigen bundle z
 
 antigen bundle zsh-users/zsh-completions src
 
@@ -88,6 +90,7 @@ if [[ `uname` == "Darwin" ]]; then
 else
   export EDITOR='vim'
 fi
+alias e=$EDITOR
 
 # More Aliases
 [[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases
