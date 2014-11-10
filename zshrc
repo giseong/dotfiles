@@ -23,12 +23,14 @@ if [[ `uname` == "Linux" ]]; then
   export TERM="xterm-256color"
   ZSH_TMUX_AUTOSTART=true
   antigen bundle tmux
+  antigen bundle debian
 fi
 
 antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
-antigen bundle fasd
+antigen bundle colored-man
+antigen bundle autojump
 
 antigen bundle zsh-users/zsh-completions src
 
@@ -87,18 +89,12 @@ else
   export EDITOR='vim'
 fi
 
-# Alias
-[[ -s ~/.zsh_alias ]] && . ~/.zsh_alias
+# More Aliases
+[[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases
 
 # Misc
 if [[ `uname` == "Darwin" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
-fi
-
-if which vimpager > /dev/null; then
-  export PAGER=vimpager
-  alias less=$PAGER
-  alias zless=$PAGER
 fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

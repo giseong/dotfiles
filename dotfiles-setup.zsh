@@ -41,28 +41,14 @@ else
   link $DOTFILES_PATH/tmux_shared.conf ~/.tmux_shared.conf
   link $DOTFILES_PATH/tmux ~/.tmux
 
-  if [[ `uname` == "Darwin" ]]; then
-    # pandoc
-    link $DOTFILES_PATH/pandoc ~/.pandoc
+  # pandoc
+  link $DOTFILES_PATH/pandoc ~/.pandoc
 
-    # ruby
-    link $DOTFILES_PATH/rvmrc ~/.rvmrc
-    link $DOTFILES_PATH/pryrc ~/.pryrc
-    link $DOTFILES_PATH/aprc ~/.aprc
-
-    # heskell
-    rm -rf ~/.cabal
-    mkdir ~/.cabal
-    link $DOTFILES_PATH/cabal/config ~/.cabal/config
-
-    # Misc
-    link $DOTFILES_PATH/ackrc ~/.ackrc
-    #link $DOTFILES_PATH/ctags ~/.ctags
-    link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
-    link $DOTFILES_PATH/inputrc ~/.inputrc
-    link $DOTFILES_PATH/editrc ~/.editrc
-    #link $DOTFILES_PATH/ycm_extra_conf.py ~/.ycm_extra_conf
-    #link $DOTFILES_PATH/Xresources ~/.Xresources
-  fi
+  # Misc
+  link $DOTFILES_PATH/ackrc ~/.ackrc
+  link $DOTFILES_PATH/ctags ~/.ctags
+  link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
+  link $DOTFILES_PATH/inputrc ~/.inputrc
+  link $DOTFILES_PATH/editrc ~/.editrc
 
 fi
