@@ -104,5 +104,9 @@ if [[ -d $HOME/bin ]]; then
   PATH=$PATH:$HOME/bin
 fi
 
+if [[ -d $HOME/.local/bin ]]; then
+  PATH=$PATH:$HOME/.local/bin
+fi
+
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
