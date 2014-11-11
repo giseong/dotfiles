@@ -59,15 +59,12 @@ if count(g:bundle_groups, 'composing')
   Plugin 'VOoM'
   Plugin 'jcf/vim-latex'
   Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
-  "if v:version >= 704
-  "Plugin 'vim-pandoc/vim-pandoc-syntax'
-  "Plugin 'vim-pandoc/vim-pantondoc'
-  "Plugin 'vim-pandoc/vim-pandoc-after'
-  "else
-  "Plugin 'vim-pandoc/vim-pandoc'
-  "endif
-  Plugin 'davidoc/taskpaper.vim'
+  "Plugin 'plasticboy/vim-markdown'
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'vim-pandoc/vim-pandoc-after'
+  Plugin 'mrtazz/simplenote.vim'
+  "Plugin 'davidoc/taskpaper.vim'
 endif
 
 " PHP
