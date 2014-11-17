@@ -39,7 +39,6 @@ else
     link $DOTFILES_PATH/tmux_linux.conf ~/.tmux.conf
   fi
   link $DOTFILES_PATH/tmux_shared.conf ~/.tmux_shared.conf
-  link $DOTFILES_PATH/tmux ~/.tmux
 
   # pandoc
   link $DOTFILES_PATH/pandoc ~/.pandoc
