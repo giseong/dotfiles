@@ -43,6 +43,7 @@ endif
 if count(g:bundle_groups, 'programming')
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-dispatch'
   Plugin 'nathanaelkane/vim-indent-guides'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'majutsushi/tagbar'

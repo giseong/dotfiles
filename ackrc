@@ -1,6 +1,10 @@
 # lexically sort filenames
 --sort-files
 
+--ignore-file=is:tags
+--ignore-file=is:.tags
+
+
 --type-add=ruby=rake,haml,slim
 --type-add=vim=vimrc,vim
 --type-add=js=json
