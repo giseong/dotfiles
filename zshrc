@@ -20,11 +20,12 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 if [[ `uname` == "Linux" ]]; then
+  antigen bundle debian
+  antigen bundle command-not-found
+
   export TERM="xterm-256color"
   ZSH_TMUX_AUTOSTART=true
   antigen bundle tmux
-  antigen bundle debian
-  antigen bundle command-not-found
 fi
 
 antigen bundle git
@@ -32,7 +33,6 @@ antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle colored-man
 antigen bundle web-search
-antigen bundle z
 
 antigen bundle zsh-users/zsh-completions src
 
@@ -57,9 +57,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
 antigen theme mortalscumbag
-#antigen theme agnoster
-#POWERLINE_DETECT_SSH="true"
-#antigen theme jeremyFreeAgent/oh-my-zsh-powerline-theme powerline
 
 # Tell antigen that you're done.
 antigen apply
@@ -90,7 +87,6 @@ if [[ `uname` == "Darwin" ]]; then
 else
   export EDITOR='vim'
 fi
-alias e=$EDITOR
 
 # More Aliases
 [[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases

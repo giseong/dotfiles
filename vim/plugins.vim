@@ -35,7 +35,6 @@ if count(g:bundle_groups, 'general')
   Plugin 'Raimondi/delimitMate'
   "Plugin 'YankRing.vim'
   Plugin 'matchit.zip'
-  Plugin 'altercation/vim-colors-solarized'
   Plugin 'chriskempson/base16-vim'
 endif
 
