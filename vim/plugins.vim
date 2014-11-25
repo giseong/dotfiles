@@ -32,7 +32,7 @@ if count(g:bundle_groups, 'general')
   Plugin 'sjl/clam.vim'
   Plugin 'sjl/vitality.vim'
   Plugin 'benmills/vimux'
-  Plugin 'Raimondi/delimitMate'
+  "Plugin 'Raimondi/delimitMate'
   "Plugin 'YankRing.vim'
   Plugin 'matchit.zip'
   Plugin 'chriskempson/base16-vim'
