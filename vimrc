@@ -199,12 +199,13 @@ if has('gui_running')
   if has("gui_macvim")
     "macmenu &File.Open\ Tab\.\.\.   key=<nop>
     set guifont=Powerline\ Consolas:h13
-    set guifontwide=NanumGothicCoding:h13
   elseif has("gui_win32")
     "set guifont=Consolas:h10
-    set guifont=Powerline\ Consolas:h13
-    set guifontwide=NanumGothicCoding:h10
+    set guifont=Powerline\ Consolas\ 13
+  else
+    set guifont=Inconsolata\ Medium\ 11
   endif
+  set guifontwide=NanumGothicCoding:h13
 
 else " Terminal
   set t_Co=256
