@@ -53,7 +53,6 @@ if count(g:bundle_groups, 'programming')
   Plugin 'Align'
   Plugin 'AutoAlign'
   Plugin 'DoxygenToolkit.vim'
-  Plugin 'wesleyche/SrcExpl'
 
 endif
 
