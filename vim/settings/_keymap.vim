@@ -42,7 +42,7 @@ function! RedrawScreen()
 endfunction
 
 " redraw screen
-nnoremap <silent> <F1> :call RedrawScreen()<CR>
+nnoremap <silent> <F5> :call RedrawScreen()<CR>
 
 " paste mode
 nnoremap <F2> :set invpaste paste?<CR>
