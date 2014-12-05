@@ -55,6 +55,7 @@ if count(g:bundle_groups, 'programming')
   Plugin 'Align'
   Plugin 'AutoAlign'
   Plugin 'DoxygenToolkit.vim'
+  " Plugin 'xolox/vim-easytags'
 endif
 
 " Composing
