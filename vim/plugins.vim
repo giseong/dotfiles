@@ -37,6 +37,8 @@ if count(g:bundle_groups, 'general')
   Plugin 'myusuf3/numbers.vim'
   Plugin 'matchit.zip'
   Plugin 'chriskempson/base16-vim'
+  Plugin 'xolox/vim-misc'
+  Plugin 'xolox/vim-session'
 endif
 
 " Programming
@@ -53,7 +55,6 @@ if count(g:bundle_groups, 'programming')
   Plugin 'Align'
   Plugin 'AutoAlign'
   Plugin 'DoxygenToolkit.vim'
-
 endif
 
 " Composing
