@@ -82,11 +82,12 @@ BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.$BASE16_BG.sh"
 # Editors
 if [[ `uname` == "Darwin" ]]; then
   #export EDITOR='subl -n -w'
-  #export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
-  export EDITOR='vim'
+  export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+  # export EDITOR='vim'
 else
-  export EDITOR='vim'
+  export EDITOR='gvim -f'
 fi
+alias e=$EDITOR
 
 # More Aliases
 [[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases

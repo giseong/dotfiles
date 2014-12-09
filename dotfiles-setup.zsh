@@ -25,6 +25,7 @@ else
     link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
   fi
   link $DOTFILES_PATH/gitignore ~/.gitignore
+  link $DOTFILES_PATH/gitignore ~/.agignore
   link $DOTFILES_PATH/gitattributes ~/.gitattributes
   link $DOTFILES_PATH/tigrc ~/.tigrc
 

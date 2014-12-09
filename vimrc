@@ -203,7 +203,8 @@ if has('gui_running')
     "set guifont=Consolas:h10
     set guifont=Powerline\ Consolas\ 13
   else
-    set guifont=Inconsolata\ Medium\ 11
+    set guifont=Powerline\ Consolas\ 10
+    " set guifont=Inconsolata\ Medium\ 11
   endif
   set guifontwide=NanumGothicCoding:h13
 
