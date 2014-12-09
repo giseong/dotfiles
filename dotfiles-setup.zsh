@@ -50,5 +50,6 @@ else
   link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
   link $DOTFILES_PATH/inputrc ~/.inputrc
   link $DOTFILES_PATH/editrc ~/.editrc
+  link $DOTFILES_PATH/gtkrc-2.0 ~/.gtkrc-2.0
 
 fi
