@@ -6,3 +6,4 @@ Debug
 tags
 .tags*
 cscope.out
+.ycm_extra_conf.*

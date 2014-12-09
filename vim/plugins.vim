@@ -51,6 +51,7 @@ if count(g:bundle_groups, 'programming')
   Plugin 'majutsushi/tagbar'
   Plugin 'scrooloose/syntastic'
   Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
   " Plugin 'ervandew/supertab'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'Align'
