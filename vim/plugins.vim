@@ -39,6 +39,7 @@ if count(g:bundle_groups, 'general')
   Plugin 'chriskempson/base16-vim'
   Plugin 'xolox/vim-misc'
   Plugin 'xolox/vim-session'
+  Plugin 'Valloric/ListToggle'
 endif
 
 " Programming

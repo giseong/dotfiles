@@ -3,7 +3,7 @@
 *.cache
 *.*~
 Debug
-tags
+tags*
 .tags*
 cscope.out
 .ycm_extra_conf.*

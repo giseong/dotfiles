@@ -14,9 +14,9 @@ cnoremap cwd lcd %:p:h
 
 "nnoremap <Leader>i :set list!<CR>
 
-"Control quickfix window
-nnoremap <silent> <Up>   :botright cwindow<CR>:wincmd p<CR>
-nnoremap <silent> <Down> :cclose<CR>:wincmd p<CR>
+" Control quickfix window
+" nnoremap <silent> <Up>   :botright cwindow<CR>:wincmd p<CR>
+" nnoremap <silent> <Down> :cclose<CR>:wincmd p<CR>
 
 nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
