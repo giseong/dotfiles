@@ -32,7 +32,7 @@ antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle colored-man
-antigen bundle web-search
+# antigen bundle autojump
 
 antigen bundle zsh-users/zsh-completions src
 
@@ -93,10 +93,6 @@ fi
 [[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases
 
 # Misc
-if [[ `uname` == "Darwin" ]]; then
-  export ANDROID_HOME=/usr/local/opt/android-sdk
-fi
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Path
