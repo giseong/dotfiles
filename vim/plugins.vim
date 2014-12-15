@@ -53,11 +53,11 @@ if count(g:bundle_groups, 'programming')
   Plugin 'scrooloose/syntastic'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
-  " Plugin 'ervandew/supertab'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'Align'
   Plugin 'AutoAlign'
   Plugin 'DoxygenToolkit.vim'
+  Plugin 'chazy/cscope_maps'
   " Plugin 'xolox/vim-easytags'
 endif
 
