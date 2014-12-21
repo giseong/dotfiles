@@ -11,7 +11,7 @@ if !exists('g:bundle_groups')
   if has("mac")
     let g:bundle_groups=['general', 'programming', 'composing', 'mac']
   else
-    let g:bundle_groups=['general', 'programming', 'composing']
+    let g:bundle_groups=['general', 'programming', 'composing', 'golang']
   endif
 endif
 
@@ -33,6 +33,7 @@ if count(g:bundle_groups, 'general')
   Plugin 'sjl/vitality.vim'
   Plugin 'benmills/vimux'
   " Plugin 'Raimondi/delimitMate'
+  " Plugin 'jiangmiao/auto-pairs'
   " Plugin 'YankRing.vim'
   " Plugin 'myusuf3/numbers.vim'
   Plugin 'matchit.zip'
@@ -69,6 +70,11 @@ if count(g:bundle_groups, 'composing')
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'vim-pandoc/vim-pandoc-syntax'
   Plugin 'vim-pandoc/vim-pandoc-after'
+endif
+
+" golang
+if count(g:bundle_groups, 'golang')
+  Plugin 'fatih/vim-go'
 endif
 
 " PHP

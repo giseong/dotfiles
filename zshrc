@@ -104,5 +104,11 @@ if [[ -d $HOME/.local/bin ]]; then
   PATH=$PATH:$HOME/.local/bin
 fi
 
+# golang
+if [[ -d $HOME/gocode ]]; then
+  export GOPATH=$HOME/gocode
+  PATH=$PATH:$GOPATH/bin
+fi
+
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )

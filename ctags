@@ -3,6 +3,7 @@
 --tag-relative=yes
 --fields=+l
 --sort=foldcase
+--extra=+f
 
 --exclude=*.git*
 --exclude=*.pyc

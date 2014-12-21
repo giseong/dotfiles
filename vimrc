@@ -77,7 +77,7 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 
 function! WrapStyle_nowrap()
   set nowrap
-  set formatoptions=cqron1
+  set formatoptions=cqnmM1
   if v:version >= 703
     set colorcolumn=+1 "highlight column after 'textwidth'
   endif
@@ -86,7 +86,7 @@ endfunction
 
 function! WrapStyle_wrap()
   set wrap
-  set formatoptions=ro1
+  set formatoptions=mM1
   if v:version > 702
     set colorcolumn=""
   endif
@@ -103,7 +103,7 @@ endfunction
 
 augroup ftdetect
   au!
-  autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+  " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
   "autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
 augroup END
 
