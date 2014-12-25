@@ -110,5 +110,10 @@ if [[ -d $HOME/gocode ]]; then
   PATH=$PATH:$GOPATH/bin
 fi
 
+# android-sdk
+if [[ -d $HOME/tools/android/sdk/platform-tools ]]; then
+  PATH=$PATH:$HOME/tools/android/sdk/platform-tools
+fi
+
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
