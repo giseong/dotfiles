@@ -93,6 +93,7 @@ endif
 
 " Javascript
 if count(g:bundle_groups, 'javascript')
+  Plugin 'moll/vim-node'
   Plugin 'leshill/vim-json'
   Plugin 'groenewege/vim-less'
   Plugin 'taxilian/vim-web-indent'
