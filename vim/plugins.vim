@@ -11,7 +11,7 @@ if !exists('g:bundle_groups')
   if has("mac")
     let g:bundle_groups=['general', 'programming', 'composing', 'mac']
   else
-    let g:bundle_groups=['general', 'programming', 'composing', 'golang']
+    let g:bundle_groups=['general', 'programming', 'composing', 'golang', 'javascript']
   endif
 endif
 
@@ -94,9 +94,7 @@ endif
 " Javascript
 if count(g:bundle_groups, 'javascript')
   Plugin 'moll/vim-node'
-  Plugin 'leshill/vim-json'
-  Plugin 'groenewege/vim-less'
-  Plugin 'taxilian/vim-web-indent'
+  Plugin 'jelera/vim-javascript-syntax'
 endif
 
 " HTML
