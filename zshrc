@@ -20,7 +20,7 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 if [[ `uname` == "Linux" ]]; then
-  antigen bundle debian
+  # antigen bundle debian
   antigen bundle command-not-found
 
   export TERM="xterm-256color"

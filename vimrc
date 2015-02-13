@@ -219,7 +219,7 @@ if has('gui_running')
 
 else " Terminal
   set t_Co=256
-  let base16colorspace=256
+  " let base16colorspace=256
 
 endif
 set background=dark
