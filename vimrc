@@ -200,8 +200,8 @@ if has('gui_running')
     "macmenu &File.Open\ Tab\.\.\.   key=<nop>
     set guifont=Powerline\ Consolas:h13
   elseif has("gui_win32")
-    "set guifont=Consolas:h10
-    set guifont=Powerline\ Consolas\ 13
+    set guifont=Consolas:h10
+    " set guifont=Powerline\ Consolas\ 13
   else
     " set guifont=Ubuntu\ Mono\ 11
     set guifont=Powerline\ Consolas\ 10
