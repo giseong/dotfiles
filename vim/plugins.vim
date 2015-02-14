@@ -8,10 +8,10 @@ Plugin 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
-  if has("win32")
-    let g:bundle_groups=['general', 'composing']
-  else
+  if has("unix")
     let g:bundle_groups=['general', 'programming', 'composing', 'golang', 'python']
+  else
+    let g:bundle_groups=['general', 'composing']
   endif
 endif
 
