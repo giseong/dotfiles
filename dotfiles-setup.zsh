@@ -25,9 +25,7 @@ else
     link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
   fi
   link $DOTFILES_PATH/gitignore ~/.gitignore
-  link $DOTFILES_PATH/gitignore ~/.agignore
   link $DOTFILES_PATH/gitattributes ~/.gitattributes
-  link $DOTFILES_PATH/tigrc ~/.tigrc
 
   # vim
   link $DOTFILES_PATH/vim ~/.vim
@@ -45,11 +43,12 @@ else
   link $DOTFILES_PATH/pandoc ~/.pandoc
 
   # Misc
-  link $DOTFILES_PATH/ackrc ~/.ackrc
   link $DOTFILES_PATH/ctags ~/.ctags
   link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
   link $DOTFILES_PATH/inputrc ~/.inputrc
   link $DOTFILES_PATH/editrc ~/.editrc
   link $DOTFILES_PATH/gtkrc-2.0 ~/.gtkrc-2.0
+  link $DOTFILES_PATH/gitignore ~/.agignore
+  link $DOTFILES_PATH/tigrc ~/.tigrc
 
 fi

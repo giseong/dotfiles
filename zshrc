@@ -32,7 +32,7 @@ antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle colored-man
-# antigen bundle autojump
+antigen bundle autojump
 
 antigen bundle zsh-users/zsh-completions src
 
