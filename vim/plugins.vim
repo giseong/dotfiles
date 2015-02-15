@@ -28,10 +28,6 @@ if count(g:bundle_groups, 'general')
   Plugin 'sjl/clam.vim'
   Plugin 'sjl/vitality.vim'
   Plugin 'benmills/vimux'
-  " Plugin 'Raimondi/delimitMate'
-  " Plugin 'jiangmiao/auto-pairs'
-  " Plugin 'YankRing.vim'
-  " Plugin 'myusuf3/numbers.vim'
   Plugin 'matchit.zip'
   Plugin 'chriskempson/base16-vim'
   Plugin 'xolox/vim-misc'
@@ -50,12 +46,13 @@ if count(g:bundle_groups, 'programming')
   Plugin 'scrooloose/syntastic'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
-  Plugin 'Valloric/YouCompleteMe'
+  if ! has("win32")
+    Plugin 'Valloric/YouCompleteMe'
+  endif
   Plugin 'Align'
   Plugin 'AutoAlign'
   Plugin 'DoxygenToolkit.vim'
   Plugin 'chazy/cscope_maps'
-  " Plugin 'xolox/vim-easytags'
 endif
 
 " Composing

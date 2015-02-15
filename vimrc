@@ -27,7 +27,11 @@ set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set showmatch                   "Show matching bracets when text indicator is over them
-set clipboard=unnamedplus       "share windows clipboard
+if has('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+endif
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
 set cmdheight=2                 "status bar height
