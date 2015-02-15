@@ -217,9 +217,7 @@ if has('gui_running')
 
 else " Terminal
   set t_Co=256
-  if ! has("win32")
-    let base16colorspace=256
-  endif
+  " let base16colorspace=256
 
 endif
 set background=dark
