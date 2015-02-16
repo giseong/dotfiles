@@ -217,7 +217,9 @@ if has('gui_running')
 
 else " Terminal
   set t_Co=256
-  " let base16colorspace=256
+  if ! exists("$SSH_CONNECTION")
+    let base16colorspace=256
+  endif
 
 endif
 set background=dark
