@@ -68,7 +68,7 @@ set autoindent
 set smartindent
 set smarttab
 set linebreak
-set textwidth=80
+set textwidth=79
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
