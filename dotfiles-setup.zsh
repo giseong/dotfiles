@@ -42,6 +42,10 @@ else
   # pandoc
   link $DOTFILES_PATH/pandoc ~/.pandoc
 
+  # zathura
+  mkdir -p ~/.config
+  link $DOTFILES_PATH/config/zathura ~/.config/zathura
+
   # Misc
   link $DOTFILES_PATH/ctags ~/.ctags
   link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
