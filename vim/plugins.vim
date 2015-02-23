@@ -79,9 +79,6 @@ endif
 if count(g:bundle_groups, 'python')
   " Pick either python-mode or pyflakes & pydoc
   Plugin 'klen/python-mode'
-  Plugin 'python.vim'
-  Plugin 'python_match.vim'
-  Plugin 'davidhalter/jedi'
 endif
 
 " Javascript
