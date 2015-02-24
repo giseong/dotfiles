@@ -29,10 +29,11 @@ if count(g:bundle_groups, 'general')
   Plugin 'sjl/vitality.vim'
   Plugin 'benmills/vimux'
   Plugin 'matchit.zip'
-  Plugin 'chriskempson/base16-vim'
   Plugin 'xolox/vim-misc'
   Plugin 'xolox/vim-session'
   Plugin 'Valloric/ListToggle'
+  Plugin 'chriskempson/base16-vim'
+  Plugin 'morhetz/gruvbox'
 endif
 
 " Programming
