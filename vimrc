@@ -202,16 +202,12 @@ if has('gui_running')
 
   if has("gui_macvim")
     "macmenu &File.Open\ Tab\.\.\.   key=<nop>
-    set guifont=Powerline\ Consolas:h13
+    set guifont=Consolas:h10
   elseif has("gui_win32")
     set guifont=Consolas:h10
-    " set guifont=Powerline\ Consolas\ 13
   else
-    " set guifont=Ubuntu\ Mono\ 11
-    set guifont=Powerline\ Consolas\ 10
-    " set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 10
-    " set guifont=Source\ Code\ Pro\ for\ Powerline\ Medium\ 10
     " set guifont=Inconsolata\ Medium\ 11
+    set guifont=Source\ Code\ Pro\ Medium\ 9
   endif
   set guifontwide=NanumGothicCoding:h13
 
