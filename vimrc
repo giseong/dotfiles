@@ -28,9 +28,9 @@ set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set showmatch                   "Show matching bracets when text indicator is over them
 if has('unnamedplus')
-  set clipboard=unnamedplus
+    set clipboard=unnamedplus
 else
-  set clipboard=unnamed
+    set clipboard=unnamed
 endif
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
@@ -80,61 +80,61 @@ set listchars+=precedes:<  " The character to show in the last column when wrap 
 " off and the line continues beyond the right of the screen
 
 function! WrapStyle_nowrap()
-  set nowrap
-  set formatoptions=cqnmM1
-  if v:version >= 703
-    set colorcolumn=+1 "highlight column after 'textwidth'
-  endif
-  set list
+    set nowrap
+    set formatoptions=cqnmM1
+    if v:version >= 703
+        set colorcolumn=+1 "highlight column after 'textwidth'
+    endif
+    set list
 endfunction
 
 function! WrapStyle_wrap()
-  set wrap
-  set formatoptions=mM1
-  if v:version > 702
-    set colorcolumn=""
-  endif
-  set nolist
+    set wrap
+    set formatoptions=mM1
+    if v:version > 702
+        set colorcolumn=""
+    endif
+    set nolist
 endfunction
 
 function! WrapStyle_toggle()
-  if (&wrap)
-    call WrapStyle_nowrap()
-  else
-    call WrapStyle_wrap()
-  endif
+    if (&wrap)
+        call WrapStyle_nowrap()
+    else
+        call WrapStyle_wrap()
+    endif
 endfunction
 
 augroup ftdetect
-  au!
-  " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
-  "autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
+    au!
+    " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+    "autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
 augroup END
 
 augroup wrap_style
-  au!
-  autocmd FileType *                                     call WrapStyle_nowrap()
-  autocmd FileType qf,pandoc,tex,man,text,help           call WrapStyle_wrap()
+    au!
+    autocmd FileType *                                     call WrapStyle_nowrap()
+    autocmd FileType qf,pandoc,tex,man,text,help           call WrapStyle_wrap()
 augroup END
 
 "augroup tabstop_setting
-  "au!
-  "autocmd FileType *                              set sts=2 ts=2 sw=2
-  "autocmd FileType pandoc,java,python             set sts=4 ts=4 sw=4
-  "autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
+"au!
+"autocmd FileType *                              set sts=2 ts=2 sw=2
+"autocmd FileType pandoc,java,python             set sts=4 ts=4 sw=4
+"autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
 "augroup END
 set sts=4 ts=4 sw=4
 
 augroup expandtab_setting
-  au!
-  autocmd FileType *                              set expandtab
-  autocmd FileType make                           set noexpandtab
+    au!
+    autocmd FileType *                              set expandtab
+    autocmd FileType make                           set noexpandtab
 augroup END
 
 augroup csrc
-  au!
-  autocmd FileType *                              set nocindent
-  autocmd FileType c,cpp                          set cindent
+    au!
+    autocmd FileType *                              set nocindent
+    autocmd FileType c,cpp                          set cindent
 augroup END
 
 " ================ Folds ============================
@@ -170,6 +170,26 @@ set sidescroll=1
 " =========== Windows and Buffers ====================
 set splitbelow splitright
 
+" ================ Cursor settings ===================
+" This makes terminal vim sooo much nicer!
+" Tmux will only forward escape sequences to the terminal if surrounded by a DCS
+" sequence
+if has ("mac")
+    if exists('$TMUX')
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    else
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
+elseif has ("unix")
+    if has("autocmd")
+        au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape ibeam"
+        au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
+        au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
+    endif
+endif
+
 if ! has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
@@ -181,29 +201,29 @@ endif
 
 " ================= Appearance ======================
 if has('gui_running')
-  set guioptions=ce
-  set antialias           " Antialias font
-  set columns=98 lines=50 " Default size of window
-  " set linespace=3
-  set gtl=%t gtt=%F       " Tab headings
-  autocmd VimResized * wincmd =
+    set guioptions=ce
+    set antialias           " Antialias font
+    set columns=98 lines=50 " Default size of window
+    " set linespace=3
+    set gtl=%t gtt=%F       " Tab headings
+    autocmd VimResized * wincmd =
 
-  if has("gui_macvim")
-    "macmenu &File.Open\ Tab\.\.\.   key=<nop>
-    set guifont=Consolas:h10
-  elseif has("gui_win32")
-    set guifont=Consolas:h10
-  else
-    " set guifont=Inconsolata\ Medium\ 11
-    set guifont=Source\ Code\ Pro\ Medium\ 9
-  endif
-  set guifontwide=NanumGothicCoding:h13
+    if has("gui_macvim")
+        "macmenu &File.Open\ Tab\.\.\.   key=<nop>
+        set guifont=Consolas:h10
+    elseif has("gui_win32")
+        set guifont=Consolas:h10
+    else
+        " set guifont=Inconsolata\ Medium\ 11
+        set guifont=Source\ Code\ Pro\ Medium\ 9
+    endif
+    set guifontwide=NanumGothicCoding:h13
 
 else " Terminal
-  set t_Co=256
-  if ! exists("$SSH_CONNECTION")
-    let base16colorspace=256
-  endif
+    set t_Co=256
+    if ! exists("$SSH_CONNECTION")
+        let base16colorspace=256
+    endif
 
 endif
 set background=dark
@@ -211,6 +231,6 @@ colorscheme base16-default
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
-  exe 'source' f
+    exe 'source' f
 endfor
 
