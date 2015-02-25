@@ -5,9 +5,9 @@ let g:gundo_tree_statusline    = "Gundo"
 let g:gundo_preview_statusline = "Gundo Preview"
 nnoremap <Leader>u :GundoToggle<CR>
 
-"if has("gui_macvim") && has("gui_running")
-  "nnoremap <D-u> :GundoToggle<CR>
-"else
-  "nnoremap <Leader>u :GundoToggle<CR>
-"endif
+" if has("gui_macvim") && has("gui_running")
+    " nnoremap <D-u> :GundoToggle<CR>
+" else
+    " nnoremap <Leader>u :GundoToggle<CR>
+" endif
 

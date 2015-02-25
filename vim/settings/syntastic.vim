@@ -1,8 +1,8 @@
 "Use this option to fine tune when automatic syntax checking is done (or not
 "done).
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': [] }
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 "automatically jump to the error when saving the file

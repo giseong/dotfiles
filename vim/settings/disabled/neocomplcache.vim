@@ -19,7 +19,7 @@ let g:neocomplcache_force_overwrite_completefunc = 1
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+    let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
@@ -32,12 +32,12 @@ imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "if has('conceal')
-  "set conceallevel=2 concealcursor="nc"
+"set conceallevel=2 concealcursor="nc"
 "endif
 
 " Enable omni completion.
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+    let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'

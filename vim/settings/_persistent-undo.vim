@@ -3,7 +3,7 @@
 " Only works all the time.
 
 if v:version < 703
-  finish
+    finish
 endif
 
 silent !mkdir ~/.backups > /dev/null 2>&1

@@ -17,10 +17,10 @@ let g:SrcExpl_refreshTime = 100
 " // except itself are using buffers. And you need add their buffer names into
 " // below listaccording to the command ":buffers!"
 let g:SrcExpl_pluginList = [
-        \ "ControlP",
-        \ "NERD_tree_1",
-        \ "__Tagbar__"
-    \ ]
+            \ "ControlP",
+            \ "NERD_tree_1",
+            \ "__Tagbar__"
+            \ ]
 
 " // Enable/Disable the local definition searching, and note that this is not
 " // guaranteed to work, the Source Explorer doesn't check the syntax for now.

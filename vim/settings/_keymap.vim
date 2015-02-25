@@ -36,9 +36,9 @@ nnoremap <silent> <Leader>cf :let @* = expand("%:p")<CR>
 nnoremap <silent> <Leader>cd :let @* = expand("%:p:h")<CR>
 
 function! RedrawScreen()
-  syntax sync fromstart
-  redraw!
-  wincmd =
+    syntax sync fromstart
+    redraw!
+    wincmd =
 endfunction
 
 " redraw screen
