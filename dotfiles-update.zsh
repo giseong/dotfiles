@@ -13,7 +13,7 @@ elif [[ `uname` == "Linux" ]]; then
   sudo apt-get dist-upgrade
 fi
 
-cd $HOME/dotfiles
+cd $HOME/.dotfiles
 git pull
 git submodule foreach git pull origin master
 

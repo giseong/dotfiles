@@ -1,5 +1,5 @@
 # oh-my-zsh configuration.
-DOTFILES_PATH=$HOME/dotfiles
+DOTFILES_PATH=$HOME/.dotfiles
 ANTIGEN=$DOTFILES_PATH/antigen
 
 source $ANTIGEN/antigen.zsh

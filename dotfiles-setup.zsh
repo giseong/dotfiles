@@ -9,7 +9,7 @@ else
     ln -s $1 $2
   }
 
-  DOTFILES_PATH=~/dotfiles
+  DOTFILES_PATH=~/.dotfiles
   cd $DOTFILES_PATH
   git submodule update --init
   cd $HOME
