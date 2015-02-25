@@ -212,10 +212,11 @@ if has('gui_running')
         "macmenu &File.Open\ Tab\.\.\.   key=<nop>
         set guifont=Consolas:h10
     elseif has("gui_win32")
-        set guifont=Consolas:h10
+        " set guifont=Consolas:h10
+        set guifont=Source\ Code\ Pro:h9
     else
         " set guifont=Inconsolata\ Medium\ 11
-        set guifont=Source\ Code\ Pro\ Medium\ 9
+        set guifont=Source\ Code\ Pro\ 9
     endif
     set guifontwide=NanumGothicCoding:h13
 
