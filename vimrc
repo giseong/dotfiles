@@ -72,7 +72,7 @@ set textwidth=79
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:>\ ,eol:¬
 set listchars+=trail:.     " show trailing spaces as dots
 set listchars+=extends:>   " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
