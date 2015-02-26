@@ -65,6 +65,7 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-pandoc/vim-pandoc-after'
     Plugin 'mrtazz/simplenote.vim'
+    Plugin 'lambdalisue/shareboard.vim'
 endif
 
 " golang

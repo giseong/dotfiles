@@ -4,3 +4,4 @@ if !empty(glob('~/.simplenoterc'))
 endif
 
 let g:SimplenoteFiletype="pandoc"
+let g:SimplenoteVertical=1
