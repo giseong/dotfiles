@@ -192,7 +192,7 @@ if has('gui_running')
         set guifont=Consolas:h10
         set guifontwide=NanumGothicCoding:h9
     else
-        set guifont=Source\ Code\ Pro\ 9
+        set guifont=Inconsolata\ 10
         set guifontwide=NanumGothicCoding\ 9
     endif
 
