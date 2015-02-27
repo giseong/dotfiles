@@ -5,12 +5,12 @@ pushd .
 cd $HOME
 
 if [[ `uname` == "Darwin" ]]; then
-  brew update
-  brew upgrade
-  brew cleanup --force
+    brew update
+    brew upgrade
+    brew cleanup --force
 elif [[ `uname` == "Linux" ]]; then
-  sudo apt-get update
-  sudo apt-get dist-upgrade
+    sudo apt-get update
+    sudo apt-get dist-upgrade
 fi
 
 cd $HOME/.dotfiles

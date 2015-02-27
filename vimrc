@@ -3,7 +3,6 @@
 set nocompatible
 filetype off
 
-let $lang = 'en'
 " Map leader and localleader key to comma
 let mapleader = ","
 let g:mapleader = ","
@@ -117,18 +116,16 @@ augroup wrap_style
     autocmd FileType qf,pandoc,tex,man,text,help           call WrapStyle_wrap()
 augroup END
 
-"augroup tabstop_setting
-"au!
-"autocmd FileType *                              set sts=2 ts=2 sw=2
-"autocmd FileType pandoc,java,python             set sts=4 ts=4 sw=4
-"autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
-"augroup END
-set sts=4 ts=4 sw=4
+augroup tabstop_setting
+    au!
+    autocmd FileType *                              set sts=4 ts=4 sw=4
+    autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
+augroup END
 
 augroup expandtab_setting
     au!
     autocmd FileType *                              set expandtab
-    autocmd FileType make                           set noexpandtab
+    autocmd FileType make,c,cpp,help                set noexpandtab
 augroup END
 
 augroup csrc
@@ -210,5 +207,4 @@ colorscheme base16-default
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
     exe 'source' f
 endfor
-
 
