@@ -73,6 +73,7 @@ set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
 set listchars=tab:>\ ,eol:¬
+" set listchars=tab:▸\ ,eol:¬
 set listchars+=trail:.     " show trailing spaces as dots
 set listchars+=extends:>   " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
@@ -170,26 +171,6 @@ set sidescroll=1
 " =========== Windows and Buffers ====================
 set splitbelow splitright
 
-" ================ Cursor settings ===================
-" This makes terminal vim sooo much nicer!
-" Tmux will only forward escape sequences to the terminal if surrounded by a DCS
-" sequence
-" if has ("mac")
-    " if exists('$TMUX')
-        " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-        " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    " else
-        " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    " endif
-" elseif has ("unix")
-    " if has("autocmd")
-        " au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape ibeam"
-        " au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
-        " au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
-    " endif
-" endif
-
 if ! has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
@@ -208,17 +189,8 @@ if has('gui_running')
     set gtl=%t gtt=%F       " Tab headings
     autocmd VimResized * wincmd =
 
-    if has("gui_macvim")
-        "macmenu &File.Open\ Tab\.\.\.   key=<nop>
-        set guifont=Consolas:h10
-    elseif has("gui_win32")
-        " set guifont=Consolas:h10
-        set guifont=Source\ Code\ Pro:h9
-    else
-        " set guifont=Inconsolata\ Medium\ 11
-        set guifont=Source\ Code\ Pro\ 9
-    endif
-    set guifontwide=NanumGothicCoding:h13
+    set guifont=Source\ Code\ Pro\ 9
+    set guifontwide=NanumGothicCoding\ 9
 
 else " Terminal
     set t_Co=256
