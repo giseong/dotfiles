@@ -72,8 +72,7 @@ set textwidth=79
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
-set listchars=tab:>\ ,eol:¬
-" set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
 set listchars+=trail:.     " show trailing spaces as dots
 set listchars+=extends:>   " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
@@ -189,8 +188,13 @@ if has('gui_running')
     set gtl=%t gtt=%F       " Tab headings
     autocmd VimResized * wincmd =
 
-    set guifont=Source\ Code\ Pro\ 9
-    set guifontwide=NanumGothicCoding\ 9
+    if has ("win32")
+        set guifont=Consolas:h10
+        set guifontwide=NanumGothicCoding:h9
+    else
+        set guifont=Source\ Code\ Pro\ 9
+        set guifontwide=NanumGothicCoding\ 9
+    endif
 
 else " Terminal
     set t_Co=256
