@@ -12,17 +12,6 @@ vnoremap <Leader>q gq
 " Change Working Directory to that of the current file
 cnoremap cwd lcd %:p:h
 
-"nnoremap <Leader>i :set list!<CR>
-
-" Control quickfix window
-" nnoremap <silent> <Up>   :botright cwindow<CR>:wincmd p<CR>
-" nnoremap <silent> <Down> :cclose<CR>:wincmd p<CR>
-
-nnoremap <C-k> <C-W>k
-nnoremap <C-j> <C-W>j
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
-
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
