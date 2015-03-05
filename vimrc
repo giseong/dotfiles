@@ -3,6 +3,7 @@
 set nocompatible
 filetype off
 
+let $LANG = 'en'
 " Map leader and localleader key to comma
 let mapleader = ","
 let g:mapleader = ","
@@ -185,7 +186,7 @@ if has('gui_running')
     autocmd VimResized * wincmd =
 
     if has ("win32")
-        set guifont=Input\ Mono:h9
+        set guifont=InputMono:h9
         set guifontwide=NanumGothicCoding:h9
     else
         set guifont=Input\ Mono\ Light\ 9
