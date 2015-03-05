@@ -22,7 +22,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'bling/vim-airline'
+    " Plugin 'bling/vim-airline'
     Plugin 'mhinz/vim-signify'
     Plugin 'sjl/gundo.vim'
     Plugin 'sjl/clam.vim'
@@ -113,4 +113,9 @@ if count(g:bundle_groups, 'misc')
     Plugin 'tpope/vim-cucumber'
     Plugin 'Puppet-Syntax-Highlighting'
 endif
+
+" Powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 

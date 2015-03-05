@@ -14,6 +14,9 @@ else
     git submodule update --init
     cd $HOME
 
+    # powerline
+    sudo pip install powerline-status
+
     # zsh
     rm -rf ~/.oh-my-zsh
     link $DOTFILES_PATH/zshrc ~/.zshrc

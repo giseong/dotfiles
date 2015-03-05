@@ -106,8 +106,7 @@ endfunction
 
 augroup ftdetect
     au!
-    " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
-    "autocmd BufRead,BufNewFile *todolist.txt       set filetype=taskpaper
+    autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
 augroup END
 
 augroup wrap_style
@@ -186,10 +185,10 @@ if has('gui_running')
     autocmd VimResized * wincmd =
 
     if has ("win32")
-        set guifont=Consolas:h10
+        set guifont=Input\ Mono:h9
         set guifontwide=NanumGothicCoding:h9
     else
-        set guifont=Inconsolata\ 10
+        set guifont=Input\ Mono\ Light\ 9
         set guifontwide=NanumGothicCoding\ 9
     endif
 
