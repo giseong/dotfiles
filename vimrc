@@ -34,6 +34,7 @@ else
 endif
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
+set showtabline=2               " Always display the tabline, even if there is only one tab
 set cmdheight=2                 "status bar height
 set cursorline                  "shows the horizontal cursor line
 set tags=.tags;,tags;
