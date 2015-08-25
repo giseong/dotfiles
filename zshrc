@@ -87,9 +87,6 @@ BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.$BASE16_BG.sh"
 # Editors
 export EDITOR='vim'
 
-# More Configuration
-[[ -s ~/.zsh_extra ]] && . ~/.zsh_extra
-
 # Misc
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -106,6 +103,9 @@ fi
 if [[ -d $HOME/.local/bin ]]; then
     PATH=$PATH:$HOME/.local/bin
 fi
+
+# More Configuration
+[[ -s ~/.zshrc_extra ]] && . ~/.zshrc_extra
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )

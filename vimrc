@@ -34,7 +34,7 @@ else
 endif
 set mouse=a                     "use mouse everywhere
 set laststatus=2                "always show the status line
-set showtabline=2               " Always display the tabline, even if there is only one tab
+set showtabline=0               " Always display the tabline, even if there is only one tab
 set cmdheight=2                 "status bar height
 set cursorline                  "shows the horizontal cursor line
 set tags=.tags;,tags;
@@ -190,8 +190,8 @@ if has('gui_running')
         set guifont=InputMono:h9
         set guifontwide=NanumGothicCoding:h9
     else
-        set guifont=Input\ Mono\ Light\ 9
-        set guifontwide=NanumGothicCoding\ 9
+        set guifont=Input\ Mono\ Light\ 10
+        set guifontwide=NanumGothicCoding\ 10
     endif
 
 else " Terminal
