@@ -87,8 +87,8 @@ BASE16_SHELL="$DOTFILES_PATH/base16-shell/base16-$BASE16_SCHEME.$BASE16_BG.sh"
 # Editors
 export EDITOR='vim'
 
-# More Aliases
-[[ -s ~/.zsh_aliases ]] && . ~/.zsh_aliases
+# More Configuration
+[[ -s ~/.zsh_extra ]] && . ~/.zsh_extra
 
 # Misc
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
