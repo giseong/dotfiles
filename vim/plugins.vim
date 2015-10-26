@@ -1,14 +1,14 @@
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Deps
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['general', 'programming', 'composing', 'python']
+    let g:bundle_groups=['general', 'programming', 'composing']
 endif
 
 " General
@@ -121,3 +121,5 @@ else
     python powerline_setup()
     python del powerline_setup
 endif
+
+call vundle#end()
