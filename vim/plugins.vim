@@ -47,9 +47,8 @@ if count(g:bundle_groups, 'programming')
     Plugin 'scrooloose/syntastic'
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
-    " if ! has("win32")
-        " Plugin 'Valloric/YouCompleteMe'
-    " endif
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'rdnetto/YCM-Generator'
     Plugin 'Align'
     Plugin 'AutoAlign'
     Plugin 'DoxygenToolkit.vim'
