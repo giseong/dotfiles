@@ -4,9 +4,7 @@ ANTIGEN=$DOTFILES_PATH/antigen
 POWERLINE_PATH=/usr/local/lib/python2.7/dist-packages
 
 # Powerline Settings
-if [[ -d $POWERLINE_PATH ]]; then
-    powerline-daemon -q
-fi
+[[ -d $POWERLINE_PATH ]] && powerline-daemon -q
 
 source $ANTIGEN/antigen.zsh
 
@@ -90,18 +88,11 @@ export EDITOR='vim'
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Powerline Prompt
-if [[ -d $POWERLINE_PATH ]]; then
-. $POWERLINE_PATH/powerline/bindings/zsh/powerline.zsh
-fi
+[[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/powerline/bindings/zsh/powerline.zsh
 
 # Path
-if [[ -d $HOME/bin ]]; then
-    PATH=$PATH:$HOME/bin
-fi
-
-if [[ -d $HOME/.local/bin ]]; then
-    PATH=$PATH:$HOME/.local/bin
-fi
+[[ -d $HOME/bin ]] && PATH=$PATH:$HOME/bin
+[[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 
 # More Configuration
 [[ -s ~/.zshrc_extra ]] && . ~/.zshrc_extra
