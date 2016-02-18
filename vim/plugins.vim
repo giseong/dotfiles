@@ -19,6 +19,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'chrisbra/NrrwRgn'
     Plugin 'kien/ctrlp.vim'
     Plugin 'rking/ag.vim'
+    Plugin 'gtags.vim'
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'terryma/vim-multiple-cursors'
