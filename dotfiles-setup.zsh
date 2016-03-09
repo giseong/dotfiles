@@ -50,6 +50,11 @@ else
     mkdir -p ~/.config
     link $DOTFILES_PATH/config/zathura ~/.config/zathura
 
+    # fonts
+    link $DOTFILES_PATH/fonts ~/.fonts
+    mkdir -p ~/.config/fontconfig/conf.d
+    ln -s ~/.fonts/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/10-powerline-symbols.conf
+
     # Misc
     link $DOTFILES_PATH/ctags ~/.ctags
     link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
