@@ -27,7 +27,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'sjl/gundo.vim'
     Plugin 'sjl/clam.vim'
     Plugin 'sjl/vitality.vim'
-    Plugin 'wincent/terminus'
+    " Plugin 'wincent/terminus'
     Plugin 'benmills/vimux'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'matchit.zip'
