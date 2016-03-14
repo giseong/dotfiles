@@ -19,7 +19,6 @@ if count(g:bundle_groups, 'general')
     Plugin 'chrisbra/NrrwRgn'
     Plugin 'kien/ctrlp.vim'
     Plugin 'rking/ag.vim'
-    Plugin 'gtags.vim'
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'terryma/vim-multiple-cursors'
@@ -51,8 +50,8 @@ if count(g:bundle_groups, 'programming')
     Plugin 'honza/vim-snippets'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'rdnetto/YCM-Generator'
-    Plugin 'Align'
-    Plugin 'AutoAlign'
+    " Plugin 'Align'
+    " Plugin 'AutoAlign'
     Plugin 'DoxygenToolkit.vim'
     Plugin 'chazy/cscope_maps'
 endif
@@ -65,8 +64,8 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-pandoc/vim-pandoc-after'
-    Plugin 'mrtazz/simplenote.vim'
-    Plugin 'lambdalisue/shareboard.vim'
+    " Plugin 'mrtazz/simplenote.vim'
+    " Plugin 'lambdalisue/shareboard.vim'
 endif
 
 " golang
