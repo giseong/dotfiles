@@ -116,6 +116,7 @@ endif
 " Status Bar
 if has ("win32")
     Plugin 'bling/vim-airline'
+    Plugin 'bling/vim-airline-themes'
 else
     python from powerline.vim import setup as powerline_setup
     python powerline_setup()
