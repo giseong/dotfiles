@@ -35,6 +35,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'Valloric/ListToggle'
     Plugin 'chriskempson/base16-vim'
     Plugin 'morhetz/gruvbox'
+    Plugin 'jeaye/color_coded'
 endif
 
 " Programming
@@ -64,6 +65,7 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-pandoc/vim-pandoc-after'
+    Plugin 'aklt/plantuml-syntax'
     " Plugin 'mrtazz/simplenote.vim'
     " Plugin 'lambdalisue/shareboard.vim'
 endif
