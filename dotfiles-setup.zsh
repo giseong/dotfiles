@@ -50,6 +50,10 @@ else
     mkdir -p ~/.config
     link $DOTFILES_PATH/config/zathura ~/.config/zathura
 
+    # task
+    link $DOTFILES_PATH/taskd ~/.taskd
+    link $DOTFILES_PATH/taskrc ~/.taskrc
+
     # fonts
     link $DOTFILES_PATH/fonts ~/.fonts
     mkdir -p ~/.config/fontconfig/conf.d
