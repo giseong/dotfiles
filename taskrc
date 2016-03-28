@@ -13,26 +13,36 @@
 # Files
 data.location=~/.task
 
-# Color theme (uncomment one to use)
-#include /usr/share/doc/task/rc/light-16.theme
-#include /usr/share/doc/task/rc/light-256.theme
-#include /usr/share/doc/task/rc/dark-16.theme
-#include /usr/share/doc/task/rc/dark-256.theme
-#include /usr/share/doc/task/rc/dark-red-256.theme
-#include /usr/share/doc/task/rc/dark-green-256.theme
-#include /usr/share/doc/task/rc/dark-blue-256.theme
-#include /usr/share/doc/task/rc/dark-violets-256.theme
-#include /usr/share/doc/task/rc/dark-yellow-green.theme
-#include /usr/share/doc/task/rc/dark-gray-256.theme
-#include /usr/share/doc/task/rc/dark-gray-blue-256.theme
-#include /usr/share/doc/task/rc/solarized-dark-256.theme
-#include /usr/share/doc/task/rc/solarized-light-256.theme
-#include /usr/share/doc/task/rc/no-color.theme
+# Color theme
+include ~/.taskwarrior/dark-256.theme
 
 # Sync
-taskd.certificate=~/.taskd/private.certificate.pem
-taskd.key=~/.taskd/private.key.pem
-taskd.ca=~/.taskd/ca.cert.pem
+taskd.certificate=~/.taskwarrior/private.certificate.pem
+taskd.key=~/.taskwarrior/private.key.pem
+taskd.ca=~/.taskwarrior/ca.cert.pem
 taskd.server=taskwarrior.inthe.am:53589
 taskd.credentials=inthe_am/giseong.bak/7dae99fc-9a7b-40f7-87c8-3f940374d27a
 taskd.trust=ignore hostname
+
+# Inthe.AM
+uda.intheamattachments.type=string
+uda.intheamattachments.label=Inthe.AM Attachments
+uda.intheamtrelloboardid.type=string
+uda.intheamtrelloboardid.label=Inthe.AM Trello Board ID
+uda.intheamoriginalemailsubject.type=string
+uda.intheamoriginalemailsubject.label=Inthe.AM E-mail Subject
+uda.intheamtrellodescription.type=string
+uda.intheamtrellodescription.label=Inthe.AM Trello Description
+uda.intheamtrellourl.type=string
+uda.intheamtrellourl.label=Inthe.AM Trello URL
+uda.intheamtrellolistid.type=string
+uda.intheamtrellolistid.label=Inthe.AM Trello List ID
+uda.intheamtrellolistname.type=string
+uda.intheamtrellolistname.label=Inthe.AM Trello List Name
+uda.intheamoriginalemailid.type=numeric
+uda.intheamoriginalemailid.label=Inthe.AM E-mail ID
+uda.intheamtrelloid.type=string
+uda.intheamtrelloid.label=Inthe.AM Trello Object ID
+
+# Color theme
+
