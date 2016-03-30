@@ -73,11 +73,12 @@ set textwidth=79
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
-set listchars=tab:▸\ ,eol:¬
+" set listchars=tab:▸\ ,eol:¬
+set listchars=tab:>\ ,eol:¬
 set listchars+=trail:.     " show trailing spaces as dots
-set listchars+=extends:>   " The character to show in the last column when wrap is
+set listchars+=extends:▶   " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
-set listchars+=precedes:<  " The character to show in the last column when wrap is
+set listchars+=precedes:◀  " The character to show in the last column when wrap is
 " off and the line continues beyond the right of the screen
 
 function! WrapStyle_nowrap()
@@ -187,8 +188,8 @@ if has('gui_running')
     autocmd VimResized * wincmd =
 
     if has ("win32")
-        set guifont=D2Coding\ Powerline:h9
-        set guifontwide=D2Coding\ Powerline:h9
+        set guifont=D2Coding\ Powerline:h10
+        set guifontwide=D2Coding\ Powerline:h10
     else
         set guifont=D2Coding\ Powerline\ 10
         set guifontwide=D2Coding\ Powerline\ 10
