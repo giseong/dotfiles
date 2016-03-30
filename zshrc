@@ -44,6 +44,11 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # zsh-history-substring-search
 antigen bundle zsh-users/zsh-history-substring-search
 
+# zsh-autosuggetions
+antigen bundle zsh-users/zsh-autosuggestions
+bindkey '^ ' autosuggest-accept
+
+
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up

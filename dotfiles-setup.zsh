@@ -46,9 +46,10 @@ else
     # pandoc
     link $DOTFILES_PATH/pandoc ~/.pandoc
 
-    # zathura
+    # config
     mkdir -p ~/.config
     link $DOTFILES_PATH/config/zathura ~/.config/zathura
+    link $DOTFILES_PATH/config/powerline ~/.config/powerline
 
     # task
     link $DOTFILES_PATH/taskd ~/.taskd
