@@ -1,8 +1,6 @@
 {
 	"common": {
-		"term_truecolor": true,
-		"default_top_theme": "ascii",
-		"additional_escapes": "tmux"
+		"default_top_theme": "ascii"
 	},
 	"ext": {
 		"ipython": {
