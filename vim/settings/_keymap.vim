@@ -19,6 +19,9 @@ vnoremap k gk
 
 nnoremap <silent> <F3> :call WrapStyle_toggle()<CR>
 
+" remove all trailing whitespaces
+nnoremap <silent> <F4> :%s/\s\+$//e<CR>
+
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
 nnoremap <silent> <Leader>cf :let @* = expand("%:p")<CR>
