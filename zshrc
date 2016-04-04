@@ -35,6 +35,7 @@ antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle fasd
+antigen bundle fancy-ctrl-z
 
 antigen bundle zsh-users/zsh-completions src
 

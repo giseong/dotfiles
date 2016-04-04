@@ -67,8 +67,8 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc-after'
     Plugin 'aklt/plantuml-syntax'
     Plugin 'mrtazz/simplenote.vim'
-    Plugin 'junegunn/goyo.vim'
-    Plugin 'amix/vim-zenroom2'
+    " Plugin 'junegunn/goyo.vim'
+    " Plugin 'amix/vim-zenroom2'
     " Plugin 'lambdalisue/shareboard.vim'
 endif
 
