@@ -8,7 +8,7 @@ Plugin 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['general', 'programming', 'composing']
+    let g:bundle_groups=['general', 'programming', 'composing', 'python', 'rust-lang']
 endif
 
 " General
@@ -17,7 +17,8 @@ if count(g:bundle_groups, 'general')
     Plugin 'tpope/vim-repeat'
     Plugin 'scrooloose/nerdtree'
     Plugin 'chrisbra/NrrwRgn'
-    Plugin 'kien/ctrlp.vim'
+    " Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'rking/ag.vim'
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
@@ -26,7 +27,6 @@ if count(g:bundle_groups, 'general')
     Plugin 'sjl/gundo.vim'
     Plugin 'sjl/clam.vim'
     Plugin 'sjl/vitality.vim'
-    " Plugin 'wincent/terminus'
     Plugin 'benmills/vimux'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'matchit.zip'
@@ -67,12 +67,19 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc-after'
     Plugin 'aklt/plantuml-syntax'
     Plugin 'mrtazz/simplenote.vim'
+    Plugin 'junegunn/goyo.vim'
+    Plugin 'amix/vim-zenroom2'
     " Plugin 'lambdalisue/shareboard.vim'
 endif
 
 " golang
 if count(g:bundle_groups, 'golang')
     Plugin 'fatih/vim-go'
+endif
+
+" rust-lang
+if count(g:bundle_groups, 'rust-lang')
+    Plugin 'rust-lang/rust.vim'
 endif
 
 " PHP

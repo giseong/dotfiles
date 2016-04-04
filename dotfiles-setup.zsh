@@ -22,12 +22,12 @@ else
     link $DOTFILES_PATH/zshrc ~/.zshrc
 
     # git
-    echo -e "copy gitconfig and modify it"
-    # if [[ `uname` == "Darwin" ]]; then
-    # link $DOTFILES_PATH/gitconfig_osx ~/.gitconfig
-    # elif [[ `uname` == "Linux" ]]; then
-    # link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
-    # fi
+    # echo -e "copy gitconfig and modify it"
+    if [[ `uname` == "Darwin" ]]; then
+        link $DOTFILES_PATH/gitconfig_osx ~/.gitconfig
+    elif [[ `uname` == "Linux" ]]; then
+        link $DOTFILES_PATH/gitconfig_linux ~/.gitconfig
+    fi
     link $DOTFILES_PATH/gitignore ~/.gitignore
     link $DOTFILES_PATH/gitattributes ~/.gitattributes
 

@@ -1,6 +1,4 @@
 set com=s1:/*,mb:*,ex:*/,://,b:#.,:%,:XCOMM,n:>,b:-
-setlocal equalprg=pandoc\ -t\ markdown\ --standalone\ --normalize\ --atx-headers\ --no-wrap
-"setlocal equalprg=""
 nnoremap <buffer> <Right> :VoomToggle<CR>
 
 if has("mac")

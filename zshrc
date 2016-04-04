@@ -34,7 +34,7 @@ fi
 antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
-antigen bundle autojump
+antigen bundle fasd
 
 antigen bundle zsh-users/zsh-completions src
 
@@ -47,7 +47,6 @@ antigen bundle zsh-users/zsh-history-substring-search
 # zsh-autosuggetions
 antigen bundle zsh-users/zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
-
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
