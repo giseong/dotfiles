@@ -68,5 +68,6 @@ else
     link $DOTFILES_PATH/gtkrc-2.0 ~/.gtkrc-2.0
     link $DOTFILES_PATH/gitignore ~/.agignore
     link $DOTFILES_PATH/tigrc ~/.tigrc
+    link $DOTFILES_PATH/editorconfig ~/.editorconfig
 
 fi

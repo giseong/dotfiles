@@ -109,32 +109,36 @@ endfunction
 
 augroup ftdetect
     au!
-    autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+    " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+    " autocmd BufRead,BufNewFile CMakeLists.txt      set filetype=cmake
 augroup END
 
 augroup wrap_style
     au!
-    autocmd FileType *                                     call WrapStyle_nowrap()
-    autocmd FileType qf,pandoc,tex,man,text,help           call WrapStyle_wrap()
-augroup END
-
-augroup tabstop_setting
-    au!
-    autocmd FileType *                              set sts=4 ts=4 sw=4
-    autocmd FileType c,cpp,help                     set sts=8 ts=8 sw=8
-augroup END
-
-augroup expandtab_setting
-    au!
-    autocmd FileType *                              set expandtab
-    autocmd FileType make,c,cpp,help                set noexpandtab
+    autocmd FileType *                             call WrapStyle_nowrap()
+    autocmd FileType qf,pandoc,tex,man,text,help   call WrapStyle_wrap()
 augroup END
 
 augroup csrc
     au!
-    autocmd FileType *                              set nocindent
-    autocmd FileType c,cpp                          set cindent
+    autocmd FileType *                             set nocindent
+    autocmd FileType c,cpp                         set cindent
 augroup END
+
+
+" USE editorconfig 
+
+" augroup tabstop_setting
+    " au!
+    " autocmd FileType *                             set sts=4 ts=4 sw=4
+    " autocmd FileType c,cpp,help                    set sts=8 ts=8 sw=8
+" augroup END
+
+" augroup expandtab_setting
+    " au!
+    " autocmd FileType *                             set expandtab
+    " autocmd FileType make,c,cpp,help               set noexpandtab
+" augroup END
 
 " ================ Folds ============================
 

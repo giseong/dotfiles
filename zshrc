@@ -105,7 +105,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 
 # More Configuration
-[[ -s ~/.zshrc_extra ]] && . ~/.zshrc_extra
+[[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
