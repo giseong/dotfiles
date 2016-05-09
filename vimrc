@@ -109,7 +109,7 @@ endfunction
 
 augroup ftdetect
     au!
-    " autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
+    autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
     " autocmd BufRead,BufNewFile CMakeLists.txt      set filetype=cmake
 augroup END
 
