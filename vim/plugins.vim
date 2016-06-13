@@ -8,7 +8,7 @@ Plugin 'tomtom/tlib_vim'
 
 " list only the plugin groups you will use
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['general', 'programming', 'composing', 'python', 'rust-lang', 'swift-lang']
+    let g:bundle_groups=['general', 'programming', 'composing', 'python']
 endif
 
 " General
@@ -51,8 +51,6 @@ if count(g:bundle_groups, 'programming')
     Plugin 'honza/vim-snippets'
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'rdnetto/YCM-Generator'
-    " Plugin 'Align'
-    " Plugin 'AutoAlign'
     Plugin 'DoxygenToolkit.vim'
     Plugin 'chazy/cscope_maps'
 endif
@@ -67,9 +65,6 @@ if count(g:bundle_groups, 'composing')
     Plugin 'vim-pandoc/vim-pandoc-after'
     Plugin 'aklt/plantuml-syntax'
     Plugin 'mrtazz/simplenote.vim'
-    " Plugin 'junegunn/goyo.vim'
-    " Plugin 'amix/vim-zenroom2'
-    " Plugin 'lambdalisue/shareboard.vim'
 endif
 
 " golang
