@@ -24,43 +24,37 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 if [[ `uname` == "Linux" ]]; then
-    antigen bundle command-not-found
-
-    # export TERM="xterm-256color"
     ZSH_TMUX_AUTOSTART=true
     antigen bundle tmux
 fi
 
+antigen bundle command-not-found
 antigen bundle git
 antigen bundle vi-mode
 antigen bundle vundle
 antigen bundle fasd
 antigen bundle fancy-ctrl-z
-
-antigen bundle zsh-users/zsh-completions src
-
+antigen bundle zsh-users/zsh-completions
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 antigen bundle zsh-users/zsh-syntax-highlighting
-
-# zsh-history-substring-search
 antigen bundle zsh-users/zsh-history-substring-search
-
-# zsh-autosuggetions
 antigen bundle zsh-users/zsh-autosuggestions
-bindkey '^ ' autosuggest-accept
+
+# bind ctrl + space for autosuggestion
+# bindkey '^ ' autosuggest-accept
 
 # bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+# zmodload zsh/terminfo
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # bind P and N for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
+# bindkey -M emacs '^P' history-substring-search-up
+# bindkey -M emacs '^N' history-substring-search-down
 
 # bind k and j for VI mode
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# bindkey -M vicmd 'k' history-substring-search-up
+# bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
 # antigen theme mortalscumbag
@@ -91,9 +85,6 @@ export EDITOR='vim'
 export PAGER=/usr/bin/vimpager
 alias less=$PAGER
 alias zless=$PAGER
-
-# Misc
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Powerline Prompt
 [[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/powerline/bindings/zsh/powerline.zsh
