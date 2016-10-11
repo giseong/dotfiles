@@ -6,7 +6,7 @@
 [core]
   excludesfile = ~/.gitignore
 [color]
-  ui = true
+	ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow

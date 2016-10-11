@@ -110,7 +110,7 @@ endfunction
 augroup ftdetect
     au!
     autocmd BufRead,BufNewFile *.txt               set filetype=pandoc
-    " autocmd BufRead,BufNewFile CMakeLists.txt      set filetype=cmake
+    autocmd BufRead,BufNewFile CMakeLists.txt      set filetype=cmake
 augroup END
 
 augroup wrap_style
@@ -201,13 +201,12 @@ if has('gui_running')
 
 else " Terminal
     set t_Co=256
-    if ! exists("$SSH_CONNECTION")
+    if filereadable(expand("~/.vimrc_background"))
         let base16colorspace=256
+        source ~/.vimrc_background
     endif
 
 endif
-set background=dark
-colorscheme base16-default
 
 " ======= Helper Funtions and Plugin Settings =======
 for f in split(glob('~/.vim/settings/*.vim'), '\n')

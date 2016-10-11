@@ -34,7 +34,6 @@ if count(g:bundle_groups, 'general')
     Plugin 'Valloric/ListToggle'
     Plugin 'chriskempson/base16-vim'
     Plugin 'morhetz/gruvbox'
-    Plugin 'jeaye/color_coded'
     Plugin 'editorconfig/editorconfig-vim'
 endif
 
@@ -47,9 +46,10 @@ if count(g:bundle_groups, 'programming')
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'majutsushi/tagbar'
     Plugin 'scrooloose/syntastic'
-    Plugin 'SirVer/ultisnips'
+    Plugin 'sirver/ultisnips'
     Plugin 'honza/vim-snippets'
-    Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'jeaye/color_coded'
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'DoxygenToolkit.vim'
     Plugin 'chazy/cscope_maps'
