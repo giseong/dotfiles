@@ -192,11 +192,11 @@ if has('gui_running')
     autocmd VimResized * wincmd =
 
     if has ("win32")
-        set guifont=D2Coding\ Powerline:h10
-        set guifontwide=D2Coding\ Powerline:h10
+        set guifont=D2Coding:h10
+        set guifontwide=D2Coding:h10
     else
-        set guifont=D2Coding\ Powerline\ 10
-        set guifontwide=D2Coding\ Powerline\ 10
+        set guifont=D2Coding\ 10
+        set guifontwide=D2Coding\ 10
     endif
 
 else " Terminal
