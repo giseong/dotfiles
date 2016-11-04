@@ -49,7 +49,7 @@ if count(g:bundle_groups, 'programming')
     Plugin 'sirver/ultisnips'
     Plugin 'honza/vim-snippets'
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'jeaye/color_coded'
+    " Plugin 'jeaye/color_coded'
     Plugin 'rdnetto/YCM-Generator'
     Plugin 'DoxygenToolkit.vim'
     Plugin 'chazy/cscope_maps'
@@ -127,9 +127,9 @@ if has ("win32")
     Plugin 'bling/vim-airline'
     Plugin 'bling/vim-airline-themes'
 else
-    python from powerline.vim import setup as powerline_setup
-    python powerline_setup()
-    python del powerline_setup
+    python3 from powerline.vim import setup as powerline_setup
+    python3 powerline_setup()
+    python3 del powerline_setup
 endif
 
 call vundle#end()
