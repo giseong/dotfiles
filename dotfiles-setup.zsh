@@ -9,13 +9,16 @@ else
         ln -s $1 $2
     }
 
+    # dependancy 
+    sudo apt-get install git build-essentials python3-pip gawk
+
     DOTFILES_PATH=~/.dotfiles
     cd $DOTFILES_PATH
     git submodule update --init
     cd $HOME
 
     # powerline
-    sudo pip install powerline-status
+    sudo pip3 install powerline-status
 
     # zsh
     rm -rf ~/.oh-my-zsh

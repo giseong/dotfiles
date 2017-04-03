@@ -1,7 +1,7 @@
 # oh-my-zsh configuration.
 DOTFILES_PATH=$HOME/.dotfiles
 ANTIGEN=$DOTFILES_PATH/antigen
-POWERLINE_PATH=/usr/local/lib/python3.5/dist-packages
+POWERLINE_PATH=/usr/local/lib/python3.4/dist-packages
 
 # Powerline Settings
 [[ -d $POWERLINE_PATH ]] && powerline-daemon -q
