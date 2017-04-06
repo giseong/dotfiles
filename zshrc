@@ -82,9 +82,9 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 export EDITOR='vim'
 
 # Pager
-export PAGER=/usr/bin/vimpager
-alias less=$PAGER
-alias zless=$PAGER
+# export PAGER=/usr/bin/vimpager
+# alias less=$PAGER
+# alias zless=$PAGER
 
 # Powerline Prompt
 [[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/powerline/bindings/zsh/powerline.zsh
