@@ -5,8 +5,9 @@ export POWERLINE_PATH=/usr/local/lib/python3.6/dist-packages/powerline
 
 [[ -d $POWERLINE_PATH ]] && powerline-daemon -q
 
-# Source additional config
-source $HOME/.antigenrc
+# Antigen
+source $DOTFILES_PATH/antigen/antigen.zsh
+antigen init .antigenrc
 
 # Colors
 export CLICOLOR=1

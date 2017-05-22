@@ -1,18 +1,17 @@
-source $DOTFILES_PATH/antigen/antigen.zsh
-
 antigen use oh-my-zsh
 
-antigen bundle <<EOBUNDLES
+# Options
+ZSH_TMUX_AUTOSTART=true
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+# Bundles
+antigen bundle << EOBUNDLES
     if [[ `uname` == "Darwin" ]]; then
         osx
         brew
     fi
 
-    if [[ `uname` == "Linux" ]]; then
-        ZSH_TMUX_AUTOSTART=true
-        tmux
-    fi
-
+    tmux
     command-not-found
     git
     vi-mode
@@ -20,7 +19,6 @@ antigen bundle <<EOBUNDLES
     fasd
     fancy-ctrl-z
 
-    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
     zsh-users/zsh-autosuggestions
@@ -44,4 +42,3 @@ bindkey -M vicmd 'j' history-substring-search-down
 # antigen theme mortalscumbag
 
 antigen apply
-
