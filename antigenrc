@@ -1,0 +1,47 @@
+source $DOTFILES_PATH/antigen/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle <<EOBUNDLES
+    if [[ `uname` == "Darwin" ]]; then
+        osx
+        brew
+    fi
+
+    if [[ `uname` == "Linux" ]]; then
+        ZSH_TMUX_AUTOSTART=true
+        tmux
+    fi
+
+    command-not-found
+    git
+    vi-mode
+    vundle
+    fasd
+    fancy-ctrl-z
+
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions
+EOBUNDLES
+
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# Load the theme.
+# antigen theme mortalscumbag
+
+antigen apply
+
