@@ -17,7 +17,7 @@ cd $HOME/.dotfiles
 git pull
 git submodule foreach git pull origin master
 
-antigen-update
+antigen update
 vundle-update
 
 popd
