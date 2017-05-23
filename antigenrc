@@ -1,9 +1,5 @@
 antigen use oh-my-zsh
 
-# Options
-ZSH_TMUX_AUTOSTART=true
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-
 # Bundles
 antigen bundle << EOBUNDLES
     if [[ `uname` == "Darwin" ]]; then
@@ -39,6 +35,6 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # Load the theme.
-# antigen theme mortalscumbag
+antigen theme mortalscumbag
 
 antigen apply

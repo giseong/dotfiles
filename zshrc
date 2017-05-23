@@ -2,10 +2,11 @@ export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
 export POWERLINE_PATH=/usr/local/lib/python3.6/dist-packages/powerline
-
 [[ -d $POWERLINE_PATH ]] && powerline-daemon -q
 
 # Antigen
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 source $DOTFILES_PATH/antigen/antigen.zsh
 antigen init .antigenrc
 
