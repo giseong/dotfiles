@@ -1,14 +1,18 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-export POWERLINE_PATH=/usr/local/lib/python3.6/dist-packages/powerline
+if [[ -d /usr/local/lib/python3.6/dist-packages/powerline ]]; then
+    export POWERLINE_PATH=/usr/local/lib/python3.6/dist-packages/powerline
+elif [[ -d /usr/local/lib/python3.4/dist-packages/powerline ]]; then
+    export POWERLINE_PATH=/usr/local/lib/python3.4/dist-packages/powerline
+fi
 [[ -d $POWERLINE_PATH ]] && powerline-daemon -q
 
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-source $DOTFILES_PATH/antigen/antigen.zsh
-antigen init .antigenrc
+# export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+source $HOME/.antigen/antigen.zsh
+antigen init $HOME/.antigenrc
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo

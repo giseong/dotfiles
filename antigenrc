@@ -1,12 +1,8 @@
 antigen use oh-my-zsh
 
+# Options
 # Bundles
-antigen bundle << EOBUNDLES
-    if [[ `uname` == "Darwin" ]]; then
-        osx
-        brew
-    fi
-
+antigen bundles <<EOBUNDLES
     tmux
     command-not-found
     git
