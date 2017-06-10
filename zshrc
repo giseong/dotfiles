@@ -43,12 +43,12 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 export EDITOR='vim'
 
 # Pager
-export PAGER=/usr/bin/vimpager
+# export PAGER=/usr/bin/vimpager
 
 # alias
 alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
-alias less=$PAGER
-alias zless=$PAGER
+# alias less=$PAGER
+# alias zless=$PAGER
 
 # Powerline Prompt
 [[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/bindings/zsh/powerline.zsh
