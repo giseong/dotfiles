@@ -20,6 +20,7 @@ else
     # zsh
     rm -rf ~/.oh-my-zsh
     link $DOTFILES_PATH/zshrc ~/.zshrc
+    link $DOTFILES_PATH/antigen ~/.antigen
     link $DOTFILES_PATH/antigenrc ~/.antigenrc
 
     # git

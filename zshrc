@@ -43,7 +43,7 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 export EDITOR='vim'
 
 # Pager
-export PAGER=/usr/local/bin/vimpager
+export PAGER=/usr/bin/vimpager
 
 # alias
 alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
