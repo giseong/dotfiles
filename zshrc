@@ -1,12 +1,11 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-if [[ -d /usr/local/lib/python3.6/dist-packages/powerline ]]; then
-    export POWERLINE_PATH=/usr/local/lib/python3.6/dist-packages/powerline
-elif [[ -d /usr/local/lib/python3.4/dist-packages/powerline ]]; then
-    export POWERLINE_PATH=/usr/local/lib/python3.4/dist-packages/powerline
+PYTHON_VER=3.5
+if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
+    export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
+    powerline-daemon -q
 fi
-[[ -d $POWERLINE_PATH ]] && powerline-daemon -q
 
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
