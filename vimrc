@@ -73,13 +73,8 @@ set textwidth=79
 set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
-" set listchars=tab:▸\ ,eol:¬
-set listchars=tab:>\ ,eol:¬
-set listchars+=trail:.     " show trailing spaces as dots
-set listchars+=extends:▶   " The character to show in the last column when wrap is
-" off and the line continues beyond the right of the screen
-set listchars+=precedes:◀  " The character to show in the last column when wrap is
-" off and the line continues beyond the right of the screen
+" set listchars=tab:>\ ,eol:¬
+set listchars=tab:→\ ,trail:·,precedes:◀,extends:▶,eol:↲,nbsp:␣
 
 function! WrapStyle_nowrap()
     set nowrap
@@ -126,7 +121,7 @@ augroup csrc
 augroup END
 
 
-" USE editorconfig 
+" USE editorconfig
 
 " augroup tabstop_setting
     " au!
@@ -202,7 +197,7 @@ if has('gui_running')
 else " Terminal
     set t_Co=256
     if filereadable(expand("~/.vimrc_background"))
-        let base16colorspace=256
+        " let base16colorspace=256
         source ~/.vimrc_background
     endif
 
