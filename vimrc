@@ -74,7 +74,7 @@ set cinoptions=:0,g0,(0,Ws,l1
 " List chars
 set listchars=""           " Reset the listchars
 " set listchars=tab:>\ ,eol:¬
-set listchars=tab:→\ ,trail:·,precedes:◀,extends:▶,eol:↲,nbsp:␣
+set listchars=tab:→\ ,trail:.,precedes:◀,extends:▶,eol:↲,nbsp:␣
 
 function! WrapStyle_nowrap()
     set nowrap
