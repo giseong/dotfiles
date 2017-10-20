@@ -1,6 +1,7 @@
 antigen use oh-my-zsh
 
 # Options
+
 # Bundles
 antigen bundles <<EOBUNDLES
     tmux

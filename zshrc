@@ -1,7 +1,7 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-PYTHON_VER=3.5
+PYTHON_VER=3.6
 if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
     export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
     powerline-daemon -q
