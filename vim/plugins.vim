@@ -57,14 +57,14 @@ endif
 
 " Composing
 if count(g:bundle_groups, 'composing')
-    Plugin 'VOoM'
+    " Plugin 'VOoM'
     Plugin 'jcf/vim-latex'
     Plugin 'godlygeek/tabular'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-pandoc/vim-pandoc-after'
     Plugin 'aklt/plantuml-syntax'
-    Plugin 'mrtazz/simplenote.vim'
+    " Plugin 'mrtazz/simplenote.vim'
 endif
 
 " golang
