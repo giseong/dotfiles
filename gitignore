@@ -19,6 +19,7 @@ cscope.out
 .idea/
 *.iml
 *.iws
+.ropeproject
 
 # Mac
 .DS_Store
@@ -26,3 +27,7 @@ cscope.out
 # Maven
 log/
 target/
+
+# Python
+__pycache__
+*.pyc

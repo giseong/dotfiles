@@ -90,7 +90,7 @@ endif
 " Python
 if count(g:bundle_groups, 'python')
     " Pick either python-mode or pyflakes & pydoc
-    Plugin 'klen/python-mode'
+    Plugin 'python-mode/python-mode'
 endif
 
 " Javascript
