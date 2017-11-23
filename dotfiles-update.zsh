@@ -10,7 +10,8 @@ if [[ `uname` == "Darwin" ]]; then
     brew cleanup --force
 elif [[ `uname` == "Linux" ]]; then
     sudo apt update
-    sudo apt -y dist-upgrade
+    sudo apt -y full-upgrade
+    sudo apt -y autoremove
 fi
 
 cd $HOME/.dotfiles
