@@ -3,7 +3,7 @@
 		"term_truecolor": "auto",
 		"term_escape_style": "auto",
         "additional_escapes": "tmux",
-		"default_top_theme": "ascii"
+		"default_top_theme": "powerline"
 	},
 	"ext": {
 		"ipython": {

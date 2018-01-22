@@ -1,21 +1,25 @@
 [user]
-    name = 박기성/선임연구원/VC스마트검증환경개발팀(giseong.bak@lge.com)
-    email = giseong.bak@lge.com
+	name = 박기성/선임연구원/VC스마트검증환경개발팀(giseong.bak@lge.com)
+	email = giseong.bak@lge.com
 [credential]
-    helper = cache
+	helper = cache
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 	autocrlf = input
 [color]
-    ui = true
+	ui = true
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [push]
-    default = matching
+	default = matching
+[url "ssh://vcrep.lge.com:29411/"]
+	insteadOf = "ssh://mod.lge.com:29411/"
+[url "ssh://mod.lge.com:29411/"]
+	pushInsteadOf = "ssh://vcrep.lge.com:29411/"
