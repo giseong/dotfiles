@@ -1,7 +1,7 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-PYTHON_VER=3.6
+PYTHON_VER=3.4
 if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
     export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
     powerline-daemon -q
@@ -42,7 +42,7 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 export EDITOR='vim'
 
 # Pager
-export PAGER=/usr/bin/vimpager
+export PAGER=/usr/local/bin/vimpager
 
 # alias
 alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"

@@ -15,7 +15,7 @@ else
     cd $HOME
 
     # powerline
-    sudo python3.6 -m pip install powerline-status
+    sudo python3 -m pip install powerline-status
 
     # zsh
     rm -rf ~/.oh-my-zsh
