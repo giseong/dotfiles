@@ -29,7 +29,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'matchit.zip'
     Plugin 'Valloric/ListToggle'
     Plugin 'chriskempson/base16-vim'
-    Plugin 'editorconfig/editorconfig-vim'
+    " Plugin 'editorconfig/editorconfig-vim'
 
     " Status Bar
     if has ("win32")

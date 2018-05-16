@@ -110,8 +110,8 @@ augroup END
 
 augroup wrap_style
     au!
-    autocmd FileType *                             call WrapStyle_nowrap()
-    autocmd FileType qf,pandoc,tex,man,text,help   call WrapStyle_wrap()
+    autocmd FileType *                                   call WrapStyle_nowrap()
+    autocmd FileType qf,pandoc,tex,man,tasks,text,help   call WrapStyle_wrap()
 augroup END
 
 augroup csrc
@@ -120,20 +120,17 @@ augroup csrc
     autocmd FileType c,cpp                         set cindent
 augroup END
 
+augroup tabstop_setting
+    au!
+    autocmd FileType *                             set sts=4 ts=4 sw=4
+    autocmd FileType c,cpp,help                    set sts=8 ts=8 sw=8
+augroup END
 
-" USE editorconfig
-
-" augroup tabstop_setting
-    " au!
-    " autocmd FileType *                             set sts=4 ts=4 sw=4
-    " autocmd FileType c,cpp,help                    set sts=8 ts=8 sw=8
-" augroup END
-
-" augroup expandtab_setting
-    " au!
-    " autocmd FileType *                             set expandtab
-    " autocmd FileType make,c,cpp,help               set noexpandtab
-" augroup END
+augroup expandtab_setting
+    au!
+    autocmd FileType *                             set expandtab
+    autocmd FileType make,c,cpp,help               set noexpandtab
+augroup END
 
 " ================ Folds ============================
 
