@@ -56,6 +56,7 @@ else
     # task
     link $DOTFILES_PATH/taskd ~/.taskd
     link $DOTFILES_PATH/taskrc ~/.taskrc
+    link $DOTFILES_PATH/taskwarrior ~/.taskwarrior
 
     # fonts
     link $DOTFILES_PATH/fonts ~/.fonts
