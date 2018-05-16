@@ -21,20 +21,25 @@ if count(g:bundle_groups, 'general')
     Plugin 'rking/ag.vim'
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
-    Plugin 'terryma/vim-multiple-cursors'
     Plugin 'mhinz/vim-signify'
-    Plugin 'sjl/gundo.vim'
     Plugin 'sjl/clam.vim'
     Plugin 'sjl/vitality.vim'
     Plugin 'benmills/vimux'
     Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'matchit.zip'
-    Plugin 'xolox/vim-misc'
-    Plugin 'xolox/vim-session'
     Plugin 'Valloric/ListToggle'
     Plugin 'chriskempson/base16-vim'
-    Plugin 'morhetz/gruvbox'
     Plugin 'editorconfig/editorconfig-vim'
+
+    " Status Bar
+    if has ("win32")
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
+    else
+        python3 from powerline.vim import setup as powerline_setup
+        python3 powerline_setup
+        ptthon3 del powerline_setup
+    endif
 endif
 
 " Programming
@@ -45,26 +50,26 @@ if count(g:bundle_groups, 'programming')
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'majutsushi/tagbar'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'sirver/ultisnips'
-    Plugin 'honza/vim-snippets'
-    Plugin 'Valloric/YouCompleteMe'
-    " Plugin 'jeaye/color_coded'
-    Plugin 'rdnetto/YCM-Generator'
     Plugin 'DoxygenToolkit.vim'
-    Plugin 'chazy/cscope_maps'
+    " Plugin 'scrooloose/syntastic'
+    " Plugin 'sirver/ultisnips'
+    " Plugin 'honza/vim-snippets'
+    " Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'jeaye/color_coded'
+    " Plugin 'rdnetto/YCM-Generator'
+    " Plugin 'chazy/cscope_maps'
 endif
 
 " Composing
 if count(g:bundle_groups, 'composing')
-    " Plugin 'VOoM'
     Plugin 'jcf/vim-latex'
     Plugin 'godlygeek/tabular'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-pandoc/vim-pandoc-after'
+    Plugin 'vim-pandoc/vim-markdownfootnotes'
     Plugin 'aklt/plantuml-syntax'
-    " Plugin 'mrtazz/simplenote.vim'
+    Plugin 'irrationalistic/vim-tasks'
 endif
 
 " golang
@@ -89,7 +94,6 @@ endif
 
 " Python
 if count(g:bundle_groups, 'python')
-    " Pick either python-mode or pyflakes & pydoc
     Plugin 'python-mode/python-mode'
 endif
 
@@ -120,16 +124,6 @@ endif
 if count(g:bundle_groups, 'misc')
     Plugin 'tpope/vim-cucumber'
     Plugin 'Puppet-Syntax-Highlighting'
-endif
-
-" Status Bar
-if has ("win32")
-    Plugin 'bling/vim-airline'
-    Plugin 'bling/vim-airline-themes'
-else
-    python3 from powerline.vim import setup as powerline_setup
-    python3 powerline_setup()
-    python3 del powerline_setup
 endif
 
 call vundle#end()

@@ -185,22 +185,17 @@ if has('gui_running')
     " set linespace=3
     set gtl=%t gtt=%F       " Tab headings
     autocmd VimResized * wincmd =
-
-    if has ("win32")
-        set guifont=D2Coding:h10
-        set guifontwide=D2Coding:h10
-    else
-        set guifont=D2Coding\ 10
-        set guifontwide=D2Coding\ 10
-    endif
-
+    set guifont=D2Coding\ ligature:h11
+    set guifontwide=D2Coding\ ligature:h11
 else " Terminal
     set t_Co=256
-    if filereadable(expand("~/.vimrc_background"))
-        let base16colorspace=256
-        source ~/.vimrc_background
-    endif
+    let base16colorspace=256
+endif
 
+if filereadable(expand("~/.vimrc_background"))
+    source ~/.vimrc_background
+else
+    colorscheme base16-material-darker
 endif
 
 " ======= Helper Funtions and Plugin Settings =======
