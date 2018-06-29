@@ -50,11 +50,12 @@ if count(g:bundle_groups, 'programming')
     Plugin 'majutsushi/tagbar'
     Plugin 'DoxygenToolkit.vim'
     " Plugin 'scrooloose/syntastic'
-    " Plugin 'sirver/ultisnips'
-    " Plugin 'honza/vim-snippets'
+    Plugin 'ervandew/supertab'
     " Plugin 'Valloric/YouCompleteMe'
-    " Plugin 'jeaye/color_coded'
     " Plugin 'rdnetto/YCM-Generator'
+    " Plugin 'jeaye/color_coded'
+    Plugin 'sirver/ultisnips'
+    Plugin 'honza/vim-snippets'
     " Plugin 'chazy/cscope_maps'
 endif
 
