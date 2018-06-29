@@ -22,6 +22,7 @@ if count(g:bundle_groups, 'general')
     Plugin 'henrik/vim-indexed-search'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'mhinz/vim-signify'
+    Plugin 'airblade/vim-gitgutter'
     Plugin 'sjl/clam.vim'
     Plugin 'sjl/vitality.vim'
     Plugin 'benmills/vimux'
