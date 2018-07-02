@@ -2,7 +2,7 @@
 # init.toml --- My SpaceVim Config
 # Author: Giseong Bak < giseong.bak at gmail.com >
 #=============================================================================
-
+#
 # SpaceVim Options {{{
 [options]
 # General
@@ -12,7 +12,6 @@
     enable_guicolors = false
     colorscheme_bg = "dark"
     colorscheme = "onedark"
-    colorscheme_default = "onedark"
 #UI
     sidebar_width = 40
     terminal_cursor_shape = 1
@@ -62,4 +61,5 @@
 # Custom Plugins {{{
 [[custom_plugins]]
     name = "chriskempson/base16-vim"
+    merged = 0
 # }}}
