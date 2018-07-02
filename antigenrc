@@ -19,6 +19,7 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 
 # Load the theme.
-# antigen theme mortalscumbag
+antigen theme https://github.com/benniemosher/the-one-theme zsh/TheOne
+#antigen theme https://github.com/bhilburn/powerlevel9k powerlevel9k
 
 antigen apply

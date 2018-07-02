@@ -19,7 +19,5 @@ git pull
 git submodule foreach git pull origin master
 
 antigen update
-vundle-update
-
 popd
 

@@ -49,14 +49,19 @@ if count(g:bundle_groups, 'programming')
     Plugin 'scrooloose/nerdcommenter'
     Plugin 'majutsushi/tagbar'
     Plugin 'DoxygenToolkit.vim'
+    " Plugin 'chazy/cscope_maps'
     " Plugin 'scrooloose/syntastic'
-    Plugin 'ervandew/supertab'
+    " Plugin 'ervandew/supertab'
     " Plugin 'Valloric/YouCompleteMe'
     " Plugin 'rdnetto/YCM-Generator'
     " Plugin 'jeaye/color_coded'
-    Plugin 'sirver/ultisnips'
-    Plugin 'honza/vim-snippets'
-    " Plugin 'chazy/cscope_maps'
+    " Plugin 'sirver/ultisnips'
+    " Plugin 'honza/vim-snippets'
+    " Plugin 'Shougo/denite.nvim'
+    " Plugin 'Shougo/deoplete.nvim'
+    " Plugin 'roxma/nvim-yarp'
+    " Plugin 'roxma/vim-hug-neovim-rpc'
+    " Plugin 'Shougo/deoppet.nvim'
 endif
 
 " Composing

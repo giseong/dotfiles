@@ -1,11 +1,11 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-PYTHON_VER=3.4
-if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
-    export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
-    powerline-daemon -q
-fi
+#PYTHON_VER=3.4
+#if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
+#    export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
+#    powerline-daemon -q
+#fi
 
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
@@ -39,7 +39,7 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Editors
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Pager
 export PAGER=/usr/local/bin/vimpager
@@ -50,11 +50,12 @@ alias less=$PAGER
 alias zless=$PAGER
 
 # Powerline Prompt
-[[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/bindings/zsh/powerline.zsh
+#[[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/bindings/zsh/powerline.zsh
 
 # Path
 [[ -d $HOME/bin ]] && PATH=$PATH:$HOME/bin
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
+[[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
 
 # More Configuration
 [[ -s ~/.zshrc_local ]] && . ~/.zshrc_local

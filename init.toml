@@ -1,0 +1,68 @@
+#=============================================================================
+# init.toml --- My SpaceVim Config
+# Author: Giseong Bak < giseong.bak at gmail.com >
+#=============================================================================
+
+# SpaceVim Options {{{
+[options]
+# General
+    max_column = 120
+    relativenumber = false
+# Color
+    colorscheme = "onedark"
+    colorscheme_bg = "dark"
+    enable_guicolors = false
+#UI
+    sidebar_width = 40
+    terminal_cursor_shape = 1
+    enable_tabline_filetype_icon = true
+    enable_os_fileformat_icon = true
+    enable_statusline_mode = true
+    buffer_index_type = 4
+    windows_index_type = 4
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+# }}}
+
+# SpaceVim Layer Configs {{{
+[[layers]]
+name = "default"
+[[layers]]
+name = "colorscheme"
+[[layers]]
+name = "shell"
+default_position = "top"
+default_height = 30
+[[layers]]
+name = "autocomplete"
+auto-completion-return-key-behavior = "complete"
+auto-completion-tab-key-behavior = "smart"
+[[layer]]
+name = "VersionControl"
+[[layer]]
+name = "cscope"
+[[layers]]
+name = "denite"
+[[layers]]
+name = "tmux"
+[[layers]]
+name = "tags"
+# Languages
+[[layer]]
+name = "lang#c"
+[[layer]]
+name = "lang#python"
+[[layer]]
+name = "lang#markdown"
+[[layer]]
+name = "lang#vim"
+[[layer]]
+name = "lang#tmux"
+[[layer]]
+name = "lang#toml"
+# }}}
+
+# Custom Plugins {{{
+#[[custom_plugins]]
+#name = "chriskempson/base16-vim"
+# }}}
