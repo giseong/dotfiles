@@ -26,43 +26,43 @@
 
 # SpaceVim Layer Configs {{{
 [[layers]]
-name = "default"
+    name = "default"
 [[layers]]
-name = "colorscheme"
+    name = "colorscheme"
 [[layers]]
-name = "shell"
-default_position = "top"
-default_height = 30
+    name = "shell"
+    default_position = "top"
+    default_height = 30
 [[layers]]
-name = "autocomplete"
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "smart"
+    name = "autocomplete"
+    auto-completion-return-key-behavior = "complete"
+    auto-completion-tab-key-behavior = "smart"
 [[layer]]
-name = "VersionControl"
+    name = "VersionControl"
 [[layer]]
-name = "cscope"
+    name = "cscope"
 [[layers]]
-name = "denite"
+    name = "denite"
 [[layers]]
-name = "tmux"
+    name = "tmux"
 [[layers]]
-name = "tags"
+    name = "tags"
 # Languages
 [[layer]]
-name = "lang#c"
+    name = "lang#c"
 [[layer]]
-name = "lang#python"
+    name = "lang#python"
 [[layer]]
-name = "lang#markdown"
+    name = "lang#markdown"
 [[layer]]
-name = "lang#vim"
+    name = "lang#vim"
 [[layer]]
-name = "lang#tmux"
+    name = "lang#tmux"
 [[layer]]
-name = "lang#toml"
+    name = "lang#toml"
 # }}}
 
 # Custom Plugins {{{
 #[[custom_plugins]]
-#name = "chriskempson/base16-vim"
+#    name = "chriskempson/base16-vim"
 # }}}
