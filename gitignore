@@ -9,6 +9,10 @@ cscope.out
 .ycm_extra_conf.*
 *.obj
 *.o
+GTAGS
+GRTAGS
+GSYMS
+GPATH
 
 # Eclipse
 .classpath

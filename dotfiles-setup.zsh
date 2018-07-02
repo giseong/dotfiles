@@ -42,6 +42,7 @@ else
 
     # Misc
     link $DOTFILES_PATH/ctags ~/.ctags
+    link $DOTFILES_PATH/globalrc ~/.globalrc
     link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
     link $DOTFILES_PATH/gitignore ~/.agignore
     link $DOTFILES_PATH/editorconfig ~/.editorconfig

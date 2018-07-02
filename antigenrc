@@ -8,10 +8,11 @@ antigen bundles <<EOBUNDLES
     command-not-found
     git
     vi-mode
-    vundle
     fasd
     fancy-ctrl-z
 
+    mafredri/zsh-async
+    sindresorhus/pure
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
     zsh-users/zsh-autosuggestions
@@ -19,7 +20,7 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 
 # Load the theme.
-antigen theme https://github.com/benniemosher/the-one-theme zsh/TheOne
+#antigen theme https://github.com/benniemosher/the-one-theme zsh/TheOne
 #antigen theme https://github.com/bhilburn/powerlevel9k powerlevel9k
 
 antigen apply

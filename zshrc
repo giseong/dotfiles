@@ -1,15 +1,9 @@
 export SHELL=`which zsh`
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
-#PYTHON_VER=3.4
-#if [[ -d /usr/local/lib/python$PYTHON_VER/dist-packages/powerline ]]; then
-#    export POWERLINE_PATH=/usr/local/lib/python$PYTHON_VER/dist-packages/powerline
-#    powerline-daemon -q
-#fi
 
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
-# export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 source $HOME/.antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
@@ -40,22 +34,18 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 
 # Editors
 export EDITOR='nvim'
-
-# Pager
 export PAGER=/usr/local/bin/vimpager
-
-# alias
-alias dotfiles-update="source $DOTFILES_PATH/dotfiles-update.zsh"
 alias less=$PAGER
 alias zless=$PAGER
-
-# Powerline Prompt
-#[[ -d $POWERLINE_PATH ]] && . $POWERLINE_PATH/bindings/zsh/powerline.zsh
+alias e=$EDITOR
 
 # Path
 [[ -d $HOME/bin ]] && PATH=$PATH:$HOME/bin
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
+
+# Misc
+export GTAGSLABEL=pygments
 
 # More Configuration
 [[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
