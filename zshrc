@@ -5,7 +5,8 @@ export DOTFILES_PATH=$HOME/.dotfiles
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
 source $HOME/.antigen/antigen.zsh
-antigen init $HOME/.antigenrc
+source $HOME/.antigenrc
+# antigen init $HOME/.antigenrc
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
@@ -29,8 +30,8 @@ else
 fi
 
 # Base16 Shell
-BASE16_SHELL=$DOTFILES_PATH/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# BASE16_SHELL=$DOTFILES_PATH/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Editors
 export EDITOR='nvim'

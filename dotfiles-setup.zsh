@@ -26,8 +26,7 @@ else
 
     # vim
     curl -sLf https://spacevim.org/install.sh | bash
-    mkdir -p ~/.SpaceVim.d
-    link $DOTFILES_PATH/init.toml ~/.SpaceVim.d/init.toml
+    link $DOTFILES_PATH/SpaceVim.d ~/.SpaceVim.d
 
     # tmux
     rm -rf ~/.tmux
