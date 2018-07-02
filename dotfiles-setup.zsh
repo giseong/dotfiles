@@ -26,9 +26,11 @@ else
 
     # vim
     curl -sLf https://spacevim.org/install.sh | bash
+    mkdir -p ~/.SpaceVim.d
     link $DOTFILES_PATH/init.toml ~/.SpaceVim.d/init.toml
 
     # tmux
+    rm -rf ~/.tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     link $DOTFILES_PATH/tmux.conf ~/.tmux.conf
 
