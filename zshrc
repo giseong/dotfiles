@@ -5,8 +5,8 @@ export DOTFILES_PATH=$HOME/.dotfiles
 # Antigen
 export ZSH_TMUX_AUTOSTART=true
 source $HOME/.antigen/antigen.zsh
-source $HOME/.antigenrc
-# antigen init $HOME/.antigenrc
+# source $HOME/.antigenrc
+antigen init $HOME/.antigenrc
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
