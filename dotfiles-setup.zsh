@@ -42,9 +42,7 @@ else
     link $DOTFILES_PATH/fonts/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/10-powerline-symbols.conf
 
     # Misc
-    link $DOTFILES_PATH/ctags ~/.ctags
     link $DOTFILES_PATH/globalrc ~/.globalrc
-    link $DOTFILES_PATH/latexmkrc ~/.latexmkrc
     link $DOTFILES_PATH/gitignore ~/.agignore
     link $DOTFILES_PATH/editorconfig ~/.editorconfig
 fi
