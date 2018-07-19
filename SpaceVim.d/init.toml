@@ -24,8 +24,8 @@
     buffer_index_type = 2
     windows_index_type = 2
 # Bootstrap
-    bootstrap_before = "bootstrap_before#before"
-    bootstrap_after = "bootstrap_after#after"
+    bootstrap_before = "bootstrap#before"
+    bootstrap_after = "bootstrap#after"
 
 # }}}
 
