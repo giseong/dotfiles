@@ -1,7 +1,7 @@
 " bootstrap_before {{{
 function! myspacevim#before() abort
 
-    let base16colorspace=256
+    " let base16colorspace=256
 
 endfunction
 " }}}
