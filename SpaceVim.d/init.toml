@@ -29,20 +29,32 @@
 
 # SpaceVim Layer Configs {{{
 [[layers]]
-    name = "default"
-[[layers]]
     name = "colorscheme"
+[[layers]]
+    name = 'core#statusline'
+    enable = true
+[[layers]]
+    name = 'core#tabline'
+    enable = true
 [[layer]]
     name = "VersionControl"
+[[layers]]
+    name = "denite"
+[[layer]]
+    name = "incsearch"
+[[layer]]
+    name = "tools"
+[[layer]]
+    name = "sudo"
+[[layer]]
+    name = "format"
 [[layers]]
     name = "shell"
     default_position = "top"
     default_height = 30
 [[layers]]
-    name = "denite"
-[[layers]]
     name = "autocomplete"
-    auto-completion-return-key-behavior = "complete"
+    auto-completion-return-key-behavior = "smart"
     auto-completion-tab-key-behavior = "smart"
 [[layers]]
     name = "tmux"
@@ -60,11 +72,20 @@
 [[layer]]
     name = "lang#tmux"
 [[layer]]
+    name = "lang#json"
+[[layer]]
     name = "lang#toml"
 # }}}
 
 # Custom Plugins {{{
 [[custom_plugins]]
     name = "chriskempson/base16-vim"
+    merged = 0
+[[custom_plugins]]
+    name = 'lilydjwg/colorizer'
+    merged = 0
+    on_cmd = ['ColorHighlight']
+[[custom_plugins]]
+    name = 'kien/tabman.vim'
     merged = 0
 # }}}
