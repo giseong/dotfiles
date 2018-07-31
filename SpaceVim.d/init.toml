@@ -19,6 +19,8 @@
     enable_tabline_filetype_icon = true
     enable_os_fileformat_icon = true
     enable_statusline_mode = true
+    enable_vimfiler_filetypeicon = true
+    enable_vimfiler_gitstatus = true
     statusline_separator = "arrow"
     statusline_inactive_separator = "arrow"
 # Bootstrap
@@ -30,16 +32,18 @@
 # SpaceVim Layer Configs {{{
 [[layers]]
     name = "colorscheme"
+[[layer]]
+    name = "VersionControl"
+[[layer]]
+    name = "git"
+[[layers]]
+    name = "denite"
 [[layers]]
     name = 'core#statusline'
     enable = true
 [[layers]]
     name = 'core#tabline'
     enable = true
-[[layer]]
-    name = "VersionControl"
-[[layers]]
-    name = "denite"
 [[layer]]
     name = "incsearch"
 [[layer]]
