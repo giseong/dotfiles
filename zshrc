@@ -1,4 +1,5 @@
 export SHELL=`which zsh`
+export LC_ALL=C
 export LANG="en_US.UTF-8"
 export DOTFILES_PATH=$HOME/.dotfiles
 
