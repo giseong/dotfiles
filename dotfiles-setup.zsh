@@ -45,4 +45,5 @@ else
     link $DOTFILES_PATH/globalrc ~/.globalrc
     link $DOTFILES_PATH/gitignore ~/.agignore
     link $DOTFILES_PATH/editorconfig ~/.editorconfig
+    link $DOTFILES_PATH/tldrrc ~/.tldrrc
 fi
