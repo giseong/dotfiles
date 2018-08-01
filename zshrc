@@ -39,6 +39,10 @@ alias e=$EDITOR
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
 
+# colorls
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls -lA --sd'
+
 # Misc
 export GTAGSLABEL=pygments
 
