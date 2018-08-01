@@ -23,6 +23,8 @@
     enable_vimfiler_gitstatus = true
     statusline_separator = "arrow"
     statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    windows_index_type = 4
 # Bootstrap
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
@@ -40,10 +42,10 @@
     name = "denite"
 [[layers]]
     name = 'core#statusline'
-    enable = true
+    enable = false
 [[layers]]
     name = 'core#tabline'
-    enable = true
+    enable = false
 [[layer]]
     name = "incsearch"
 [[layer]]
