@@ -38,8 +38,6 @@ else
 
     # fonts
     link $DOTFILES_PATH/fonts ~/.fonts
-    mkdir -p ~/.config/fontconfig/conf.d
-    link $DOTFILES_PATH/fonts/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/10-powerline-symbols.conf
 
     # Misc
     link $DOTFILES_PATH/globalrc ~/.globalrc
