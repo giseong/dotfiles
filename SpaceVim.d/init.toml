@@ -8,6 +8,7 @@
 # General
     max_column = 120
     relativenumber = false
+    filemanager = "nerdtree"
 # Color
     enable_guicolors = true
     colorscheme_bg = "dark"
@@ -28,7 +29,6 @@
 # Bootstrap
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
-
 # }}}
 
 # SpaceVim Layer Configs {{{
@@ -42,10 +42,10 @@
     name = "denite"
 [[layers]]
     name = 'core#statusline'
-    enable = false
+    enable = true
 [[layers]]
     name = 'core#tabline'
-    enable = false
+    enable = true
 [[layer]]
     name = "incsearch"
 [[layer]]
@@ -93,5 +93,8 @@
     on_cmd = ['ColorHighlight']
 [[custom_plugins]]
     name = 'kien/tabman.vim'
+    merged = 0
+[[custom_plugins]]
+    name = 'tweekmonster/startuptime.vim'
     merged = 0
 # }}}

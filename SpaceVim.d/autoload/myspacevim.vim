@@ -2,7 +2,6 @@
 function! myspacevim#before() abort
 
     " let base16colorspace=256
-
 endfunction
 " }}}
 
