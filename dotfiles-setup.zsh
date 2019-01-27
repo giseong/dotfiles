@@ -9,6 +9,9 @@ else
         ln -s $1 $2
     }
 
+    # required packages
+    sudo apt install git build-essential font-config pandoc neovim -y
+
     DOTFILES_PATH=~/.dotfiles
     cd $DOTFILES_PATH
     git submodule update --init
