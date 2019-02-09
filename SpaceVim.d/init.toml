@@ -14,7 +14,7 @@
     colorscheme_bg = "dark"
     colorscheme = "onedark"
 # UI
-    guifont = "D2Coding:h13"
+    guifont = "Consolas NF:h13"
     sidebar_width = 40
     terminal_cursor_shape = 1
     enable_tabline_filetype_icon = true
