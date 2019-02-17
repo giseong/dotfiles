@@ -33,6 +33,7 @@ alias less=$PAGER
 alias zless=$PAGER
 
 # Path
+[[ -d /snap/bin ]] && PATH=$PATH:/snap/bin
 [[ -d $HOME/bin ]] && PATH=$PATH:$HOME/bin
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
