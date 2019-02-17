@@ -10,7 +10,7 @@ else
     }
 
     # required packages
-    sudo apt install git build-essential font-config pandoc neovim -y
+    sudo apt install git build-essential fontconfig ttf-mscorefonts-installer pandoc neovim -y
 
     DOTFILES_PATH=~/.dotfiles
     cd $DOTFILES_PATH
