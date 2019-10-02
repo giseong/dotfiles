@@ -33,6 +33,8 @@
 
 # SpaceVim Layer Configs {{{
 [[layers]]
+    name = "ui"
+[[layers]]
     name = "colorscheme"
 [[layer]]
     name = "VersionControl"
@@ -65,7 +67,9 @@
 [[layers]]
     name = "tmux"
 [[layers]]
-    name = "tags"
+    name = "gtags"
+    gtagslabel = "pygments"
+
 # Languages
 [[layer]]
     name = "lang#c"
