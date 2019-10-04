@@ -29,6 +29,8 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 
 # Editors
 export PAGER=`which vimpager`
+export EDITOR=`which nvim`
+alias e=$EDITOR
 alias less=$PAGER
 alias zless=$PAGER
 
