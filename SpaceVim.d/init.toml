@@ -101,4 +101,7 @@
 [[custom_plugins]]
     name = 'tweekmonster/startuptime.vim'
     merged = 0
+[[custom_plugins]]
+    name = 'kergoth/vim-bitbake'
+    merged = 0
 # }}}
