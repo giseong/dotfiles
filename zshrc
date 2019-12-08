@@ -6,7 +6,7 @@ export LANGUAGE=en_US.UTF-8
 export DOTFILES_PATH=$HOME/.dotfiles
 
 # Antigen
-export ZSH_TMUX_AUTOSTART=true
+# export ZSH_TMUX_AUTOSTART=true
 source $HOME/.antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
