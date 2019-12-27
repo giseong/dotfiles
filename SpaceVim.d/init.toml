@@ -12,9 +12,8 @@
 # Color
     enable_guicolors = true
     colorscheme_bg = "dark"
-    colorscheme = "onedark"
+    colorscheme = "base16-onedark"
 # UI
-    guifont = "Consolas NF:h13"
     sidebar_width = 40
     terminal_cursor_shape = 1
     enable_tabline_filetype_icon = true

@@ -29,11 +29,11 @@ BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 
 # colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -lA --sd'
+alias ls='colorls'
 
 # Editors
+export EDITOR=`which nvim`
 export PAGER=`which vimpager`
-export EDITOR=`which vim`
 alias e=$EDITOR
 alias less=$PAGER
 alias zless=$PAGER
