@@ -2,17 +2,17 @@ antigen use oh-my-zsh
 
 # Bundles
 antigen bundles <<EOBUNDLES
-    tmux
-    command-not-found
-    git
-    vi-mode
-    fasd
-    fancy-ctrl-z
-    rbenv
-    zsh-users/zsh-syntax-highlighting
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-completions
+  tmux
+  command-not-found
+  git
+  vi-mode
+  fasd
+  fancy-ctrl-z
+  rbenv
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
 EOBUNDLES
 
 antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship

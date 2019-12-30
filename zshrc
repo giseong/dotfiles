@@ -27,9 +27,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias ls='colorls'
+if [[ "$OSTYPE" == "darwin" ]]; then
+  # colorls
+  source $(dirname $(gem which colorls))/tab_complete.sh
+  alias ls='colorls'
+fi
 
 # Editors
 export EDITOR=`which nvim`

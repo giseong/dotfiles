@@ -39,9 +39,6 @@ else
     # pandoc
     link $DOTFILES_PATH/pandoc ~/.pandoc
 
-    # fonts
-    link $DOTFILES_PATH/fonts ~/.fonts
-
     # Misc
     link $DOTFILES_PATH/globalrc ~/.globalrc
     link $DOTFILES_PATH/gitignore ~/.agignore
