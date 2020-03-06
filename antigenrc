@@ -9,7 +9,6 @@ antigen bundles <<EOBUNDLES
   fasd
   fancy-ctrl-z
   rbenv
-  nvm
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-autosuggestions
