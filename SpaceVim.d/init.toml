@@ -68,6 +68,8 @@
 [[layers]]
     name = "gtags"
     gtagslabel = "pygments"
+[[layers]]
+    name = "ldeaderf"
 
 # Languages
 [[layer]]
@@ -75,15 +77,27 @@
 [[layer]]
     name = "lang#python"
 [[layer]]
+    name = "lang#javascript"
+[[layer]]
+    name = "lang#typescript"
+[[layer]]
+    name = "lang#vue"
+[[layer]]
     name = "lang#markdown"
+[[layer]]
+    name = "lang#html"
 [[layer]]
     name = "lang#vim"
 [[layer]]
-    name = "lang#tmux"
+    name = "lang#sh"
 [[layer]]
     name = "lang#json"
 [[layer]]
-    name = "lang#toml"
+    name = "lang#dockerfile"
+[[layer]]
+    name = "lang#plantmul"
+[[layer]]
+    name = "lang#extra"
 # }}}
 
 # Custom Plugins {{{
