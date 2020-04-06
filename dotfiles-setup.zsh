@@ -39,6 +39,9 @@ else
     # pandoc
     link $DOTFILES_PATH/pandoc ~/.pandoc
 
+    # prompt
+    eval "$(starship init zsh)"
+
     # Misc
     link $DOTFILES_PATH/globalrc ~/.globalrc
     link $DOTFILES_PATH/gitignore ~/.agignore
