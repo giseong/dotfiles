@@ -15,6 +15,6 @@ antigen bundles <<EOBUNDLES
   zsh-users/zsh-completions
 EOBUNDLES
 
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
+#antigen theme denysdovhan/spaceship-prompt
 
 antigen apply

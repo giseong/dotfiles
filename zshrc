@@ -62,3 +62,6 @@ export GTAGSLABEL=pygments
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
+
+# Prompt
+eval "$(starship init zsh)"
