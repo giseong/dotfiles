@@ -2,6 +2,10 @@ antigen use oh-my-zsh
 
 # Bundles
 antigen bundles <<EOBUNDLES
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
   tmux
   command-not-found
   git
@@ -9,10 +13,7 @@ antigen bundles <<EOBUNDLES
   fasd
   fancy-ctrl-z
   rbenv
-  zsh-users/zsh-syntax-highlighting
-  zsh-users/zsh-history-substring-search
-  zsh-users/zsh-autosuggestions
-  zsh-users/zsh-completions
+  osx
 EOBUNDLES
 
 #antigen theme denysdovhan/spaceship-prompt
