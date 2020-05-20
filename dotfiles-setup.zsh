@@ -23,7 +23,6 @@ else
     link $DOTFILES_PATH/antigenrc ~/.antigenrc
 
     # git
-    link $DOTFILES_PATH/gitconfig ~/.gitconfig
     link $DOTFILES_PATH/gitignore ~/.gitignore
     link $DOTFILES_PATH/gitattributes ~/.gitattributes
 
