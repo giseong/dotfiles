@@ -19,7 +19,16 @@
 	new = green bold
 [push]
 	default = matching
-[url "ssh://vcrep.lge.com:29411/"]
-	insteadOf = "ssh://mod.lge.com:29411/"
-[url "ssh://mod.lge.com:29411/"]
-	pushInsteadOf = "ssh://vcrep.lge.com:29411/"
+[url "ssh://vrep.lge.com:29420/"]
+        insteadOf = ssh://vgit.lge.com:29420/
+[url "ssh://vrep.lge.com:29430/"]
+        insteadOf = ssh://vgit.lge.com:29430/
+[url "ssh://vrep.lge.com:29440/"]
+        insteadOf = ssh://vgit.lge.com:29440/
+[url "ssh://vgit.lge.com:29420/"]
+        pushInsteadOf = ssh://vrep.lge.com:29420/
+[url "ssh://vgit.lge.com:29430/"]
+        pushInsteadOf = ssh://vrep.lge.com:29430/
+[url "ssh://vgit.lge.com:29440/"]
+        pushInsteadOf = ssh://vrep.lge.com:29440/
+
