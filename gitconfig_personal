@@ -19,3 +19,5 @@
 	new = green bold
 [push]
 	default = matching
+[pull]
+	rebase = false

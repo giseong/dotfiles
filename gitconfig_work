@@ -31,4 +31,5 @@
         pushInsteadOf = ssh://vrep.lge.com:29430/
 [url "ssh://vgit.lge.com:29440/"]
         pushInsteadOf = ssh://vrep.lge.com:29440/
-
+[pull]
+	rebase = false
