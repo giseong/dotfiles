@@ -6,6 +6,8 @@
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
+	precomposeunicode = true
+	quotepath = false
 [color]
 	ui = true
 [color "branch"]

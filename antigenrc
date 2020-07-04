@@ -6,14 +6,16 @@ antigen bundles <<EOBUNDLES
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-completions
-  tmux
+  osx
   command-not-found
+  tmux
+  tmuxinator
   git
   vi-mode
   fasd
+  fzf
   fancy-ctrl-z
   rbenv
-  osx
   node
   docker
   docker-compose
