@@ -43,11 +43,6 @@ export PAGER=`which vimpager`
 alias less=$PAGER
 alias zless=$PAGER
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Path
 [[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
 [[ -d /snap/bin ]] && PATH=$PATH:/snap/bin
