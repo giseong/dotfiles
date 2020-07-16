@@ -33,3 +33,8 @@
 	pushInsteadOf = ssh://vrep.lge.com:29440/
 [pull]
 	rebase = false
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
