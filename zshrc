@@ -6,7 +6,11 @@ export LANGUAGE=en_US.UTF-8
 export DOTFILES_PATH=$HOME/.dotfiles
 
 # Antigen
-export ZSH_TMUX_AUTOSTART=true
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export ZSH_TMUX_ITERM2=true
+else
+  export ZSH_TMUX_AUTOSTART=true
+fi
 source $HOME/.antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
@@ -27,11 +31,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 BASE16_SHELL=$DOTFILES_PATH/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-#if [[ "$OSTYPE" == "darwin"* ]]; then
 # colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias ls='colorls'
-#fi
 
 # Editors
 export EDITOR=`which nvim`
