@@ -9,13 +9,13 @@ antigen bundles <<EOBUNDLES
   osx
   command-not-found
   tmux
-  tmuxinator
   git
   vi-mode
   fasd
   fzf
   fancy-ctrl-z
   rbenv
+  pyenv
   node
   docker
   docker-compose
