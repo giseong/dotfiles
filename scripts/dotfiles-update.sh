@@ -2,7 +2,7 @@
 
 brew update
 brew upgrade
-brew upgrade --upgrade
+brew upgrade --cask
 brew cleanup
 
 mas upgrade
