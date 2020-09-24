@@ -12,7 +12,7 @@
 # Color
     enable_guicolors = true
     colorscheme_bg = "dark"
-    colorscheme = "base16-onedark"
+    colorscheme = "one"
 # UI
     sidebar_width = 40
     terminal_cursor_shape = 1
