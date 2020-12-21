@@ -28,6 +28,8 @@
 # Bootstrap
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
+# diable plugins
+    disabled_plugins = ["srcery-vim"]
 # }}}
 
 # SpaceVim Layer Configs {{{
