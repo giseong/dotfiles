@@ -41,9 +41,9 @@ alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
 
-export PAGER=`which vimpager`
-alias less=$PAGER
-alias zless=$PAGER
+#export PAGER=`which vimpager`
+#alias less=$PAGER
+#alias zless=$PAGER
 
 # Path
 [[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
@@ -51,6 +51,7 @@ alias zless=$PAGER
 [[ -d $HOME/bin ]] && PATH=$PATH:$HOME/bin
 [[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
+[[ -d $HOME/Library/Android/sdk/platform-tools ]] &&  PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

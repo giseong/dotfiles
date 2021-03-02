@@ -1,6 +1,6 @@
 [user]
 	name = Giseong Bak
-	email = giseong.bak@lge.com
+	email = giseong.bak@sk.com
 [credential]
 	helper = cache
 [core]
@@ -19,18 +19,6 @@
 	new = green bold
 [push]
 	default = matching
-[url "ssh://vrep.lge.com:29420/"]
-	insteadOf = ssh://vgit.lge.com:29420/
-[url "ssh://vrep.lge.com:29430/"]
-	insteadOf = ssh://vgit.lge.com:29430/
-[url "ssh://vrep.lge.com:29440/"]
-	insteadOf = ssh://vgit.lge.com:29440/
-[url "ssh://vgit.lge.com:29420/"]
-	pushInsteadOf = ssh://vrep.lge.com:29420/
-[url "ssh://vgit.lge.com:29430/"]
-	pushInsteadOf = ssh://vrep.lge.com:29430/
-[url "ssh://vgit.lge.com:29440/"]
-	pushInsteadOf = ssh://vrep.lge.com:29440/
 [pull]
 	rebase = false
 [filter "lfs"]
