@@ -8,7 +8,8 @@ export DOTFILES_PATH=$HOME/.dotfiles
 # Antigen
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export ZSH_TMUX_ITERM2=true
-else
+fi
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export ZSH_TMUX_AUTOSTART=true
 fi
 source $HOME/.antigen/antigen.zsh
