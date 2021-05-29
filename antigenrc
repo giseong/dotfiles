@@ -15,7 +15,6 @@ antigen bundles <<EOBUNDLES
   fzf
   fancy-ctrl-z
   rbenv
-  pyenv
   node
   docker
   docker-compose

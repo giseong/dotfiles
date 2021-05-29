@@ -42,9 +42,9 @@ alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
 
-#export PAGER=`which vimpager`
-#alias less=$PAGER
-#alias zless=$PAGER
+export PAGER=`which vimpager`
+alias less=$PAGER
+alias zless=$PAGER
 
 # Path
 [[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
@@ -58,6 +58,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+eval "$(pyenv init -)"
+
+
+#### FIG ENV VARIABLES ####
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
 # Misc
 export GTAGSLABEL=pygments
 
@@ -69,3 +76,4 @@ PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
 
 # Prompt
 eval "$(starship init zsh)"
+
