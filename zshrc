@@ -42,9 +42,9 @@ alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
 
-export PAGER=`which vimpager`
-alias less=$PAGER
-alias zless=$PAGER
+#export PAGER=`which vimpager`
+#alias less=$PAGER
+#alias zless=$PAGER
 
 # Path
 [[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
