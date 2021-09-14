@@ -1,3 +1,8 @@
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
+
 # Environment Variables
 export SHELL=`which zsh`
 export LC_ALL=en_US.UTF-8
@@ -68,12 +73,13 @@ eval "$(pyenv init -)"
 # Misc
 export GTAGSLABEL=pygments
 
+# Prompt
+eval "$(starship init zsh)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # More Configuration
 [[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
-
-# Prompt
-eval "$(starship init zsh)"
-
