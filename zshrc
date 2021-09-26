@@ -65,21 +65,22 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(pyenv init -)"
 
+export JAVA_HOME=$(/usr/libexec/java_home -v1.8.0)
+
+# Misc
+export GTAGSLABEL=pygments
+
+# More Configuration
+[[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
 
 #### FIG ENV VARIABLES ####
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
 
-# Misc
-export GTAGSLABEL=pygments
-
 # Prompt
 eval "$(starship init zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# More Configuration
-[[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
