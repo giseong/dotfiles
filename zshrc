@@ -65,7 +65,8 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(pyenv init -)"
 
-export JAVA_HOME=$(/usr/libexec/java_home -v1.8.0)
+export JAVA_HOME=$(/usr/libexec/java_home -v11.0.15)
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
 
 # Misc
 export GTAGSLABEL=pygments
