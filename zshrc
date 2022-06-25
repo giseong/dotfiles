@@ -1,8 +1,5 @@
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
-
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # Environment Variables
 export SHELL=`which zsh`
 export LC_ALL=en_US.UTF-8
@@ -11,12 +8,12 @@ export LANGUAGE=en_US.UTF-8
 export DOTFILES_PATH=$HOME/.dotfiles
 
 # Antigen
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export ZSH_TMUX_ITERM2=true
-fi
-#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-#  export ZSH_TMUX_AUTOSTART=true
+#if [[ "$OSTYPE" == "darwin"* ]]; then
+#  export ZSH_TMUX_ITERM2=true
 #fi
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  export ZSH_TMUX_AUTOSTART=true
+fi
 source $HOME/.antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
@@ -74,9 +71,6 @@ export GTAGSLABEL=pygments
 # More Configuration
 [[ -s ~/.zshrc_local ]] && . ~/.zshrc_local
 
-#### FIG ENV VARIABLES ####
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
 
 # Prompt
 eval "$(starship init zsh)"
@@ -85,3 +79,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Remove duplicated paths
 PATH=$(echo $PATH|tr ":" "\n"|gawk '!($0 in a) { a[$0];print}'|paste -sd: - )
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
