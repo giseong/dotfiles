@@ -56,12 +56,6 @@ alias e=$EDITOR
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
 [[ -d $HOME/Library/Android/sdk/platform-tools ]] &&  PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-eval "$(pyenv init -)"
-
 export JAVA_HOME=$(/usr/libexec/java_home -v11.0.15)
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
 
