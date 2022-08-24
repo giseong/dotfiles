@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 brew update
-brew upgrade --greedy
+brew upgrade
 brew cleanup
 
 mas upgrade
