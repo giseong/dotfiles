@@ -56,7 +56,7 @@ alias e=$EDITOR
 [[ -d $HOME/.SpaceVim/bin ]] && PATH=$PATH:$HOME/.SpaceVim/bin
 [[ -d $HOME/Library/Android/sdk/platform-tools ]] &&  PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export ANDROID_PATH=~/Library/Android
 export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
 
