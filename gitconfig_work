@@ -1,6 +1,6 @@
 [user]
 	name = Giseong Bak
-	email = giseong.bak@tmapmobility.com
+	email = t1100175@tmapmobility.com
 [credential]
 	helper = cache
 [core]
@@ -26,11 +26,5 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [commit]
 	template = ~/.stCommitMsg
