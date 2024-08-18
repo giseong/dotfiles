@@ -21,8 +21,8 @@
     enable_statusline_mode = true
     enable_vimfiler_filetypeicon = true
     enable_vimfiler_gitstatus = true
-    statusline_separator = "nil"
-    statusline_inactive_separator = "nil"
+    statusline_separator = "curve"
+    statusline_inactive_separator = "curve"
     buffer_index_type = 4
     windows_index_type = 4
 # Bootstrap
