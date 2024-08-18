@@ -1,16 +1,5 @@
-# Environment Variables
-export SHELL=`which zsh`
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export DOTFILES_PATH=$HOME/.dotfiles
-
-if [ -f /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # Soure/Load zinit
-source /usr/local/opt/zinit/zinit.zsh
+source $(brew --prefix zinit)/zinit.zsh
 
 # Add oh-my-posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -94,7 +83,4 @@ export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
 
 # Integrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Misc
-export GTAGSLABEL=pygments
 
