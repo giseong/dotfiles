@@ -101,4 +101,3 @@ export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
 # Integrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
