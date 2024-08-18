@@ -12,7 +12,7 @@
 # Color
     enable_guicolors = true
     colorscheme_bg = "dark"
-    colorscheme = "one"
+    colorscheme = "catppuccin-mocha"
 # UI
     sidebar_width = 40
     terminal_cursor_shape = 1
@@ -21,8 +21,8 @@
     enable_statusline_mode = true
     enable_vimfiler_filetypeicon = true
     enable_vimfiler_gitstatus = true
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
+    statusline_separator = "nil"
+    statusline_inactive_separator = "nil"
     buffer_index_type = 4
     windows_index_type = 4
 # Bootstrap
@@ -65,7 +65,8 @@
     default_height = 30
 [[layers]]
     name = "autocomplete"
-    auto-completion-return-key-behavior = "complete"
+    auto-completion-delay = 10
+    auto-completion-return-key-behavior = "smart"
     auto-completion-tab-key-behavior = "smart"
 [[layers]]
     name = "tmux"
@@ -84,8 +85,6 @@
     name = "lang#javascript"
 [[layer]]
     name = "lang#typescript"
-[[layer]]
-    name = "lang#vue"
 [[layer]]
     name = "lang#markdown"
 [[layer]]
@@ -106,7 +105,7 @@
 
 # Custom Plugins {{{
 [[custom_plugins]]
-    name = "chriskempson/base16-vim"
+    name = 'catppuccin/nvim'
     merged = 0
 [[custom_plugins]]
     name = 'lilydjwg/colorizer'
@@ -114,11 +113,5 @@
     on_cmd = ['ColorHighlight']
 [[custom_plugins]]
     name = 'kien/tabman.vim'
-    merged = 0
-[[custom_plugins]]
-    name = 'tweekmonster/startuptime.vim'
-    merged = 0
-[[custom_plugins]]
-    name = 'kergoth/vim-bitbake'
     merged = 0
 # }}}

@@ -9,19 +9,13 @@ else
         ln -s $1 $2
     }
 
-    # required packages
-    # sudo apt install git build-essential fontconfig ttf-mscorefonts-installer pandoc neovim -y
-
     DOTFILES_PATH=.dotfiles
     cd ~/$DOTFILES_PATH
-    git submodule update --init
     cd $HOME
 
     # zsh
     link $DOTFILES_PATH/zshrc .zshrc
     link $DOTFILES_PATH/zprofile .zprofile
-    link $DOTFILES_PATH/antigen .antigen
-    link $DOTFILES_PATH/antigenrc .antigenrc
 
     # git
     link $DOTFILES_PATH/gitignore .gitignore
