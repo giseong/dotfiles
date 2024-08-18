@@ -6,12 +6,18 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
 fi
 
+# TMUX
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  export ZSH_TMUX_AUTOSTART=true
+fi
+
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light daiaji/zsh-tmux-plugin
 
 # Add in snippets
 zinit snippet OMZP::git
@@ -63,11 +69,22 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+# Bat (better cat)
+export BAT_THEME="Catppuccin Mocha"
+
 # Editor
 export EDITOR=`which nvim`
 alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
+alias cd='z'
 
 # Path
 [[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
@@ -83,4 +100,5 @@ export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
 
 # Integrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 

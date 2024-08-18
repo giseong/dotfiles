@@ -1,30 +1,43 @@
 [user]
-	name = Giseong Bak
-	email = t1100175@tmapmobility.com
+  name = Giseong Bak
+  email = t1100175@tmapmobility.com
+
 [credential]
-	helper = cache
+  helper = cache
+
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = input
-[color]
-	ui = true
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [push]
-	default = matching
+  default = matching
+
 [pull]
-	rebase = false
+  rebase = false
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
 [commit]
-	template = ~/.stCommitMsg
+  template = ~/.stCommitMsg
+
