@@ -13,6 +13,17 @@
     enable_guicolors = true
     colorscheme_bg = "dark"
     colorscheme = "catppuccin-mocha"
+    custom_color_palette = [
+      ["#1e1e2e", "#cba6f7", 183, 234],  # Normal mode: bg, fg
+      ["#1e1e2e", "#f5e0dc", 223, 234],  # Insert mode: bg, fg
+      ["#1e1e2e", "#f9e2af", 223, 234],  # Visual mode: bg, fg
+      ["#6c7086", 60],                   # Inactive fg
+      ["#1e1e2e", "#89b4fa", 234, 117],  # Info: bg, fg
+      ["#1e1e2e", "#f38ba8", 234, 211],  # Warning: bg, fg
+      ["#1e1e2e", "#a6e3a1", 234, 142],  # Error: bg, fg
+      ["#1e1e2e", "#94e2d5", 234, 108],  # Success: bg, fg
+      ["#1e1e2e", "#fab387", 234, 216]   # Command mode: bg, fg
+    ]
 # UI
     sidebar_width = 40
     terminal_cursor_shape = 1
