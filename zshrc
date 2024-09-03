@@ -21,7 +21,6 @@ zinit light daiaji/zsh-tmux-plugin
 
 # Add in snippets
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::vi-mode
 zinit snippet OMZP::fzf
@@ -30,6 +29,8 @@ zinit snippet OMZP::rbenv
 zinit snippet OMZP::nvm
 zinit snippet OMZP::zoxide
 zinit snippet OMZP::eza
+zinit snippet OMZP::thefuck
+zinit snippet OMZP::colored-man-pages
 
 # Load completions
 autoload -Uz compinit && compinit
