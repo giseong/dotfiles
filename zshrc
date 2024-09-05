@@ -100,9 +100,8 @@ export ANDROID_PATH=~/Library/Android
 export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
 
 # Golang environment variables
-export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH:
+export PATH=$GOPATH/bin:$PATH
 
 # Integrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
