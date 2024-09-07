@@ -7,9 +7,9 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 # TMUX
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export ZSH_TMUX_AUTOSTART=true
-fi
+#fi
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
