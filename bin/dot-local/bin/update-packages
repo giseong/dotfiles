@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+import os
+
+def print_message(color, message):
+    """Print colored messages."""
+    colors = {
+        "red": "\033[31m",
+        "green": "\033[32m",
+        "yellow": "\033[33m",
+        "blue": "\033[34m",
+        "reset": "\033[0m"
+    }
+    print(f"{colors[color]}{message}{colors['reset']}")
+
+def run_command(command, message):
+    """Run a command and print its output in real-time."""
+    print_message("blue", f"Running: {message}...")
+    try:
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, universal_newlines=True)
+        
+        for line in process.stdout:
+            print(line, end='')  # Print each line of output in real-time
+        
+        process.wait()
+        
+        if process.returncode == 0:
+            print_message("green", f"{message} completed successfully.")
+        else:
+            print_message("red", f"Error: {message} failed.")
+            sys.exit(1)
+    except Exception as e:
+        print_message("red", f"Error executing {message}: {str(e)}")
+        sys.exit(1)
+
+def check_homebrew():
+    """Check if Homebrew is installed and accessible."""
+    try:
+        subprocess.run(["which", "brew"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError:
+        print_message("red", "Error: Homebrew is not installed or not in PATH.")
+        print_message("yellow", "Please install Homebrew or add it to your PATH.")
+        sys.exit(1)
+
+def main():
+    print_message("yellow", "Starting package update process...")
+
+    # Check Homebrew installation
+    check_homebrew()
+
+    # Homebrew commands
+    run_command("brew update", "Homebrew update")
+    run_command("brew upgrade", "Homebrew upgrade")
+    run_command("brew cleanup", "Homebrew cleanup")
+
+    # Check if mas is installed
+    try:
+        subprocess.run(["which", "mas"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        run_command("mas upgrade", "Mac App Store upgrade")
+    except subprocess.CalledProcessError:
+        print_message("yellow", "mas is not installed. Skipping Mac App Store upgrade.")
+
+    print_message("yellow", "Package update process completed.")
+
+if __name__ == "__main__":
+    main()
