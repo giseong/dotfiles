@@ -1,8 +1,0 @@
-% supports Korean
-\usepackage{kotex}
-\setsansfont[BoldFont=NanumMyeongjo Bold]{NanumMyeongjo}
-\setsanshangulfont[BoldFont=NanumMyeongjo Bold]{NanumMyeongjo}
-
-% suppress navigation bar
-\beamertemplatenavigationsymbolsempty
-
