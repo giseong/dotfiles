@@ -10,12 +10,12 @@ return {
     keys = {
         {
             key = "f",
-            mods = "CTRL",
+            mods = "CMD",
             action = wezterm.action.ToggleFullScreen,
         },
         {
             key = "'",
-            mods = "CTRL",
+            mods = "CMD",
             action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
         },
     },
@@ -23,7 +23,7 @@ return {
         -- Ctrl-click will open the link under the mouse cursor
         {
             event = { Up = { streak = 1, button = "Left" } },
-            mods = "CTRL",
+            mods = "CMD",
             action = wezterm.action.OpenLinkAtMouseCursor,
         },
     },
