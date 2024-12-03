@@ -27,4 +27,5 @@ return {
             action = wezterm.action.OpenLinkAtMouseCursor,
         },
     },
+    native_macos_fullscreen_mode = true,
 }

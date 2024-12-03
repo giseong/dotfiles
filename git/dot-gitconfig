@@ -4,33 +4,35 @@
 
 [credential]
   helper = cache
+  useHttpPath = true # 도움말: 여러 repository에서 HTTP-based 인증 관리 개선
 
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
   pager = delta
+  editor = vim
 
 [interactive]
   diffFilter = delta --color-only
 
 [delta]
-  navigate = true    # use n and N to move between diff sections
-
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
+  features = side-by-side
+  navigate = true # n과 N을 사용해 diff 섹션 탐색
+  syntax-theme = Dracula # 트렌디한 테마 예시, 변경 가능
+  line-numbers = true # diff에서 라인 번호 표시
 
 [merge]
   conflictstyle = diff3
+  tool = vim
 
 [diff]
-  colorMoved = default
+  colorMoved = dimmed-zebra # 이동된 코드 표시 스타일 개선
 
 [push]
-  default = matching
+  default = simple # matching에서 simple로 변경 (권장 설정)
 
 [pull]
-  rebase = false
+  rebase = true # rebase 사용 권장 (더 깔끔한 커밋 히스토리)
 
 [filter "lfs"]
   process = git-lfs filter-process
@@ -40,4 +42,18 @@
 
 [commit]
   template = ~/.stCommitMsg
+  gpgSign = true # 커밋에 GPG 서명 추가 (보안 강화, 필요시 GPG 키 설정)
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+  last = log -1 HEAD
+  lg = log --oneline --graph --all --decorate
+  amend = commit --amend --no-edit
+  unstage = reset HEAD --
+
+[color]
+  ui = true # 기본 UI 색상 활성화
 

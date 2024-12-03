@@ -2,44 +2,144 @@
 .svn
 *.cache
 *.*~
-Debug
+Debug/
 tags*
 .tags*
 cscope.out
 .ycm_extra_conf.*
 *.obj
 *.o
+*.log
 GTAGS
 GRTAGS
 GSYMS
 GPATH
+Thumbs.db
 
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+
+# Build artifacts
+*.class
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+
+# IDEs and Editors
 # Eclipse
 .classpath
 .project
 .settings/
 
-# Intellij
+# IntelliJ IDEA
 .idea/
 *.iml
 *.iws
-.ropeproject
+*.ipr
 
-# Mac
+# Visual Studio Code
+.vscode/
+.history/
+*.code-workspace
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Vim
+.vimrc
+*.un~
+*.swp
+.session
+
+# Operating System
 .DS_Store
+.Trashes
+desktop.ini
 
 # Maven
 log/
 target/
 
+# Gradle
+.gradle/
+build/
+
 # Python
-__pycache__
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.env
+.env
+.env.*
+.venv
+.venv/
+pip-log.txt
 
 # Node.js
-package-lock.json
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+package-lock.json
+yarn.lock
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Rust
+/target/
+*.rs.bk
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Go
+*.exe
+*.test
+*.out
+vendor/
+
+# Ruby
+*.gem
+.rvmrc
+
+# Logs
+*.log
+*.pid
+*.seed
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Docker
+*.dockerfile
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+*.kube/
+*.kubeconfig
+
+# Security
+secrets.json
+*.key
+*.pem
+*.crt
+
+# Testing
+.coverage
+coverage.*
+.nyc_output/
+

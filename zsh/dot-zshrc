@@ -1,75 +1,27 @@
-# Soure/Load zinit
-source $(brew --prefix zinit)/zinit.zsh
+# ------------------------------------
+# Environment Variables
+# ------------------------------------
 
-# Add oh-my-posh
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
-fi
+# Shell and Locale settings
+export SHELL=$(which zsh)
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
 
-# TMUX
-#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-export ZSH_TMUX_AUTOSTART=true
-#fi
+# Java and Android environment
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_PATH=$HOME/Library/Android
 
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-history-substring-search
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit light daiaji/zsh-tmux-plugin
+# Golang environment
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
 
-# Add in snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::vi-mode
-zinit snippet OMZP::fzf
-zinit snippet OMZP::pyenv
-zinit snippet OMZP::rbenv
-zinit snippet OMZP::nvm
-zinit snippet OMZP::zoxide
-zinit snippet OMZP::eza
-zinit snippet OMZP::thefuck
-zinit snippet OMZP::colored-man-pages
+# Bat (better `cat`) theme
+export BAT_THEME="Catppuccin Mocha"
 
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-# bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# bind P and N for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-
-# bind k and j for VI mode
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-# History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
+# FZF (fuzzy finder) customization
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -77,26 +29,104 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475a \
 --multi"
 
-# Bat (better cat)
-export BAT_THEME="Catppuccin Mocha"
-
-# Editor
-export EDITOR=`which nvim`
+# Default text editor
+export EDITOR=$(which nvim)
 alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
+
+# ------------------------------------
+# Plugins and Feature Loading
+# ------------------------------------
+
+# Load zinit (plugin manager)
+if command -v brew &>/dev/null; then
+  source "$(brew --prefix zinit)/zinit.zsh"
+fi
+
+# Configure oh-my-posh (prompt customizer)
+if [[ "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
+fi
+
+# Load zinit plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light daiaji/zsh-tmux-plugin
+
+# Load zinit snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::vi-mode
+zinit snippet OMZP::fzf
+zinit snippet OMZP::pyenv
+zinit snippet OMZP::nvm
+zinit snippet OMZP::zoxide
+zinit snippet OMZP::eza
+zinit snippet OMZP::thefuck
+zinit snippet OMZP::colored-man-pages
+
+# Enable zsh completions
+autoload -Uz compinit && compinit
+zinit cdreplay -q
+
+# ------------------------------------
+# Key Bindings
+# ------------------------------------
+
+# Keybindings for navigation using arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# Keybindings for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# Keybindings for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# ------------------------------------
+# History Settings
+# ------------------------------------
+
+# Configure history behavior
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+setopt appendhistory       # Append commands to history file, not overwrite
+setopt sharehistory        # Share history between terminal sessions
+setopt hist_ignore_space   # Ignore commands starting with a space
+setopt hist_ignore_all_dups  # Remove duplicates from history
+setopt hist_save_no_dups   # Do not save duplicates to the history file
+setopt hist_find_no_dups   # Do not show duplicates during search
+
+# ------------------------------------
+# Navigation and PATH Configuration
+# ------------------------------------
+
+# Enhanced directory navigation
 alias cd='z'
 
-# Path
-[[ -d /usr/local/sbin ]] && PATH=$PATH:/usr/local/sbin
-[[ -d $HOME/.local/bin ]] && PATH=$PATH:$HOME/.local/bin
-[[ -d $HOME/Library/Android/sdk/platform-tools ]] &&  PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+# Add directories to PATH
+[[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
+[[ -d $HOME/.local/bin ]] && PATH="$PATH:$HOME/.local/bin"
+[[ -d $HOME/Library/Android/sdk/platform-tools ]] && PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-export ANDROID_PATH=~/Library/Android
-export ANDROID_SDK_ROOT=$ANDROID_PATH/sdk
+# ------------------------------------
+# Utilities and Miscellaneous Settings
+# ------------------------------------
 
-# Golang environment variables
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+# Auto-start tmux when a terminal session starts
+export ZSH_TMUX_AUTOSTART=true
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
