@@ -29,6 +29,9 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475a \
 --multi"
 
+# Auto-start tmux when a terminal session starts
+export ZSH_TMUX_AUTOSTART=true
+
 # Default text editor
 export EDITOR=$(which nvim)
 alias vim=$EDITOR
@@ -120,9 +123,6 @@ alias cd='z'
 # ------------------------------------
 # Utilities and Miscellaneous Settings
 # ------------------------------------
-
-# Auto-start tmux when a terminal session starts
-export ZSH_TMUX_AUTOSTART=true
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

@@ -42,7 +42,6 @@
 
 [commit]
   template = ~/.stCommitMsg
-  gpgSign = true # 커밋에 GPG 서명 추가 (보안 강화, 필요시 GPG 키 설정)
 
 [alias]
   st = status
