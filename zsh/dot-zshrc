@@ -8,6 +8,7 @@ export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_TYPE=en_US.UTF-8
+export SYSTEM_APPEARANCE=$($HOME/.local/bin/get_appearance.sh)
 
 # Java and Android environment
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
@@ -19,15 +20,29 @@ export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
 # Bat (better `cat`) theme
-export BAT_THEME="Catppuccin Mocha"
+if [ "$SYSTEM_APPEARANCE" = "light" ]; then
+    export BAT_THEME="Catppuccin Latte"
+else
+    export BAT_THEME="Catppuccin Mocha"
+fi
 
 # FZF (fuzzy finder) customization
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
---multi"
+# Set FZF_DEFAULT_OPTS based on system appearance
+if [ "$SYSTEM_APPEARANCE" = "dark" ]; then
+    export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+        --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+        --color=selected-bg:#45475a \
+        --multi"
+else
+    export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb \
+        --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 \
+        --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb \
+        --color=selected-bg:#dce0e8 \
+        --multi"
+fi
 
 # Auto-start tmux when a terminal session starts
 export ZSH_TMUX_AUTOSTART=true
@@ -49,7 +64,12 @@ fi
 
 # Configure oh-my-posh (prompt customizer)
 if [[ "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
+    # Set themes based on system appearance
+    if [ "$SYSTEM_APPEARANCE" = "light" ]; then
+        eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_latte.omp.json)"
+    else
+        eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
+    fi
 fi
 
 # Load zinit plugins
