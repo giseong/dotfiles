@@ -18,7 +18,7 @@
 [delta]
   features = side-by-side
   navigate = true # n과 N을 사용해 diff 섹션 탐색
-  syntax-theme = Dracula # 트렌디한 테마 예시, 변경 가능
+  syntax-theme = github # 트렌디한 테마 예시, 변경 가능
   line-numbers = true # diff에서 라인 번호 표시
 
 [merge]
