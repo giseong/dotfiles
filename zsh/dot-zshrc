@@ -11,7 +11,8 @@ export LC_TYPE=en_US.UTF-8
 export SYSTEM_APPEARANCE=$($HOME/.local/bin/get_appearance.sh)
 
 # Java and Android environment
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export ANDROID_PATH=$HOME/Library/Android
 
