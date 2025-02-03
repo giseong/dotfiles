@@ -12,7 +12,6 @@ font-thicken = true
 # Window
 window-width = 80
 window-height = 26
-window-decoration = false
 
 # Cursor
 shell-integration-features = no-cursor
@@ -21,7 +20,7 @@ cursor-style-blink = false
 cursor-click-to-move = true
 
 # macOS-specific tweaks: Enjoy a native feel
-macos-titlebar-style = native
+macos-titlebar-style = hidden
 macos-option-as-alt = true
 
 # Shell integration: Helps with dynamic title updates and working directory sharing
