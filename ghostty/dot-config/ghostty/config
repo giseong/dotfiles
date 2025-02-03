@@ -1,6 +1,9 @@
 # Terminal
 term = "xterm-256color"
 
+# Appearance: Use a dynamic theme that follows your system’s light/dark mode
+theme = light:catppuccin-latte, dark:catppuccin-mocha
+
 # Fonts
 font-family = "JetBrainsMono Nerd Font"
 font-size = 16
@@ -9,10 +12,6 @@ font-thicken = true
 # Window
 window-width = 80
 window-height = 26
-window-colorspace = display-p3
-macos-titlebar-style = native
-macos-titlebar-proxy-icon = hidden
-theme = catppuccin-latte
 window-decoration = false
 
 # Cursor
@@ -21,6 +20,10 @@ cursor-style = block
 cursor-style-blink = false
 cursor-click-to-move = true
 
-# Keyboard
+# macOS-specific tweaks: Enjoy a native feel
+macos-titlebar-style = native
 macos-option-as-alt = true
+
+# Shell integration: Helps with dynamic title updates and working directory sharing
+shell-integration = detect
 
