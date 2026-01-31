@@ -24,11 +24,6 @@ cursor-click-to-move = true
 macos-titlebar-style = hidden
 macos-option-as-alt = true
 
-# --- OS별 조건부 설정 ---
-# macOS일 때만 폰트 크기를 16으로 변경합니다.
-# ghostty는 플랫폼별 전용 설정 파일을 로드하거나 아래와 같은 문법을 지원합니다.
-font-size = 16 [macos]
-
 # Shell integration: Helps with dynamic title updates and working directory sharing
 shell-integration = detect
 
