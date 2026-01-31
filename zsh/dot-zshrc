@@ -2,29 +2,42 @@
 # Environment Variables
 # ------------------------------------
 
-# OS 구분 변수 설정
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    IS_MAC=true
-else
-    IS_MAC=false
-fi
+[[ "$OSTYPE" == "darwin"* ]] && IS_MAC=true || IS_MAC=false
 
 # Shell and Locale settings
 export SHELL=$(which zsh)
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# 시스템 테마 감지 (리눅스/맥 호환)
-if [ "$IS_MAC" = true ]; then
-    export SYSTEM_APPEARANCE=$($HOME/.local/bin/get_appearance.sh)
-else
-    # 리눅스(KDE Plasma) 다크모드 감지 (CachyOS 기본인 Plasma 기준)
-    if [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]]; then
-        export SYSTEM_APPEARANCE="dark"
+# ------------------------------------
+# Theme / Appearance Detection Function
+# ------------------------------------
+function get_system_appearance() {
+    # 1. macOS (Darwin) 대응
+    if [[ "$IS_MAC" == true ]]; then
+        if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+            echo "dark"
+        else
+            echo "light"
+        fi
+    # 2. Linux (KDE Plasma/CachyOS) 대응
     else
-        export SYSTEM_APPEARANCE="light"
+        # kreadconfig6가 있을 경우 실행 (Plasma 6 기준)
+        if command -v kreadconfig6 &> /dev/null; then
+            if [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]]; then
+                echo "dark"
+            else
+                echo "light"
+            fi
+        else
+            # Plasma 외의 환경을 위한 폴백(Fallback)
+            echo "dark" 
+        fi
     fi
-fi
+}
+
+# 환경 변수에 할당
+export SYSTEM_APPEARANCE=$(get_system_appearance)
 
 # Java and Android (리눅스 경로 추가)
 if [ "$IS_MAC" = true ]; then
