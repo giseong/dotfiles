@@ -54,7 +54,7 @@ else
     export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
 fi
 
-#export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=true
 export EDITOR=$(which nvim 2>/dev/null || which vim)
 alias vim=$EDITOR
 alias vi=$EDITOR
