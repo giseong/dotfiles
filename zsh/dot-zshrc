@@ -2,74 +2,89 @@
 # Environment Variables
 # ------------------------------------
 
+# OS 구분 변수 설정
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    IS_MAC=true
+else
+    IS_MAC=false
+fi
+
 # Shell and Locale settings
 export SHELL=$(which zsh)
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export LC_TYPE=en_US.UTF-8
-export SYSTEM_APPEARANCE=$($HOME/.local/bin/get_appearance.sh)
+export LC_ALL=en_US.UTF-8
 
-# Java and Android environment
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-#export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export ANDROID_PATH=$HOME/Library/Android
+# 시스템 테마 감지 (리눅스/맥 호환)
+if [ "$IS_MAC" = true ]; then
+    export SYSTEM_APPEARANCE=$($HOME/.local/bin/get_appearance.sh)
+else
+    # 리눅스(KDE Plasma) 다크모드 감지 (CachyOS 기본인 Plasma 기준)
+    if [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]]; then
+        export SYSTEM_APPEARANCE="dark"
+    else
+        export SYSTEM_APPEARANCE="light"
+    fi
+fi
+
+# Java and Android (리눅스 경로 추가)
+if [ "$IS_MAC" = true ]; then
+    # export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+else
+    # 리눅스용 Android SDK 기본 경로
+    export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+fi
+export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 
 # Golang environment
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
-# Bat (better `cat`) theme
+# Bat theme
 if [ "$SYSTEM_APPEARANCE" = "light" ]; then
     export BAT_THEME="Catppuccin Latte"
 else
     export BAT_THEME="Catppuccin Mocha"
 fi
 
-# FZF (fuzzy finder) customization
-# Set FZF_DEFAULT_OPTS based on system appearance
+# FZF customization
 if [ "$SYSTEM_APPEARANCE" = "dark" ]; then
-    export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-        --color=selected-bg:#45475a \
-        --multi"
+    export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --multi"
 else
-    export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb \
-        --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 \
-        --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb \
-        --color=selected-bg:#dce0e8 \
-        --multi"
+    export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
 fi
 
-# Auto-start tmux when a terminal session starts
-export ZSH_TMUX_AUTOSTART=true
-
-# Default text editor
-export EDITOR=$(which nvim)
+#export ZSH_TMUX_AUTOSTART=true
+export EDITOR=$(which nvim 2>/dev/null || which vim)
 alias vim=$EDITOR
 alias vi=$EDITOR
 alias e=$EDITOR
 
 # ------------------------------------
-# Plugins and Feature Loading
+# Plugins and Feature Loading (Zinit & Oh My Posh)
 # ------------------------------------
 
-# Load zinit (plugin manager)
-if command -v brew &>/dev/null; then
-  source "$(brew --prefix zinit)/zinit.zsh"
+# Zinit 경로 설정 (맥/리눅스 공용)
+if [ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]; then
+    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+elif [ "$IS_MAC" = true ] && command -v brew &>/dev/null; then
+    source "$(brew --prefix zinit)/zinit.zsh"
 fi
 
-# Configure oh-my-posh (prompt customizer)
-if [[ "$TERM_PROGRAM" != "Apple_Terminal" ]]; then
-    # Set themes based on system appearance
-    if [ "$SYSTEM_APPEARANCE" = "light" ]; then
-        eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_latte.omp.json)"
+# Oh My Posh 로드
+if command -v oh-my-posh &>/dev/null; then
+    # 테마 파일 경로 수정 (리눅스는 보통 패키지 매니저로 설치하므로 경로가 다름)
+    if [ "$IS_MAC" = true ]; then
+        THEME_DIR="$(brew --prefix oh-my-posh)/themes"
     else
-        eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
+        THEME_DIR="/usr/share/oh-my-posh/themes" # 또는 설치된 경로
+    fi
+
+    # 테마 설정 (파일이 없을 경우를 대비해 기본 로드 루틴 사용 가능)
+    if [ "$SYSTEM_APPEARANCE" = "light" ]; then
+        eval "$(oh-my-posh init zsh --config $THEME_DIR/catppuccin_latte.omp.json 2>/dev/null || oh-my-posh init zsh)"
+    else
+        eval "$(oh-my-posh init zsh --config $THEME_DIR/catppuccin_mocha.omp.json 2>/dev/null || oh-my-posh init zsh)"
     fi
 fi
 
@@ -81,7 +96,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light daiaji/zsh-tmux-plugin
 
-# Load zinit snippets
+# Load zinit snippets (Oh My Zsh 플러그인들)
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::vi-mode
@@ -93,61 +108,37 @@ zinit snippet OMZP::eza
 zinit snippet OMZP::thefuck
 zinit snippet OMZP::colored-man-pages
 
-# Enable zsh completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # ------------------------------------
-# Key Bindings
+# Key Bindings & History & Navigation
 # ------------------------------------
-
-# Keybindings for navigation using arrow keys
+# (기존 내용과 동일하여 생략 가능하지만, 리눅스에서 terminfo 인식이 안 될 경우를 위해 유지)
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
-# Keybindings for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-
-# Keybindings for VI mode
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-# ------------------------------------
-# History Settings
-# ------------------------------------
-
-# Configure history behavior
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-setopt appendhistory       # Append commands to history file, not overwrite
-setopt sharehistory        # Share history between terminal sessions
-setopt hist_ignore_space   # Ignore commands starting with a space
-setopt hist_ignore_all_dups  # Remove duplicates from history
-setopt hist_save_no_dups   # Do not save duplicates to the history file
-setopt hist_find_no_dups   # Do not show duplicates during search
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
 
-# ------------------------------------
-# Navigation and PATH Configuration
-# ------------------------------------
-
-# Enhanced directory navigation
-alias cd='z'
-
-# Add directories to PATH
-[[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
-[[ -d $HOME/.local/bin ]] && PATH="$PATH:$HOME/.local/bin"
-[[ -d $HOME/Library/Android/sdk/platform-tools ]] && PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-
-# ------------------------------------
-# Utilities and Miscellaneous Settings
-# ------------------------------------
+# 추가 경로 설정 (리눅스 환경 대응)
+PATH="$PATH:/usr/local/sbin:$HOME/.local/bin"
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
 
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
