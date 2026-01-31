@@ -1,28 +1,47 @@
-# Set default shell
-export SHELL=$(which zsh)
+# ---------------------------------------------------------------------
+# 1. 시스템 정보 확인 (한 번만 실행하여 속도 최적화)
+# ---------------------------------------------------------------------
+export OS_TYPE=$(uname -s)
 
-# Locale settings
+# ---------------------------------------------------------------------
+# 2. 기본 쉘 설정 (쉘 경로 확인)
+# ---------------------------------------------------------------------
+if [[ -z "$SHELL" ]]; then
+    export SHELL=$(which zsh)
+fi
+
+# ---------------------------------------------------------------------
+# 3. 로캘(Locale) 설정
+# ---------------------------------------------------------------------
+# 리눅스(CachyOS)와 macOS 모두 호환되는 표준 설정
+export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_TYPE=en_US.UTF-8
 
-# Homebrew Initialization
-if [ -f /opt/homebrew/bin/brew ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+# ---------------------------------------------------------------------
+# 4. 패키지 매니저 (Homebrew)
+# ---------------------------------------------------------------------
+# macOS (Apple Silicon)
+if [[ "$OS_TYPE" == "Darwin" && -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Pyenv Initialization
+# ---------------------------------------------------------------------
+# 5. Pyenv (Python 환경)
+# ---------------------------------------------------------------------
 if command -v pyenv &>/dev/null; then
-  export PYENV_ROOT=$(pyenv root)
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
 fi
 
-# NVM Initialization (Node.js Version Manager)
-if [ -s "$HOME/.nvm/nvm.sh" ]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# ---------------------------------------------------------------------
+# 6. NVM (Node.js 환경) - 지연 로딩 최적화
+# ---------------------------------------------------------------------
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    # zsh가 인터랙티브 모드일 때만 로드하여 속도 향상
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 fi
 
