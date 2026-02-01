@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------
 # 1. SYSTEM APPEARANCE DETECTION
 # ---------------------------------------------------------------------
-# Detect Dark/Light mode for macOS and Linux (KDE Plasma)
+# Detect Dark/Light mode for macOS and Linux (KDE Plasma 6)
 function get_system_appearance() {
     if [[ "$IS_MAC" == true ]]; then
         [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
@@ -25,13 +25,29 @@ else
 fi
 
 # ---------------------------------------------------------------------
-# 2. PLUGIN MANAGEMENT (Zinit)
+# 2. TMUX CONFIGURATION (Must be set BEFORE loading plugins)
+# ---------------------------------------------------------------------
+# Global TMUX settings for zsh-tmux-plugin
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOCONNECT=true
+export ZSH_TMUX_AUTOSTART_ONCE=true
+
+# Exclusion list: Disable tmux in specific environments
+if [[ "$TERM_PROGRAM" == "vscode" || "$TERMINAL_EMULATOR" == "JetBrains-Jedi" || -n "$VIMRUNTIME" || -n "$TMUX" ]]; then
+    export ZSH_TMUX_AUTOSTART=false
+fi
+
+# ---------------------------------------------------------------------
+# 3. PLUGIN MANAGEMENT (Zinit)
 # ---------------------------------------------------------------------
 # Load Zinit framework
 ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
 [[ -f "$ZINIT_HOME/zinit.zsh" ]] && source "$ZINIT_HOME/zinit.zsh"
 
-# Load core plugins
+# Load tmux plugin first to ensure autostart triggers correctly
+zinit light daiaji/zsh-tmux-plugin
+
+# Load other core plugins in light-mode
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
@@ -39,8 +55,7 @@ zinit light-mode for \
     zsh-users/zsh-history-substring-search \
     zsh-users/zsh-completions \
     zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab \
-    daiaji/zsh-tmux-plugin
+    Aloxaf/fzf-tab
 
 # Load Oh My Zsh snippets
 zinit snippet OMZP::git
@@ -51,7 +66,7 @@ zinit snippet OMZP::eza
 zinit snippet OMZP::thefuck
 
 # ---------------------------------------------------------------------
-# 3. PROMPT & EXTERNAL TOOLS
+# 4. PROMPT & EXTERNAL TOOLS
 # ---------------------------------------------------------------------
 # Oh My Posh initialization with dynamic theme switching
 if command -v oh-my-posh &>/dev/null; then
@@ -65,7 +80,7 @@ fi
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
 
 # ---------------------------------------------------------------------
-# 4. ALIASES & KEYBINDINGS
+# 5. ALIASES & KEYBINDINGS
 # ---------------------------------------------------------------------
 # Editor shortcuts
 export EDITOR=$(which nvim 2>/dev/null || which vim)
@@ -79,7 +94,7 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # ---------------------------------------------------------------------
-# 5. HISTORY & COMPLETION SETTINGS
+# 6. HISTORY & COMPLETION SETTINGS
 # ---------------------------------------------------------------------
 HISTSIZE=5000
 SAVEHIST=5000
@@ -88,12 +103,3 @@ setopt appendhistory sharehistory hist_ignore_all_dups
 # Initialize completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
-
-# ---------------------------------------------------------------------
-# 6. SMART TMUX AUTO-ATTACH (Remote Sessions)
-# ---------------------------------------------------------------------
-# Automatically attach to 'main' session when connecting via SSH
-if [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]]; then
-    # Create 'main' session if it doesn't exist, or attach if it does
-    tmux attach-session -t main 2>/dev/null || tmux new-session -s main
-fi
