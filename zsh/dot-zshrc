@@ -39,16 +39,10 @@ fi
 # ---------------------------------------------------------------------
 # 3. PLUGIN MANAGEMENT (Zinit) - Multi-OS Path Support
 # ---------------------------------------------------------------------
-ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
-ZINIT_BREW_ARM="/opt/homebrew/opt/zinit/share/zinit/zinit.zsh"
-ZINIT_BREW_INTEL="/usr/local/opt/zinit/share/zinit/zinit.zsh"
-
-if [[ -f "$ZINIT_HOME/zinit.zsh" ]]; then
-    source "$ZINIT_HOME/zinit.zsh"
-elif [[ -f "$ZINIT_BREW_ARM" ]]; then
-    source "$ZINIT_BREW_ARM"
-elif [[ -f "$ZINIT_BREW_INTEL" ]]; then
-    source "$ZINIT_BREW_INTEL"
+if [ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]; then
+    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+elif [ "$IS_MAC" = true ] && command -v brew &>/dev/null; then
+    source "$(brew --prefix zinit)/zinit.zsh"
 fi
 
 # Load tmux plugin first to ensure autostart triggers correctly
