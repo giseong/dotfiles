@@ -97,8 +97,9 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # 6. HISTORY & COMPLETION SETTINGS
 # ---------------------------------------------------------------------
 HISTSIZE=5000
-SAVEHIST=5000
-setopt appendhistory sharehistory hist_ignore_all_dups
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
 
 # Initialize completions
 autoload -Uz compinit && compinit
