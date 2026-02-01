@@ -7,7 +7,7 @@ theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 
 # Fonts
 font-family = "JetBrainsMono Nerd Font"
-font-size = 13
+font-size = 16
 font-thicken = true
 
 # Window
