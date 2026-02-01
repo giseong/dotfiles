@@ -321,8 +321,9 @@ debug/
 *.rs.bk
 *.pdb
 **/mutants.out*/
-Cargo.lock
-!Cargo.lock
+# Cargo.lock: include for binaries, ignore for libraries
+# Uncomment below to ignore (for libraries only)
+# Cargo.lock
 
 # -----------------------------------------------------------------------------
 # Java

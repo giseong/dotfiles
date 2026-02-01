@@ -1,47 +1,44 @@
 [user]
   name = Giseong Bak
-  email = t1100175@tmapmobility.com
+  email = giseong.bak@gmail.com
 
 [credential]
   helper = cache
-  useHttpPath = true # 도움말: 여러 repository에서 HTTP-based 인증 관리 개선
+  useHttpPath = true
 
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
   pager = delta
-  editor = vim
+  editor = nvim
 
 [interactive]
   diffFilter = delta --color-only
 
 [delta]
   features = side-by-side
-  navigate = true # n과 N을 사용해 diff 섹션 탐색
-  syntax-theme = GitHub # 트렌디한 테마 예시, 변경 가능
-  line-numbers = true # diff에서 라인 번호 표시
+  navigate = true
+  syntax-theme = Catppuccin-mocha
+  line-numbers = true
 
 [merge]
   conflictstyle = diff3
-  tool = vim
+  tool = nvim
 
 [diff]
-  colorMoved = dimmed-zebra # 이동된 코드 표시 스타일 개선
+  colorMoved = dimmed-zebra
 
 [push]
-  default = simple # matching에서 simple로 변경 (권장 설정)
+  default = simple
 
 [pull]
-  rebase = true # rebase 사용 권장 (더 깔끔한 커밋 히스토리)
+  rebase = true
 
 [filter "lfs"]
   process = git-lfs filter-process
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
-
-[commit]
-  template = ~/.stCommitMsg
 
 [alias]
   st = status
@@ -54,5 +51,4 @@
   unstage = reset HEAD --
 
 [color]
-  ui = true # 기본 UI 색상 활성화
-
+  ui = true
