@@ -44,6 +44,7 @@ detect_os() {
 # =============================================================================
 COMMON_PACKAGES=(
     git
+    git-delta
     stow
     zsh
     tmux
@@ -65,7 +66,8 @@ install_packages_macos() {
     log_success "Homebrew is installed"
 
     log_info "Installing packages via Homebrew..."
-    brew install "${COMMON_PACKAGES[@]}" oh-my-posh zinit
+    # Note: git-delta is named 'delta' in Homebrew
+    brew install git stow zsh tmux neovim fzf zoxide eza bat thefuck delta oh-my-posh zinit
 }
 
 install_packages_arch() {
