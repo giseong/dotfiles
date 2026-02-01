@@ -76,19 +76,25 @@ update_arch() {
     sudo pacman -Syu --noconfirm
     log_success "Pacman done"
 
-    # AUR (yay)
-    if command -v yay &>/dev/null; then
-        log_info "Updating AUR packages..."
+    # AUR (paru or yay)
+    if command -v paru &>/dev/null; then
+        log_info "Updating AUR packages with paru..."
+        paru -Sua --noconfirm
+        log_success "AUR done"
+    elif command -v yay &>/dev/null; then
+        log_info "Updating AUR packages with yay..."
         yay -Sua --noconfirm
         log_success "AUR done"
     else
-        log_warn "yay not found, skipping AUR"
+        log_warn "No AUR helper found, skipping AUR"
     fi
 
     # Clean package cache
     log_info "Cleaning package cache..."
     sudo pacman -Sc --noconfirm 2>/dev/null || true
-    if command -v yay &>/dev/null; then
+    if command -v paru &>/dev/null; then
+        paru -Sc --noconfirm 2>/dev/null || true
+    elif command -v yay &>/dev/null; then
         yay -Sc --noconfirm 2>/dev/null || true
     fi
 }

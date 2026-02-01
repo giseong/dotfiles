@@ -77,17 +77,22 @@ install_packages_arch() {
     log_info "Installing packages via pacman..."
     sudo pacman -S --needed --noconfirm "${COMMON_PACKAGES[@]}"
 
-    # Install AUR packages via yay
-    if ! command -v yay &>/dev/null; then
-        log_info "Installing yay (AUR helper)..."
+    # Install AUR packages via paru or yay
+    if command -v paru &>/dev/null; then
+        AUR_HELPER="paru"
+    elif command -v yay &>/dev/null; then
+        AUR_HELPER="yay"
+    else
+        log_info "Installing paru (AUR helper)..."
         sudo pacman -S --needed --noconfirm base-devel
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        (cd /tmp/yay && makepkg -si --noconfirm)
-        rm -rf /tmp/yay
+        git clone https://aur.archlinux.org/paru.git /tmp/paru
+        (cd /tmp/paru && makepkg -si --noconfirm)
+        rm -rf /tmp/paru
+        AUR_HELPER="paru"
     fi
 
-    log_info "Installing AUR packages..."
-    yay -S --needed --noconfirm oh-my-posh-bin zinit
+    log_info "Installing AUR packages with $AUR_HELPER..."
+    $AUR_HELPER -S --needed --noconfirm oh-my-posh-bin zinit
 }
 
 # =============================================================================
