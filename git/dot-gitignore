@@ -95,6 +95,7 @@ Sessionx.vim
 .netrwhist
 *~
 tags
+lazy-lock.json
 
 # Eclipse
 .classpath
