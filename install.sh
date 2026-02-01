@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# =============================================================================
+# Dotfiles Bootstrap Script
+# Supports: macOS (Homebrew) / Arch Linux (pacman/yay)
+# =============================================================================
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+log_success() { echo -e "${GREEN}[OK]${NC} $1"; }
+log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
+log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+
+# =============================================================================
+# OS Detection
+# =============================================================================
+detect_os() {
+    case "$(uname -s)" in
+        Darwin) OS="macos" ;;
+        Linux)
+            if command -v pacman &>/dev/null; then
+                OS="arch"
+            else
+                log_error "Unsupported Linux distribution. Only Arch-based systems are supported."
+                exit 1
+            fi
+            ;;
+        *) log_error "Unsupported OS"; exit 1 ;;
+    esac
+    log_info "Detected OS: $OS"
+}
+
+# =============================================================================
+# Package Installation
+# =============================================================================
+COMMON_PACKAGES=(
+    git
+    stow
+    zsh
+    tmux
+    neovim
+    fzf
+    zoxide
+    eza
+    bat
+    thefuck
+)
+
+install_packages_macos() {
+    # Install Homebrew if not present
+    if ! command -v brew &>/dev/null; then
+        log_info "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    log_success "Homebrew is installed"
+
+    log_info "Installing packages via Homebrew..."
+    brew install "${COMMON_PACKAGES[@]}" oh-my-posh zinit
+}
+
+install_packages_arch() {
+    log_info "Updating system..."
+    sudo pacman -Syu --noconfirm
+
+    log_info "Installing packages via pacman..."
+    sudo pacman -S --needed --noconfirm "${COMMON_PACKAGES[@]}"
+
+    # Install AUR packages via yay
+    if ! command -v yay &>/dev/null; then
+        log_info "Installing yay (AUR helper)..."
+        sudo pacman -S --needed --noconfirm base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        (cd /tmp/yay && makepkg -si --noconfirm)
+        rm -rf /tmp/yay
+    fi
+
+    log_info "Installing AUR packages..."
+    yay -S --needed --noconfirm oh-my-posh-bin zinit
+}
+
+# =============================================================================
+# Zinit Installation (fallback if not installed via package manager)
+# =============================================================================
+install_zinit() {
+    if [[ ! -d "$HOME/.local/share/zinit/zinit.git" ]]; then
+        log_info "Installing Zinit..."
+        bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+        log_success "Zinit installed"
+    else
+        log_success "Zinit is already installed"
+    fi
+}
+
+# =============================================================================
+# Stow Dotfiles
+# =============================================================================
+stow_packages() {
+    log_info "Applying dotfiles with stow..."
+    cd "$DOTFILES_DIR"
+
+    # List of packages to stow
+    local packages=(zsh tmux nvim git ghostty wezterm editorconfig bin fabric)
+
+    for pkg in "${packages[@]}"; do
+        if [[ -d "$pkg" ]]; then
+            log_info "Stowing $pkg..."
+            stow -v "$pkg" 2>&1 | grep -v "^LINK:" || true
+        fi
+    done
+
+    log_success "Dotfiles applied"
+}
+
+# =============================================================================
+# Change Default Shell
+# =============================================================================
+set_zsh_default() {
+    if [[ "$SHELL" != *"zsh"* ]]; then
+        log_info "Setting zsh as default shell..."
+        chsh -s "$(which zsh)"
+        log_success "Default shell changed to zsh (restart terminal to apply)"
+    else
+        log_success "zsh is already the default shell"
+    fi
+}
+
+# =============================================================================
+# Optional: Development Tools
+# =============================================================================
+install_dev_tools() {
+    read -p "Install development tools (pyenv, nvm)? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # pyenv
+        if [[ ! -d "$HOME/.pyenv" ]]; then
+            log_info "Installing pyenv..."
+            curl https://pyenv.run | bash
+        fi
+
+        # nvm
+        if [[ ! -d "$HOME/.nvm" ]]; then
+            log_info "Installing nvm..."
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+        fi
+
+        log_success "Development tools installed"
+    fi
+}
+
+# =============================================================================
+# Main
+# =============================================================================
+main() {
+    echo "=============================================="
+    echo "  Dotfiles Installation Script"
+    echo "=============================================="
+    echo
+
+    detect_os
+
+    case "$OS" in
+        macos) install_packages_macos ;;
+        arch)  install_packages_arch ;;
+    esac
+
+    install_zinit
+    stow_packages
+    set_zsh_default
+    install_dev_tools
+
+    echo
+    log_success "Installation complete!"
+    log_info "Please restart your terminal or run: exec zsh"
+}
+
+main "$@"

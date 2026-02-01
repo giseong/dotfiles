@@ -1,15 +1,63 @@
-# Dotfiles symlinked on my machine
+# Dotfiles
 
-### Install with stow:
+Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/). Supports macOS (Apple Silicon) and Arch Linux (CachyOS).
+
+## Quick Start
+
 ```bash
-stow PACKAGE
+# Clone the repository
+git clone https://github.com/<username>/dotfiles.git ~/.dotfiles
+
+# Run the install script
+cd ~/.dotfiles
+./install.sh
 ```
 
-### Homebrew installation:
-```bash
-# Leaving a machine
-brew leaves > leaves.txt
+The install script will:
+- Detect your OS (macOS or Arch Linux)
+- Install required packages via Homebrew or pacman/yay
+- Apply dotfiles using stow
+- Set zsh as the default shell
+- Optionally install development tools (pyenv, nvm)
 
-# Fresh installation
-xargs brew install < leaves.txt
+## Manual Installation
+
+```bash
+# Install a single package
+stow <package>
+
+# Remove a package
+stow -D <package>
 ```
+
+The `.stowrc` file enables `--dotfiles` mode, which converts `dot-` prefixes to `.` when creating symlinks.
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `zsh` | Zsh config with Zinit, Oh-my-Posh prompt |
+| `tmux` | Tmux with TPM, Catppuccin theme, Ctrl-A prefix |
+| `nvim` | LazyVim-based Neovim setup |
+| `git` | Git config with delta pager, aliases |
+| `ghostty` | Ghostty terminal config |
+| `wezterm` | WezTerm terminal config (Lua) |
+| `bin` | Custom scripts |
+| `fabric` | Fabric AI patterns |
+| `editorconfig` | Cross-editor formatting rules |
+
+## Requirements
+
+Installed automatically by `install.sh`:
+
+- git, stow, zsh, tmux, neovim
+- fzf, zoxide, eza, bat, thefuck
+- oh-my-posh, zinit
+
+## Theme
+
+Catppuccin is used across all tools:
+- **Dark mode**: Catppuccin Mocha
+- **Light mode**: Catppuccin Latte
+
+Theme follows system appearance automatically.
