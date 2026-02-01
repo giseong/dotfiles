@@ -3,14 +3,21 @@
 # ---------------------------------------------------------------------
 # Detect Dark/Light mode for macOS and Linux (KDE Plasma 6)
 function get_system_appearance() {
+    # 1. macOS Detection
     if [[ "$IS_MAC" == true ]]; then
         [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
+        return
+    fi
+
+    # 2. Linux (KDE/CachyOS) Detection
+    local KDE_CONFIG="$HOME/.config/kdeglobals"
+    
+    # Look for "dark" (case-insensitive) in ColorScheme or LookAndFeelPackage
+    if [[ -f "$KDE_CONFIG" ]] && grep -iq "dark" "$KDE_CONFIG"; then
+        echo "dark"
     else
-        if command -v kreadconfig6 &> /dev/null; then
-            [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]] && echo "dark" || echo "light"
-        else
-            echo "dark" # Default fallback for CachyOS
-        fi
+        # Default to dark for CachyOS since it's the standard
+        echo "dark"
     fi
 }
 export SYSTEM_APPEARANCE=$(get_system_appearance)
