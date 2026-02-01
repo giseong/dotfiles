@@ -1,158 +1,99 @@
-# ------------------------------------
-# Environment Variables
-# ------------------------------------
-
-[[ "$OSTYPE" == "darwin"* ]] && IS_MAC=true || IS_MAC=false
-
-# Shell and Locale settings
-export SHELL=$(which zsh)
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# ------------------------------------
-# Theme / Appearance Detection Function
-# ------------------------------------
+# ---------------------------------------------------------------------
+# 1. SYSTEM APPEARANCE DETECTION
+# ---------------------------------------------------------------------
+# Detect Dark/Light mode for macOS and Linux (KDE Plasma)
 function get_system_appearance() {
-    # 1. macOS (Darwin) 대응
     if [[ "$IS_MAC" == true ]]; then
-        if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
-            echo "dark"
-        else
-            echo "light"
-        fi
-    # 2. Linux (KDE Plasma/CachyOS) 대응
+        [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
     else
-        # kreadconfig6가 있을 경우 실행 (Plasma 6 기준)
         if command -v kreadconfig6 &> /dev/null; then
-            if [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]]; then
-                echo "dark"
-            else
-                echo "light"
-            fi
+            [[ "$(kreadconfig6 --group "General" --key "ColorScheme")" == *"Dark"* ]] && echo "dark" || echo "light"
         else
-            # Plasma 외의 환경을 위한 폴백(Fallback)
-            echo "dark" 
+            echo "dark" # Default fallback for CachyOS
         fi
     fi
 }
-
-# 환경 변수에 할당
 export SYSTEM_APPEARANCE=$(get_system_appearance)
 
-# Java and Android (리눅스 경로 추가)
-if [ "$IS_MAC" = true ]; then
-    # export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-else
-    # 리눅스용 Android SDK 기본 경로
-    export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-fi
-export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
-
-# Golang environment
-export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$PATH"
-
-# Bat theme
-if [ "$SYSTEM_APPEARANCE" = "light" ]; then
+# Tool-specific theme mapping (Catppuccin)
+if [[ "$SYSTEM_APPEARANCE" == "light" ]]; then
     export BAT_THEME="Catppuccin Latte"
+    export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
 else
     export BAT_THEME="Catppuccin Mocha"
-fi
-
-# FZF customization
-if [ "$SYSTEM_APPEARANCE" = "dark" ]; then
     export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --multi"
-else
-    export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
 fi
 
-export ZSH_TMUX_AUTOSTART=true
-export EDITOR=$(which nvim 2>/dev/null || which vim)
-alias vim=$EDITOR
-alias vi=$EDITOR
-alias e=$EDITOR
+# ---------------------------------------------------------------------
+# 2. PLUGIN MANAGEMENT (Zinit)
+# ---------------------------------------------------------------------
+# Load Zinit framework
+ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
+[[ -f "$ZINIT_HOME/zinit.zsh" ]] && source "$ZINIT_HOME/zinit.zsh"
 
-# ------------------------------------
-# Plugins and Feature Loading (Zinit & Oh My Posh)
-# ------------------------------------
+# Load core plugins
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-history-substring-search \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-autosuggestions \
+    Aloxaf/fzf-tab \
+    daiaji/zsh-tmux-plugin
 
-# Zinit 경로 설정 (맥/리눅스 공용)
-if [ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]; then
-    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-elif [ "$IS_MAC" = true ] && command -v brew &>/dev/null; then
-    source "$(brew --prefix zinit)/zinit.zsh"
-fi
-
-# Oh My Posh 로드
-if command -v oh-my-posh &>/dev/null; then
-    # 테마 파일 경로 수정 (리눅스는 보통 패키지 매니저로 설치하므로 경로가 다름)
-    if [ "$IS_MAC" = true ]; then
-        THEME_DIR="$(brew --prefix oh-my-posh)/themes"
-    else
-        THEME_DIR="/usr/share/oh-my-posh/themes" # 또는 설치된 경로
-    fi
-
-    # 테마 설정 (파일이 없을 경우를 대비해 기본 로드 루틴 사용 가능)
-    if [ "$SYSTEM_APPEARANCE" = "light" ]; then
-        eval "$(oh-my-posh init zsh --config $THEME_DIR/catppuccin_latte.omp.json 2>/dev/null || oh-my-posh init zsh)"
-    else
-        eval "$(oh-my-posh init zsh --config $THEME_DIR/catppuccin_mocha.omp.json 2>/dev/null || oh-my-posh init zsh)"
-    fi
-fi
-
-# Load zinit plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-history-substring-search
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit light daiaji/zsh-tmux-plugin
-
-# Load zinit snippets (Oh My Zsh 플러그인들)
+# Load Oh My Zsh snippets
 zinit snippet OMZP::git
-zinit snippet OMZP::command-not-found
 zinit snippet OMZP::vi-mode
 zinit snippet OMZP::fzf
-zinit snippet OMZP::pyenv
-zinit snippet OMZP::nvm
 zinit snippet OMZP::zoxide
 zinit snippet OMZP::eza
 zinit snippet OMZP::thefuck
-zinit snippet OMZP::colored-man-pages
 
-autoload -Uz compinit && compinit
-zinit cdreplay -q
+# ---------------------------------------------------------------------
+# 3. PROMPT & EXTERNAL TOOLS
+# ---------------------------------------------------------------------
+# Oh My Posh initialization with dynamic theme switching
+if command -v oh-my-posh &>/dev/null; then
+    [[ "$IS_MAC" == true ]] && THEME_DIR="$(brew --prefix oh-my-posh)/themes" || THEME_DIR="/usr/share/oh-my-posh/themes"
+    POSH_THEME="$THEME_DIR/catppuccin_mocha.omp.json"
+    [[ "$SYSTEM_APPEARANCE" == "light" ]] && POSH_THEME="$THEME_DIR/catppuccin_latte.omp.json"
+    eval "$(oh-my-posh init zsh --config $POSH_THEME)"
+fi
 
-# ------------------------------------
-# Key Bindings & History & Navigation
-# ------------------------------------
-# (기존 내용과 동일하여 생략 가능하지만, 리눅스에서 terminfo 인식이 안 될 경우를 위해 유지)
+# Deferred NVM loading for faster shell startup
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
+
+# ---------------------------------------------------------------------
+# 4. ALIASES & KEYBINDINGS
+# ---------------------------------------------------------------------
+# Editor shortcuts
+export EDITOR=$(which nvim 2>/dev/null || which vim)
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+
+# History substring search bindings
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# ---------------------------------------------------------------------
+# 5. HISTORY & COMPLETION SETTINGS
+# ---------------------------------------------------------------------
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
+SAVEHIST=5000
+setopt appendhistory sharehistory hist_ignore_all_dups
 
-# 추가 경로 설정 (리눅스 환경 대응)
-PATH="$PATH:/usr/local/sbin:$HOME/.local/bin"
+# Initialize completions
+autoload -Uz compinit && compinit
+zinit cdreplay -q
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-export PATH="$HOME/.npm-global/bin:$PATH"
+# ---------------------------------------------------------------------
+# 6. SMART TMUX AUTO-ATTACH (Remote Sessions)
+# ---------------------------------------------------------------------
+# Automatically attach to 'main' session when connecting via SSH
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]]; then
+    # Create 'main' session if it doesn't exist, or attach if it does
+    tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+fi
