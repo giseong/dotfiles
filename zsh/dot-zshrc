@@ -117,4 +117,4 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # OpenClaw Completion
-source <(openclaw completion --shell zsh)
+# source <(openclaw completion --shell zsh)  # disabled: punycode deprecation warning (upstream issue)
