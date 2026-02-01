@@ -34,13 +34,14 @@ fi
 # ---------------------------------------------------------------------
 # 2. TMUX CONFIGURATION (Must be set BEFORE loading plugins)
 # ---------------------------------------------------------------------
-export ZSH_TMUX_AUTOSTART=true
+# Default: Disable tmux autostart
+export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_TMUX_AUTOSTART_ONCE=true
 
-# Exclusion list: Disable tmux in specific environments
-if [[ "$TERM_PROGRAM" == "vscode" || "$TERMINAL_EMULATOR" == "JetBrains-Jedi" || -n "$VIMRUNTIME" || -n "$TMUX" ]]; then
-    export ZSH_TMUX_AUTOSTART=false
+# Enable only for SSH sessions
+if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
+    export ZSH_TMUX_AUTOSTART=true
 fi
 
 # ---------------------------------------------------------------------
