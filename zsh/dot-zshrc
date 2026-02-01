@@ -116,5 +116,9 @@ setopt hist_find_no_dups   # Do not display a line previously found
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-# OpenClaw Completion
-# source <(openclaw completion --shell zsh)  # disabled: punycode deprecation warning (upstream issue)
+# OpenClaw Completion (if installed)
+# Note: Disabled due to punycode deprecation warning (upstream issue)
+if command -v openclaw &> /dev/null; then
+    source <(openclaw completion --shell zsh)
+fi
+>>>>>>> 80b9056 (Fix OpenClaw completion error on macOS)
