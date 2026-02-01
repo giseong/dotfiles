@@ -1,145 +1,427 @@
-# General
-.svn
-*.cache
-*.*~
-Debug/
-tags*
-.tags*
-cscope.out
-.ycm_extra_conf.*
-*.obj
-*.o
-*.log
-GTAGS
-GRTAGS
-GSYMS
-GPATH
+# =============================================================================
+# Global Gitignore - Based on github/gitignore templates
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Operating System
+# -----------------------------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon?
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+nohup.out
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
 
-# Temporary files
-*.tmp
-*.swp
-*.swo
-*.bak
-*.old
+# -----------------------------------------------------------------------------
+# Editors & IDEs
+# -----------------------------------------------------------------------------
 
-# Build artifacts
-*.class
-*.dll
-*.so
-*.dylib
-*.exe
-*.out
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/**/httpRequests
+.idea/replstate.xml
+.idea/sonarlint/
+.idea/caches/
+.idea_modules/
+*.iws
+cmake-build-*/
+out/
 
-# IDEs and Editors
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+
+# Vim / Neovim
+[._]*.s[a-v][a-z]
+!*.svg
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+[._]*.un~
+Session.vim
+Sessionx.vim
+.netrwhist
+*~
+tags
+
 # Eclipse
 .classpath
 .project
 .settings/
 
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
+# -----------------------------------------------------------------------------
+# AI Tools
+# -----------------------------------------------------------------------------
 
-# Visual Studio Code
-.vscode/
-.history/
-*.code-workspace
+.claude/
+.cursor/
+.aider*
+.continue/
 
-# JetBrains Rider
-.idea/
-*.sln.iml
+# -----------------------------------------------------------------------------
+# Version Control
+# -----------------------------------------------------------------------------
 
-# Vim
-.vimrc
-*.un~
-*.swp
-.session
+.svn/
 
-# Operating System
-.DS_Store
-.Trashes
-desktop.ini
+# -----------------------------------------------------------------------------
+# Environment & Secrets
+# -----------------------------------------------------------------------------
 
-# Maven
-log/
-target/
-
-# Gradle
-.gradle/
-build/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.env
 .env
 .env.*
-.venv
-.venv/
-pip-log.txt
+!.env.example
+!.env.template
+.envrc
+secrets.json
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+http-client.private.env.json
 
-# Node.js
+# -----------------------------------------------------------------------------
+# Logs & Runtime
+# -----------------------------------------------------------------------------
+
+*.log
+logs/
+log/
+*.pid
+*.pid.lock
+*.seed
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# -----------------------------------------------------------------------------
+# Build Artifacts (General)
+# -----------------------------------------------------------------------------
+
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+*.exe~
+*.out
+*.class
+dist/
+build/
+out/
+target/
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+
+__pycache__/
+*.py[codz]
+*$py.class
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Type checkers & Linters
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Django
+*.mo
+*.pot
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask
+instance/
+.webassets-cache
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Other Python tools
+.pdm.toml
+.pdm-python
+__pypackages__/
+cython_debug/
+.pixi/
+
+# -----------------------------------------------------------------------------
+# Node.js / JavaScript / TypeScript
+# -----------------------------------------------------------------------------
+
 node_modules/
-package-lock.json
-yarn.lock
+jspm_packages/
+web_modules/
+bower_components/
+.npm/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build & Cache
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+*.tgz
+.cache/
+.parcel-cache/
+
+# Testing
+.nyc_output/
+coverage/
+*.lcov
 test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
 
-# Rust
-/target/
-*.rs.bk
+# Frameworks
+.next/
+.nuxt/
+.output/
+.vuepress/dist
+.vitepress/dist
+.vitepress/cache
+.docusaurus/
+.svelte-kit/
+.vite/
+.turbo/
+.vercel/
+.netlify/
 
+# Other
+.node_repl_history
+.grunt
+.lock-wscript
+.fusebox/
+.dynamodb/
+.firebase/
+.tern-port
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# -----------------------------------------------------------------------------
+# Go
+# -----------------------------------------------------------------------------
+
+*.test
+vendor/
+*.coverprofile
+profile.cov
+go.work
+go.work.sum
+
+# -----------------------------------------------------------------------------
+# Rust
+# -----------------------------------------------------------------------------
+
+debug/
+*.rs.bk
+*.pdb
+**/mutants.out*/
+Cargo.lock
+!Cargo.lock
+
+# -----------------------------------------------------------------------------
 # Java
-*.class
+# -----------------------------------------------------------------------------
+
 *.jar
 *.war
+*.nar
 *.ear
+*.zip
+*.tar.gz
+*.rar
 hs_err_pid*
+replay_pid*
+.mtj.tmp/
 
-# Go
-*.exe
-*.test
-*.out
-vendor/
+# Gradle
+.gradle/
+**/build/
+!src/**/build/
 
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# -----------------------------------------------------------------------------
 # Ruby
+# -----------------------------------------------------------------------------
+
 *.gem
+*.rbc
+.bundle/
+vendor/bundle
 .rvmrc
+.ruby-version
+.ruby-gemset
 
-# Logs
-*.log
-*.pid
-*.seed
-
+# -----------------------------------------------------------------------------
 # Terraform
+# -----------------------------------------------------------------------------
+
 .terraform/
 *.tfstate
 *.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
 
+# -----------------------------------------------------------------------------
 # Docker
-*.dockerfile
-.dockerignore
-docker-compose.override.yml
+# -----------------------------------------------------------------------------
 
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# -----------------------------------------------------------------------------
 # Kubernetes
+# -----------------------------------------------------------------------------
+
 *.kube/
 *.kubeconfig
+kubeconfig
 
-# Security
-secrets.json
-*.key
-*.pem
-*.crt
+# -----------------------------------------------------------------------------
+# Database
+# -----------------------------------------------------------------------------
 
-# Testing
-.coverage
-coverage.*
-.nyc_output/
+*.sqlite
+*.sqlite3
+*.db
+*.rdb
+*.aof
 
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+
+*.cache
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+*.backup
+.grunt/
+.serverless/
+.fusebox/
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
