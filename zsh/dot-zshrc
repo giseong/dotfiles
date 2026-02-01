@@ -27,7 +27,6 @@ fi
 # ---------------------------------------------------------------------
 # 2. TMUX CONFIGURATION (Must be set BEFORE loading plugins)
 # ---------------------------------------------------------------------
-# Global TMUX settings for zsh-tmux-plugin
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_TMUX_AUTOSTART_ONCE=true
@@ -38,11 +37,19 @@ if [[ "$TERM_PROGRAM" == "vscode" || "$TERMINAL_EMULATOR" == "JetBrains-Jedi" ||
 fi
 
 # ---------------------------------------------------------------------
-# 3. PLUGIN MANAGEMENT (Zinit)
+# 3. PLUGIN MANAGEMENT (Zinit) - Multi-OS Path Support
 # ---------------------------------------------------------------------
-# Load Zinit framework
 ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
-[[ -f "$ZINIT_HOME/zinit.zsh" ]] && source "$ZINIT_HOME/zinit.zsh"
+ZINIT_BREW_ARM="/opt/homebrew/opt/zinit/share/zinit/zinit.zsh"
+ZINIT_BREW_INTEL="/usr/local/opt/zinit/share/zinit/zinit.zsh"
+
+if [[ -f "$ZINIT_HOME/zinit.zsh" ]]; then
+    source "$ZINIT_HOME/zinit.zsh"
+elif [[ -f "$ZINIT_BREW_ARM" ]]; then
+    source "$ZINIT_BREW_ARM"
+elif [[ -f "$ZINIT_BREW_INTEL" ]]; then
+    source "$ZINIT_BREW_INTEL"
+fi
 
 # Load tmux plugin first to ensure autostart triggers correctly
 zinit light daiaji/zsh-tmux-plugin
@@ -68,7 +75,6 @@ zinit snippet OMZP::thefuck
 # ---------------------------------------------------------------------
 # 4. PROMPT & EXTERNAL TOOLS
 # ---------------------------------------------------------------------
-# Oh My Posh initialization with dynamic theme switching
 if command -v oh-my-posh &>/dev/null; then
     [[ "$IS_MAC" == true ]] && THEME_DIR="$(brew --prefix oh-my-posh)/themes" || THEME_DIR="/usr/share/oh-my-posh/themes"
     POSH_THEME="$THEME_DIR/catppuccin_mocha.omp.json"
@@ -76,19 +82,16 @@ if command -v oh-my-posh &>/dev/null; then
     eval "$(oh-my-posh init zsh --config $POSH_THEME)"
 fi
 
-# Deferred NVM loading for faster shell startup
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
 
 # ---------------------------------------------------------------------
 # 5. ALIASES & KEYBINDINGS
 # ---------------------------------------------------------------------
-# Editor shortcuts
 export EDITOR=$(which nvim 2>/dev/null || which vim)
 alias v="$EDITOR"
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 
-# History substring search bindings
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -99,7 +102,14 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
+
+# History Options
+setopt appendhistory       # Append to history file instead of overwriting
+setopt sharehistory        # Share history between different sessions
+setopt hist_ignore_space   # Do not record lines starting with a space
+setopt hist_ignore_all_dups # Delete old duplicate when a new one is typed
+setopt hist_save_no_dups   # Do not write duplicate entries to history file
+setopt hist_find_no_dups   # Do not display a line previously found
 
 # Initialize completions
 autoload -Uz compinit && compinit
