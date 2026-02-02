@@ -10,10 +10,6 @@ font-family = "JetBrainsMono Nerd Font"
 font-size = 16
 font-thicken = true
 
-# Linux-specific
-[os=linux]
-font-size = 13
-
 # Window
 window-width = 80
 window-height = 26
