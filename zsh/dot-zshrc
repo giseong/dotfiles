@@ -11,7 +11,7 @@ function get_system_appearance() {
 
     # 2. Linux (KDE/CachyOS) Detection
     local KDE_CONFIG="$HOME/.config/kdeglobals"
-    
+
     # Look for "dark" (case-insensitive) in ColorScheme or LookAndFeelPackage
     if [[ -f "$KDE_CONFIG" ]] && grep -iq "dark" "$KDE_CONFIG"; then
         echo "dark"
@@ -116,4 +116,3 @@ setopt hist_find_no_dups   # Do not display a line previously found
 # Initialize completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
-
