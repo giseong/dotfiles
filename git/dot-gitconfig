@@ -1,54 +1,56 @@
 [user]
-  name = Giseong Bak
-  email = giseong.bak@tmapmobility.com
+	name = Giseong Bak
+
+[include]
+	path = ~/.gitconfig-local
 
 [credential]
-  helper = cache
-  useHttpPath = true
+	helper = cache
+	useHttpPath = true
 
 [core]
-  excludesfile = ~/.gitignore
-  autocrlf = input
-  pager = delta
-  editor = nvim
+	excludesfile = ~/.gitignore
+	autocrlf = input
+	pager = delta
+	editor = nvim
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-  features = side-by-side
-  navigate = true
-  syntax-theme = Catppuccin-mocha
-  line-numbers = true
+	features = side-by-side
+	navigate = true
+	syntax-theme = Catppuccin-mocha
+	line-numbers = true
 
 [merge]
-  conflictstyle = diff3
-  tool = nvim
+	conflictstyle = diff3
+	tool = nvim
 
 [diff]
-  colorMoved = dimmed-zebra
+	colorMoved = dimmed-zebra
 
 [push]
-  default = simple
+	default = simple
 
 [pull]
-  rebase = true
+	rebase = true
 
 [filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 
 [alias]
-  st = status
-  ci = commit
-  co = checkout
-  br = branch
-  last = log -1 HEAD
-  lg = log --oneline --graph --all --decorate
-  amend = commit --amend --no-edit
-  unstage = reset HEAD --
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	last = log -1 HEAD
+	lg = log --oneline --graph --all --decorate
+	amend = commit --amend --no-edit
+	unstage = reset HEAD --
 
 [color]
-  ui = true
+	ui = true

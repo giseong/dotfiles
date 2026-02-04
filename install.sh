@@ -179,7 +179,12 @@ stow_packages() {
     cd "$DOTFILES_DIR"
 
     # List of packages to stow
-    local packages=(zsh tmux nvim git ghostty wezterm opencode editorconfig bin fabric)
+    local packages=(zsh tmux nvim git wezterm opencode editorconfig bin fabric)
+    if [[ "$OS" == "macos" ]]; then
+        packages+=(ghostty-macos)
+    elif [[ "$OS" == "arch" ]]; then
+        packages+=(ghostty-linux)
+    fi
 
     for pkg in "${packages[@]}"; do
         if [[ -d "$pkg" ]]; then
@@ -187,6 +192,49 @@ stow_packages() {
             stow -v "$pkg" 2>&1 | grep -v "^LINK:" || true
         fi
     done
+
+    # Git profile selection
+    if [[ -d "git-work" || -d "git-personal" ]]; then
+        echo
+        echo "Select git profile to stow:"
+        echo "  [w] Work"
+        echo "  [p] Personal"
+        echo "  [s] Skip"
+        read -r -p "Choice [w/p/s] (default: p): " -n 1 git_choice
+        echo
+        case "$git_choice" in
+            w|W)
+                if [[ -d "git-work" ]]; then
+                    log_info "Stowing git-work..."
+                    stow -v "git-work" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "git-work package not found, skipping"
+                fi
+                ;;
+            p|P)
+                if [[ -d "git-personal" ]]; then
+                    log_info "Stowing git-personal..."
+                    stow -v "git-personal" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "git-personal package not found, skipping"
+                fi
+                ;;
+            s|S)
+                log_info "Skipping git profile stow"
+                ;;
+            "")
+                if [[ -d "git-personal" ]]; then
+                    log_info "Stowing git-personal..."
+                    stow -v "git-personal" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "git-personal package not found, skipping"
+                fi
+                ;;
+            *)
+                log_warn "Unknown choice, skipping git profile stow"
+                ;;
+        esac
+    fi
 
     log_success "Dotfiles applied"
 }

@@ -1,18 +1,18 @@
 # Terminal
 term = "xterm-256color"
 
-# Appearance: Use a dynamic theme that follows your system’s light/dark mode
-#theme = light:catppuccin-latte, dark:catppuccin-mocha
+# Appearance: follow system light/dark
 theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 
 # Fonts
 font-family = "JetBrainsMono Nerd Font"
-font-size = 16
+font-size = 13
 font-thicken = true
 
 # Window
 window-width = 80
 window-height = 26
+scrollback-lines = 20000
 
 # Cursor
 shell-integration-features = no-cursor
@@ -20,10 +20,8 @@ cursor-style = block
 cursor-style-blink = false
 cursor-click-to-move = true
 
-# macOS-specific tweaks: Enjoy a native feel
-macos-titlebar-style = hidden
-macos-option-as-alt = true
+# Mouse: copy on select
+copy-on-select = clipboard
 
-# Shell integration: Helps with dynamic title updates and working directory sharing
+# Shell integration: dynamic title + cwd
 shell-integration = detect
-

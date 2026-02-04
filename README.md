@@ -14,7 +14,7 @@ cd ~/.dotfiles
 ```
 
 The install script will:
-- Detect your OS (macOS or Arch Linux)
+- Detect your OS (macOS or Arch Linux only)
 - Install required packages via Homebrew or pacman/yay
 - Apply dotfiles using stow
 - Set zsh as the default shell
@@ -32,6 +32,10 @@ stow -D <package>
 
 The `.stowrc` file enables `--dotfiles` mode, which converts `dot-` prefixes to `.` when creating symlinks.
 
+OS-specific Ghostty packages:
+- macOS: `stow ghostty-macos`
+- Arch Linux: `stow ghostty-linux`
+
 ## Packages
 
 | Package | Description |
@@ -40,7 +44,8 @@ The `.stowrc` file enables `--dotfiles` mode, which converts `dot-` prefixes to 
 | `tmux` | Tmux with TPM, Catppuccin theme, Ctrl-A prefix |
 | `nvim` | LazyVim-based Neovim setup |
 | `git` | Git config with delta pager, aliases |
-| `ghostty` | Ghostty terminal config |
+| `ghostty-macos` | Ghostty terminal config (macOS) |
+| `ghostty-linux` | Ghostty terminal config (Linux) |
 | `wezterm` | WezTerm terminal config (Lua) |
 | `opencode` | OpenCode config and plugins |
 | `bin` | Custom scripts |

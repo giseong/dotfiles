@@ -1,0 +1,31 @@
+# Terminal
+term = "xterm-256color"
+
+# Appearance: follow system light/dark
+theme = light:Catppuccin Latte, dark:Catppuccin Mocha
+
+# Fonts
+font-family = "JetBrainsMono Nerd Font"
+font-size = 16
+font-thicken = true
+
+# Window
+window-width = 80
+window-height = 26
+scrollback-lines = 20000
+
+# Cursor
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-click-to-move = true
+
+# macOS
+macos-titlebar-style = native
+macos-option-as-alt = true
+
+# Mouse: copy on select
+copy-on-select = clipboard
+
+# Shell integration: dynamic title + cwd
+shell-integration = detect
