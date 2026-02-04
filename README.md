@@ -36,6 +36,11 @@ OS-specific Ghostty packages:
 - macOS: `stow ghostty-macos`
 - Arch Linux: `stow ghostty-linux`
 
+Git profile selection:
+- Work email: `stow git-work`
+- Personal email: `stow git-personal`
+- These packages populate `~/.gitconfig-local`
+
 ## Packages
 
 | Package | Description |
