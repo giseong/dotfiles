@@ -42,6 +42,7 @@ The `.stowrc` file enables `--dotfiles` mode, which converts `dot-` prefixes to 
 | `git` | Git config with delta pager, aliases |
 | `ghostty` | Ghostty terminal config |
 | `wezterm` | WezTerm terminal config (Lua) |
+| `opencode` | OpenCode config and plugins |
 | `bin` | Custom scripts |
 | `fabric` | Fabric AI patterns |
 | `editorconfig` | Cross-editor formatting rules |
@@ -53,6 +54,7 @@ Installed automatically by `install.sh`:
 - git, stow, zsh, tmux, neovim
 - fzf, zoxide, eza, bat, thefuck
 - oh-my-posh, zinit
+- opencode
 
 ## Theme
 

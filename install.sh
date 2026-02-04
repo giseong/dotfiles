@@ -96,6 +96,69 @@ install_packages_arch() {
 }
 
 # =============================================================================
+# OpenCode Installation
+# =============================================================================
+install_opencode() {
+    if command -v opencode &>/dev/null; then
+        log_success "OpenCode is already installed"
+        return
+    fi
+
+    case "$OS" in
+        macos)
+            if command -v brew &>/dev/null; then
+                log_info "Installing OpenCode via Homebrew..."
+                brew install opencode || log_warn "OpenCode install failed (Homebrew formula not found?)"
+            else
+                log_warn "Homebrew not found, skipping OpenCode"
+            fi
+            ;;
+        arch)
+            log_info "Installing OpenCode via pacman/AUR..."
+            sudo pacman -S --needed --noconfirm opencode \
+                || (command -v paru &>/dev/null && paru -S --needed --noconfirm opencode-bin) \
+                || (command -v yay &>/dev/null && yay -S --needed --noconfirm opencode-bin) \
+                || log_warn "OpenCode install failed (package not found)"
+            ;;
+        *)
+            log_warn "Unsupported OS for OpenCode install"
+            ;;
+    esac
+}
+
+# =============================================================================
+# Oh My OpenCode Installation
+# =============================================================================
+install_oh_my_opencode() {
+    if [[ ! -f "$HOME/.config/opencode/opencode.json" ]]; then
+        log_warn "OpenCode config not found, skipping oh-my-opencode install"
+        return
+    fi
+
+    if grep -q "oh-my-opencode" "$HOME/.config/opencode/opencode.json"; then
+        log_success "oh-my-opencode is already configured"
+    fi
+
+    local installer=""
+    if command -v bunx &>/dev/null; then
+        installer="bunx"
+    elif command -v npx &>/dev/null; then
+        installer="npx"
+    else
+        log_warn "bunx or npx not found, skipping oh-my-opencode installer"
+        return
+    fi
+
+    read -p "Run oh-my-opencode installer now? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        log_info "Installing oh-my-opencode..."
+        $installer oh-my-opencode install
+        log_success "oh-my-opencode installer finished"
+    fi
+}
+
+# =============================================================================
 # Zinit Installation (fallback if not installed via package manager)
 # =============================================================================
 install_zinit() {
@@ -116,7 +179,7 @@ stow_packages() {
     cd "$DOTFILES_DIR"
 
     # List of packages to stow
-    local packages=(zsh tmux nvim git ghostty wezterm editorconfig bin fabric)
+    local packages=(zsh tmux nvim git ghostty wezterm opencode editorconfig bin fabric)
 
     for pkg in "${packages[@]}"; do
         if [[ -d "$pkg" ]]; then
@@ -180,6 +243,8 @@ main() {
         arch)  install_packages_arch ;;
     esac
 
+    install_opencode
+    install_oh_my_opencode
     install_zinit
     stow_packages
     set_zsh_default
