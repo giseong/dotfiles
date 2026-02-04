@@ -12,7 +12,6 @@ font-thicken = true
 # Window
 window-width = 80
 window-height = 26
-scrollback-lines = 20000
 
 # Cursor
 shell-integration-features = no-cursor
