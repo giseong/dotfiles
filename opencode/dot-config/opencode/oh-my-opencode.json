@@ -67,7 +67,7 @@
       "extensions": [".sh", ".bash", ".zsh", ".ksh"]
     },
     "markdown": {
-      "command": ["markdown-language-server", "--stdio"],
+      "command": ["marksman", "server"],
       "extensions": [".md"]
     }
   },
