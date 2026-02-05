@@ -118,3 +118,6 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 export NODE_USE_SYSTEM_CA=1
+
+# opencode
+export PATH=/home/gsb/.opencode/bin:$PATH

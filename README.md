@@ -41,6 +41,11 @@ Git profile selection:
 - Personal email: `stow git-personal`
 - These packages populate `~/.gitconfig-local`
 
+OpenCode profile selection:
+- Work: `stow opencode-work`
+- Personal: `stow opencode-personal`
+- These packages populate `~/.config/opencode/`
+
 ## Packages
 
 | Package | Description |
@@ -52,7 +57,8 @@ Git profile selection:
 | `ghostty-macos` | Ghostty terminal config (macOS) |
 | `ghostty-linux` | Ghostty terminal config (Linux) |
 | `wezterm` | WezTerm terminal config (Lua) |
-| `opencode` | OpenCode config and plugins |
+| `opencode-personal` | OpenCode config (personal) |
+| `opencode-work` | OpenCode config (work) |
 | `bin` | Custom scripts |
 | `fabric` | Fabric AI patterns |
 | `editorconfig` | Cross-editor formatting rules |

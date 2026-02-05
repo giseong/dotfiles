@@ -179,7 +179,7 @@ stow_packages() {
     cd "$DOTFILES_DIR"
 
     # List of packages to stow
-    local packages=(zsh tmux nvim git wezterm opencode editorconfig bin fabric)
+    local packages=(zsh tmux nvim git wezterm editorconfig bin fabric)
     if [[ "$OS" == "macos" ]]; then
         packages+=(ghostty-macos)
     elif [[ "$OS" == "arch" ]]; then
@@ -232,6 +232,49 @@ stow_packages() {
                 ;;
             *)
                 log_warn "Unknown choice, skipping git profile stow"
+                ;;
+        esac
+    fi
+
+    # OpenCode profile selection
+    if [[ -d "opencode-work" || -d "opencode-personal" ]]; then
+        echo
+        echo "Select opencode profile to stow:"
+        echo "  [w] Work"
+        echo "  [p] Personal"
+        echo "  [s] Skip"
+        read -r -p "Choice [w/p/s] (default: p): " -n 1 opencode_choice
+        echo
+        case "$opencode_choice" in
+            w|W)
+                if [[ -d "opencode-work" ]]; then
+                    log_info "Stowing opencode-work..."
+                    stow -v "opencode-work" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "opencode-work package not found, skipping"
+                fi
+                ;;
+            p|P)
+                if [[ -d "opencode-personal" ]]; then
+                    log_info "Stowing opencode-personal..."
+                    stow -v "opencode-personal" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "opencode-personal package not found, skipping"
+                fi
+                ;;
+            s|S)
+                log_info "Skipping opencode profile stow"
+                ;;
+            "")
+                if [[ -d "opencode-personal" ]]; then
+                    log_info "Stowing opencode-personal..."
+                    stow -v "opencode-personal" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "opencode-personal package not found, skipping"
+                fi
+                ;;
+            *)
+                log_warn "Unknown choice, skipping opencode profile stow"
                 ;;
         esac
     fi

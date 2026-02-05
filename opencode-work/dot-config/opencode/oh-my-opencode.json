@@ -10,7 +10,7 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "openai/gpt-5.2",
+      "model": "opencode/glm-4.7-free"
     },
     "explore": {
       "model": "opencode/gpt-5-nano"
@@ -32,11 +32,15 @@
     },
     "atlas": {
       "model": "openai/gpt-5.2"
+    },
+    "sisyphus": {
+      "model": "openai/gpt-5.2-codex",
+      "variant": "medium"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "openai/gpt-5.2",
+      "model": "opencode/glm-4.7-free"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.2-codex",
@@ -47,7 +51,7 @@
       "variant": "medium"
     },
     "quick": {
-      "model": "openai/gpt-5.2",
+      "model": "opencode/glm-4.7-free"
     },
     "unspecified-low": {
       "model": "openai/gpt-5.2-codex",
@@ -59,16 +63,33 @@
     },
     "writing": {
       "model": "openai/gpt-5.2"
+    },
+    "artistry": {
+      "model": "openai/gpt-5.2-codex",
+      "variant": "high"
     }
   },
   "lsp": {
     "bash": {
-      "command": ["bash-language-server", "start"],
-      "extensions": [".sh", ".bash", ".zsh", ".ksh"]
+      "command": [
+        "bash-language-server",
+        "start"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash",
+        ".zsh",
+        ".ksh"
+      ]
     },
     "markdown": {
-      "command": ["marksman", "server"],
-      "extensions": [".md"]
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
     }
   }
 }
