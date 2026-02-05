@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "hephaestus": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "oracle": {
@@ -34,7 +34,7 @@
       "model": "openai/gpt-5.2"
     },
     "sisyphus": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     }
   },
@@ -43,29 +43,29 @@
       "model": "openai/gpt-5.2",
     },
     "ultrabrain": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "quick": {
       "model": "openai/gpt-5.2",
     },
     "unspecified-low": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "unspecified-high": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "writing": {
       "model": "openai/gpt-5.2"
     },
     "artistry": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "variant": "high"
     }
   },
