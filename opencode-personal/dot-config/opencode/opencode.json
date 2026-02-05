@@ -13,14 +13,7 @@
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
     },
-    "fetch": {
-      "type": "local",
-      "command": ["docker", "run", "-i", "--rm", "mcp/fetch"]
-    },
-    "git": {
-      "type": "local",
-      "command": ["docker", "run", "-i", "--rm", "-v", "/home/gsb:/home/gsb", "-w", "/home/gsb", "mcp/git"]
-    },
+
     "filesystem": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/home/gsb"]
