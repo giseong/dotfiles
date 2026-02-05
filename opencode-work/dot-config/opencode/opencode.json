@@ -4,6 +4,10 @@
     "oh-my-opencode@latest"
   ],
   "mcp": {
+    "atlassian": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
     "sequential-thinking": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
@@ -12,7 +16,6 @@
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
     },
-
     "filesystem": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/home/gsb"]
