@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "hephaestus": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "medium"
     },
     "oracle": {
@@ -19,22 +19,22 @@
       "model": "google/gemini-3-flash"
     },
     "prometheus": {
-      "model": "anthropic/claude-opus-4-5",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "max"
     },
     "metis": {
-      "model": "anthropic/claude-opus-4-5",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "max"
     },
     "momus": {
-      "model": "anthropic/claude-opus-4-5",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "max"
     },
     "atlas": {
       "model": "anthropic/claude-sonnet-4-5"
     },
     "sisyphus": {
-      "model": "anthropic/claude-opus-4-5",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "max"
     }
   },
@@ -47,7 +47,7 @@
       "variant": "high"
     },
     "deep": {
-      "model": "openai/gpt-5.2-codex",
+      "model": "anthropic/claude-opus-4-6",
       "variant": "medium"
     },
     "quick": {
