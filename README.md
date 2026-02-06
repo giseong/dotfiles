@@ -1,81 +1,74 @@
 # Dotfiles
 
-Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/). Supports macOS (Apple Silicon) and Arch Linux (CachyOS).
+Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Supported platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
 
 ## Quick Start
 
 ```bash
-# Clone the repository
 git clone https://github.com/<username>/dotfiles.git ~/.dotfiles
-
-# Run the install script
 cd ~/.dotfiles
 ./install.sh
 ```
 
-The install script will:
-- Detect your OS (macOS or Arch Linux only)
-- Install required packages via Homebrew or pacman/yay
-- Apply dotfiles using stow
-- Set zsh as the default shell
-- Optionally install development tools (pyenv, nvm)
+`install.sh` will:
+- Detect OS (macOS or Arch-based Linux)
+- Install core packages (Homebrew or pacman/AUR)
+- Attempt OpenCode installation
+- Apply stow packages
+- Prompt for Git and OpenCode profile package selection
+- Set `zsh` as the default shell
+- Optionally install `pyenv` and `nvm`
 
-## Manual Installation
+## Manual Stow Usage
 
 ```bash
-# Install a single package
+# apply one package
 stow <package>
 
-# Remove a package
+# remove one package
 stow -D <package>
 ```
 
-The `.stowrc` file enables `--dotfiles` mode, which converts `dot-` prefixes to `.` when creating symlinks.
+`.stowrc` enables `--dotfiles`, so files named `dot-*` are linked as `.*`.
 
-OS-specific Ghostty packages:
-- macOS: `stow ghostty-macos`
-- Arch Linux: `stow ghostty-linux`
-
-Git profile selection:
-- Work email: `stow git-work`
-- Personal email: `stow git-personal`
-- These packages populate `~/.gitconfig-local`
-
-OpenCode profile selection:
-- Work: `stow opencode-work`
-- Personal: `stow opencode-personal`
-- These packages populate `~/.config/opencode/`
+Common profile-specific packages:
+- Ghostty: `ghostty-macos` or `ghostty-linux`
+- Git profile: `git-work` or `git-personal` (writes `~/.gitconfig-local`)
+- OpenCode profile: `opencode-work` or `opencode-personal` (writes `~/.config/opencode/`)
 
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `zsh` | Zsh config with Zinit, Oh-my-Posh prompt |
-| `tmux` | Tmux with TPM, Catppuccin theme, Ctrl-A prefix |
-| `nvim` | LazyVim-based Neovim setup |
-| `git` | Git config with delta pager, aliases |
-| `ghostty-macos` | Ghostty terminal config (macOS) |
-| `ghostty-linux` | Ghostty terminal config (Linux) |
-| `wezterm` | WezTerm terminal config (Lua) |
-| `opencode-personal` | OpenCode config (personal) |
-| `opencode-work` | OpenCode config (work) |
-| `bin` | Custom scripts |
+| `zsh` | Zsh config (Zinit, aliases, OS-specific setup) |
+| `tmux` | Tmux config and plugins |
+| `nvim` | LazyVim-based Neovim config |
+| `git` | Shared Git config |
+| `git-work` | Work Git identity/profile overlay |
+| `git-personal` | Personal Git identity/profile overlay |
+| `ghostty-macos` | Ghostty config for macOS |
+| `ghostty-linux` | Ghostty config for Linux |
+| `wezterm` | WezTerm config |
+| `opencode-work` | Work OpenCode profile |
+| `opencode-personal` | Personal OpenCode profile |
 | `fabric` | Fabric AI patterns |
 | `editorconfig` | Cross-editor formatting rules |
+| `bin` | User scripts (`~/.local/bin`) |
 
-## Requirements
+## Installed by `install.sh`
 
-Installed automatically by `install.sh`:
+Core packages:
+- `git`, `stow`, `zsh`, `tmux`, `neovim`
+- `fzf`, `zoxide`, `eza`, `bat`, `thefuck`
+- `delta`/`git-delta`, `oh-my-posh`, `zinit`
 
-- git, stow, zsh, tmux, neovim
-- fzf, zoxide, eza, bat, thefuck
-- oh-my-posh, zinit
-- opencode
+Additional behavior:
+- Installs `opencode` when available
+- Offers optional `oh-my-opencode` installer when OpenCode config exists
 
 ## Theme
 
-Catppuccin is used across all tools:
-- **Dark mode**: Catppuccin Mocha
-- **Light mode**: Catppuccin Latte
-
-Theme follows system appearance automatically.
+Catppuccin is used across tools:
+- Dark: Mocha
+- Light: Latte
