@@ -10,10 +10,10 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.2"
     },
     "explore": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.2"
     },
     "multimodal-looker": {
       "model": "openai/gpt-5.2"
@@ -40,7 +40,7 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.2"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.3-codex",
@@ -51,7 +51,7 @@
       "variant": "medium"
     },
     "quick": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.2"
     },
     "unspecified-low": {
       "model": "openai/gpt-5.3-codex",
