@@ -9,10 +9,13 @@ adding new top-level folders.
 
 ## Quick Facts
 
-- Stow packages live at the repo root (e.g., `zsh/`, `tmux/`, `nvim/`).
+- Stow packages live at the repo root (e.g., `zsh/`, `tmux/`, `nvim/`, `ghostty-macos/`).
 - Files named `dot-*` map to `.*` when stowed (configured by `.stowrc`).
 - Theme: Catppuccin (Mocha dark, Latte light) across tools.
 - Neovim is LazyVim-based and uses `lazy.nvim`.
+- Profile-specific packages exist for Git and OpenCode:
+  - Git: `git-work`, `git-personal` (populate `~/.gitconfig-local`)
+  - OpenCode: `opencode-work`, `opencode-personal` (populate `~/.config/opencode/`)
 
 ## Commands (Build / Lint / Test)
 
@@ -28,6 +31,10 @@ Use these operational commands instead:
   - Example: `stow zsh`
 - Remove a package:
   - `stow -D <package>`
+- Apply OS/profile-specific packages when needed:
+  - `stow ghostty-macos` or `stow ghostty-linux`
+  - `stow git-work` or `stow git-personal`
+  - `stow opencode-work` or `stow opencode-personal`
 
 Optional maintenance scripts:
 
