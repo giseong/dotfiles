@@ -117,7 +117,3 @@ setopt hist_find_no_dups   # Do not display a line previously found
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-export NODE_USE_SYSTEM_CA=1
-
-# opencode
-export PATH=/home/gsb/.opencode/bin:$PATH

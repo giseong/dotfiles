@@ -50,10 +50,15 @@ export GOPATH="$HOME/go"
 # 4. PATH CONFIGURATION
 # ---------------------------------------------------------------------
 # Consolidate all binary paths
-export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$GOPATH/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH:/usr/local/sbin"
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.opencode/bin:$GOPATH/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH:/usr/local/sbin"
 
 # ---------------------------------------------------------------------
-# 5. REMOTE SESSION COMPATIBILITY
+# 5. MISC
+# ---------------------------------------------------------------------
+export NODE_USE_SYSTEM_CA=1
+
+# ---------------------------------------------------------------------
+# 6. REMOTE SESSION COMPATIBILITY
 # ---------------------------------------------------------------------
 # Force load .zshrc for non-interactive login shells (e.g., Termius SSH)
 if [[ -n "$SSH_CONNECTION" || -n "$SSH_CLIENT" ]]; then
