@@ -50,7 +50,7 @@ export GOPATH="$HOME/go"
 # 4. PATH CONFIGURATION
 # ---------------------------------------------------------------------
 # Consolidate all binary paths
-export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.opencode/bin:$GOPATH/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH:/usr/local/sbin"
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$GOPATH/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH:/usr/local/sbin"
 
 # ---------------------------------------------------------------------
 # 5. MISC
