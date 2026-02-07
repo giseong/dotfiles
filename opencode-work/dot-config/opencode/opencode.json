@@ -18,7 +18,7 @@
     },
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/home/gsb"]
+      "command": ["sh", "-c", "npx -y @modelcontextprotocol/server-filesystem $HOME"]
     }
   }
 }

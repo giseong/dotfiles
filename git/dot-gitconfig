@@ -20,7 +20,7 @@
 [delta]
 	features = side-by-side
 	navigate = true
-	syntax-theme = Catppuccin-mocha
+	syntax-theme = Catppuccin Mocha
 	line-numbers = true
 
 [merge]
