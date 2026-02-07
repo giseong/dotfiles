@@ -107,8 +107,8 @@ install_opencode() {
     case "$OS" in
         macos)
             if command -v brew &>/dev/null; then
-                log_info "Installing OpenCode via Homebrew..."
-                brew install opencode || log_warn "OpenCode install failed (Homebrew formula not found?)"
+                log_info "Installing OpenCode via Homebrew (anomalyco tap)..."
+                brew install anomalyco/tap/opencode || log_warn "OpenCode install failed (Homebrew formula not found?)"
             else
                 log_warn "Homebrew not found, skipping OpenCode"
             fi
