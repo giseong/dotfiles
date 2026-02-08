@@ -54,6 +54,12 @@ COMMON_PACKAGES=(
     eza
     bat
     thefuck
+    fd
+    ripgrep
+    git-lfs
+    htop
+    wget
+    tree
 )
 
 install_packages_macos() {
@@ -65,9 +71,16 @@ install_packages_macos() {
     fi
     log_success "Homebrew is installed"
 
-    log_info "Installing packages via Homebrew..."
+    log_info "Installing formulae via Homebrew..."
     # Note: git-delta is named 'delta' in Homebrew
-    brew install git stow zsh tmux neovim fzf zoxide eza bat thefuck delta oh-my-posh zinit
+    brew install git stow zsh tmux neovim fzf zoxide eza bat thefuck delta \
+        oh-my-posh zinit fd ripgrep gh git-lfs lazygit htop wget tree tlrc \
+        mas gnu-sed editorconfig
+
+    log_info "Installing cask apps via Homebrew..."
+    brew install --cask ghostty font-jetbrains-mono-nerd-font \
+        font-noto-sans-cjk-kr font-noto-serif-cjk-kr \
+        visual-studio-code 1password google-chrome alfred alt-tab obsidian
 }
 
 install_packages_arch() {
@@ -92,7 +105,7 @@ install_packages_arch() {
     fi
 
     log_info "Installing AUR packages with $AUR_HELPER..."
-    $AUR_HELPER -S --needed --noconfirm oh-my-posh-bin zinit
+    $AUR_HELPER -S --needed --noconfirm oh-my-posh-bin zinit lazygit
 }
 
 # =============================================================================
@@ -296,7 +309,36 @@ set_zsh_default() {
 }
 
 # =============================================================================
-# Optional: Development Tools
+# Optional: macOS Applications (Tier 3)
+# =============================================================================
+install_optional_packages() {
+    echo
+    echo "Optional package groups:"
+
+    read -p "  Install dev tools (go, rust, node, yarn, pyenv, rbenv)? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        log_info "Installing dev tools..."
+        brew install go rust node yarn pyenv rbenv
+    fi
+
+    read -p "  Install work apps (Slack, Docker, MS Office, MS Teams)? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        log_info "Installing work apps..."
+        brew install --cask slack docker-desktop microsoft-office microsoft-teams
+    fi
+
+    read -p "  Install media & design apps (IINA, Telegram, Postman, Figma)? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        log_info "Installing media & design apps..."
+        brew install --cask iina telegram postman figma
+    fi
+}
+
+# =============================================================================
+# Optional: Development Tools (Arch Linux — curl-based installers)
 # =============================================================================
 install_dev_tools() {
     read -p "Install development tools (pyenv, nvm)? [y/N] " -n 1 -r
@@ -339,7 +381,11 @@ main() {
     install_zinit
     stow_packages
     set_zsh_default
-    install_dev_tools
+
+    case "$OS" in
+        macos) install_optional_packages ;;
+        arch)  install_dev_tools ;;
+    esac
 
     echo
     log_success "Installation complete!"
