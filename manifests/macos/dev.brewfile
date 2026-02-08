@@ -1,0 +1,9 @@
+tap "homebrew/core"
+
+brew "go"
+brew "rust"
+brew "node"
+brew "yarn"
+brew "pyenv"
+brew "rbenv"
+brew "nvm"

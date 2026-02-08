@@ -1,0 +1,6 @@
+tap "homebrew/cask"
+
+cask "slack"
+cask "docker-desktop"
+cask "microsoft-office"
+cask "microsoft-teams"

@@ -1,0 +1,6 @@
+tap "homebrew/cask"
+
+cask "iina"
+cask "telegram"
+cask "postman"
+cask "figma"

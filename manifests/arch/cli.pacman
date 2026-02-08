@@ -1,0 +1,13 @@
+git-lfs
+lazygit
+htop
+wget
+tree
+jq
+yq
+direnv
+shellcheck
+shfmt
+coreutils
+gnupg
+pinentry

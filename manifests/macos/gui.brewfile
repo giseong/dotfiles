@@ -1,0 +1,14 @@
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+# Default macOS GUI apps and fonts
+cask "ghostty"
+cask "visual-studio-code"
+cask "1password"
+cask "google-chrome"
+cask "alfred"
+cask "alt-tab"
+cask "obsidian"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-noto-sans-cjk-kr"
+cask "font-noto-serif-cjk-kr"
