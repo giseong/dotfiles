@@ -42,26 +42,6 @@ detect_os() {
 # =============================================================================
 # Package Installation
 # =============================================================================
-COMMON_PACKAGES=(
-    git
-    git-delta
-    stow
-    zsh
-    tmux
-    neovim
-    fzf
-    zoxide
-    eza
-    bat
-    thefuck
-    fd
-    ripgrep
-    git-lfs
-    htop
-    wget
-    tree
-)
-
 install_packages_macos() {
     # Install Homebrew if not present
     if ! command -v brew &>/dev/null; then
@@ -71,26 +51,53 @@ install_packages_macos() {
     fi
     log_success "Homebrew is installed"
 
-    log_info "Installing formulae via Homebrew..."
-    # Note: git-delta is named 'delta' in Homebrew
-    brew install git stow zsh tmux neovim fzf zoxide eza bat thefuck delta \
-        oh-my-posh zinit fd ripgrep gh git-lfs lazygit htop wget tree tlrc \
-        mas gnu-sed editorconfig
-
-    log_info "Installing cask apps via Homebrew..."
-    brew install --cask ghostty font-jetbrains-mono-nerd-font \
-        font-noto-sans-cjk-kr font-noto-serif-cjk-kr \
-        visual-studio-code 1password google-chrome alfred alt-tab obsidian
+    install_brewfile "$DOTFILES_DIR/manifests/macos/core.brewfile" "core packages"
 }
 
-install_packages_arch() {
-    log_info "Updating system..."
-    sudo pacman -Syu --noconfirm
+install_brewfile() {
+    local brewfile="$1"
+    local label="$2"
 
-    log_info "Installing packages via pacman..."
-    sudo pacman -S --needed --noconfirm "${COMMON_PACKAGES[@]}"
+    if [[ ! -f "$brewfile" ]]; then
+        log_warn "Missing Brewfile: $brewfile"
+        return 1
+    fi
 
-    # Install AUR packages via paru or yay
+    log_info "Installing $label via brew bundle..."
+    brew bundle --file="$brewfile"
+}
+
+install_pacman_manifest() {
+    local manifest="$1"
+    local label="$2"
+    local packages=()
+    local line=""
+
+    if [[ ! -f "$manifest" ]]; then
+        log_warn "Missing package manifest: $manifest"
+        return 1
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        [[ -z "$line" ]] && continue
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+        packages+=("$line")
+    done < "$manifest"
+
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        log_info "No packages in $label manifest"
+        return 0
+    fi
+
+    log_info "Installing $label via pacman..."
+    sudo pacman -S --needed --noconfirm "${packages[@]}"
+}
+
+ensure_aur_helper() {
+    if [[ -n "${AUR_HELPER:-}" ]]; then
+        return
+    fi
+
     if command -v paru &>/dev/null; then
         AUR_HELPER="paru"
     elif command -v yay &>/dev/null; then
@@ -103,9 +110,41 @@ install_packages_arch() {
         rm -rf /tmp/paru
         AUR_HELPER="paru"
     fi
+}
 
-    log_info "Installing AUR packages with $AUR_HELPER..."
-    $AUR_HELPER -S --needed --noconfirm oh-my-posh-bin zinit lazygit
+install_aur_manifest() {
+    local manifest="$1"
+    local label="$2"
+    local packages=()
+    local line=""
+
+    if [[ ! -f "$manifest" ]]; then
+        log_warn "Missing package manifest: $manifest"
+        return 1
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        [[ -z "$line" ]] && continue
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+        packages+=("$line")
+    done < "$manifest"
+
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        log_info "No packages in $label manifest"
+        return 0
+    fi
+
+    ensure_aur_helper
+    log_info "Installing $label via $AUR_HELPER..."
+    "$AUR_HELPER" -S --needed --noconfirm "${packages[@]}"
+}
+
+install_packages_arch() {
+    log_info "Updating system..."
+    sudo pacman -Syu --noconfirm
+
+    install_pacman_manifest "$DOTFILES_DIR/manifests/arch/core.pacman" "core packages"
+    install_aur_manifest "$DOTFILES_DIR/manifests/arch/core.aur" "core AUR packages"
 }
 
 # =============================================================================
@@ -192,7 +231,7 @@ stow_packages() {
     cd "$DOTFILES_DIR"
 
     # List of packages to stow
-    local packages=(zsh tmux nvim git wezterm editorconfig bin fabric)
+    local packages=(zsh tmux nvim git editorconfig bin fabric)
     if [[ "$OS" == "macos" ]]; then
         packages+=(ghostty-macos)
     elif [[ "$OS" == "arch" ]]; then
@@ -309,54 +348,84 @@ set_zsh_default() {
 }
 
 # =============================================================================
-# Optional: macOS Applications (Tier 3)
+# Optional: macOS Package Groups
 # =============================================================================
 install_optional_packages() {
     echo
     echo "Optional package groups:"
 
-    read -p "  Install dev tools (go, rust, node, yarn, pyenv, rbenv)? [y/N] " -n 1 -r
+    read -p "  Install CLI extras group? [y/N] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Installing dev tools..."
-        brew install go rust node yarn pyenv rbenv
+        install_brewfile "$DOTFILES_DIR/manifests/macos/cli.brewfile" "CLI extras"
     fi
 
-    read -p "  Install work apps (Slack, Docker, MS Office, MS Teams)? [y/N] " -n 1 -r
+    read -p "  Install default GUI apps group? [y/N] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Installing work apps..."
-        brew install --cask slack docker-desktop microsoft-office microsoft-teams
+        install_brewfile "$DOTFILES_DIR/manifests/macos/gui.brewfile" "default GUI apps"
     fi
 
-    read -p "  Install media & design apps (IINA, Telegram, Postman, Figma)? [y/N] " -n 1 -r
+    read -p "  Install dev tools group? [y/N] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Installing media & design apps..."
-        brew install --cask iina telegram postman figma
+        install_brewfile "$DOTFILES_DIR/manifests/macos/dev.brewfile" "dev tools"
     fi
+
+    read -p "  Install work apps group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_brewfile "$DOTFILES_DIR/manifests/macos/work.brewfile" "work apps"
+    fi
+
+    read -p "  Install media and design apps group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_brewfile "$DOTFILES_DIR/manifests/macos/media.brewfile" "media and design apps"
+    fi
+
 }
 
 # =============================================================================
-# Optional: Development Tools (Arch Linux — curl-based installers)
+# Optional: Arch Linux Package Groups
 # =============================================================================
-install_dev_tools() {
-    read -p "Install development tools (pyenv, nvm)? [y/N] " -n 1 -r
+install_optional_packages_arch() {
+    echo
+    echo "Optional package groups:"
+
+    read -p "  Install CLI extras group? [y/N] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # pyenv
-        if [[ ! -d "$HOME/.pyenv" ]]; then
-            log_info "Installing pyenv..."
-            curl https://pyenv.run | bash
-        fi
+        install_pacman_manifest "$DOTFILES_DIR/manifests/arch/cli.pacman" "CLI extras"
+        install_aur_manifest "$DOTFILES_DIR/manifests/arch/cli.aur" "CLI extras AUR packages"
+    fi
 
-        # nvm
-        if [[ ! -d "$HOME/.nvm" ]]; then
-            log_info "Installing nvm..."
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-        fi
+    read -p "  Install default GUI apps group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_pacman_manifest "$DOTFILES_DIR/manifests/arch/gui.pacman" "default GUI apps"
+        install_aur_manifest "$DOTFILES_DIR/manifests/arch/gui.aur" "default GUI AUR packages"
+    fi
 
-        log_success "Development tools installed"
+    read -p "  Install dev tools group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_pacman_manifest "$DOTFILES_DIR/manifests/arch/dev.pacman" "dev tools"
+        install_aur_manifest "$DOTFILES_DIR/manifests/arch/dev.aur" "dev tools AUR packages"
+    fi
+
+    read -p "  Install work apps group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_pacman_manifest "$DOTFILES_DIR/manifests/arch/work.pacman" "work apps"
+        install_aur_manifest "$DOTFILES_DIR/manifests/arch/work.aur" "work apps AUR packages"
+    fi
+
+    read -p "  Install media and design apps group? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        install_pacman_manifest "$DOTFILES_DIR/manifests/arch/media.pacman" "media and design apps"
+        install_aur_manifest "$DOTFILES_DIR/manifests/arch/media.aur" "media and design AUR packages"
     fi
 }
 
@@ -384,7 +453,7 @@ main() {
 
     case "$OS" in
         macos) install_optional_packages ;;
-        arch)  install_dev_tools ;;
+        arch)  install_optional_packages_arch ;;
     esac
 
     echo
