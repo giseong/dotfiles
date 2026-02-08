@@ -26,7 +26,7 @@ export LC_ALL=en_US.UTF-8
 # ---------------------------------------------------------------------
 # 3. PACKAGE MANAGER & RUNTIME INITIALIZATION
 # ---------------------------------------------------------------------
-if [[ "$IS_MAC" == true && -x /opt/homebrew/bin/brew ]]; then
+if [[ -o login && "$IS_MAC" == true && -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -37,7 +37,9 @@ if [[ -d "$HOME/.pyenv" ]]; then
     *) export PATH="$PYENV_ROOT/bin:$PATH" ;;
   esac
   [[ ! -o interactive ]] && export PYENV_DISABLE_AUTOREHASH=1
-  command -v pyenv &>/dev/null && eval "$(pyenv init --path)"
+  if [[ -o login ]] && command -v pyenv &>/dev/null; then
+    eval "$(pyenv init --path)"
+  fi
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -54,12 +56,13 @@ export GOPATH="$HOME/go"
 # 4. PATH CONFIGURATION
 # ---------------------------------------------------------------------
 for path_entry in \
-  "$HOME/.local/bin" \
-  "$HOME/.npm-global/bin" \
-  "$GOPATH/bin" \
+  "/usr/local/sbin" \
   "$ANDROID_SDK_ROOT/platform-tools" \
-  "/usr/local/sbin"
+  "$GOPATH/bin" \
+  "$HOME/.npm-global/bin" \
+  "$HOME/.local/bin"
 do
+  [[ -d "$path_entry" ]] || continue
   case ":$PATH:" in
     *":$path_entry:"*) ;;
     *) export PATH="$path_entry:$PATH" ;;

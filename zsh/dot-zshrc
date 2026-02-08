@@ -1,12 +1,12 @@
+# .zshrc is intended for interactive shells; exit fast otherwise.
+[[ -o interactive ]] || return 0
+
 # ---------------------------------------------------------------------
 # 0. SHARED ENVIRONMENT
 # ---------------------------------------------------------------------
 if [[ -f "$HOME/.config/zsh/env.shared.zsh" ]]; then
   source "$HOME/.config/zsh/env.shared.zsh"
 fi
-
-# .zshrc is intended for interactive shells; exit fast otherwise.
-[[ -o interactive ]] || return 0
 HAS_TTY=false
 [[ -t 0 && -t 1 ]] && HAS_TTY=true
 # Required for prompt command substitution used by OMZ vi-mode and prompt engines.
@@ -63,6 +63,10 @@ fi
 # ---------------------------------------------------------------------
 if [[ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
   source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+elif [[ -f "/opt/homebrew/opt/zinit/zinit.zsh" ]]; then
+  source "/opt/homebrew/opt/zinit/zinit.zsh"
+elif [[ -f "/usr/local/opt/zinit/zinit.zsh" ]]; then
+  source "/usr/local/opt/zinit/zinit.zsh"
 elif command -v brew &>/dev/null && [[ -f "$(brew --prefix zinit 2>/dev/null)/zinit.zsh" ]]; then
   source "$(brew --prefix zinit)/zinit.zsh"
 fi
@@ -124,7 +128,13 @@ if command -v oh-my-posh &>/dev/null; then
   fi
 fi
 
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
+if [[ -s "$NVM_DIR/nvm.sh" ]] && ! command -v nvm &>/dev/null; then
+  nvm() {
+    unset -f nvm
+    source "$NVM_DIR/nvm.sh" --no-use
+    nvm "$@"
+  }
+fi
 
 # ---------------------------------------------------------------------
 # 5. ALIASES & KEYBINDINGS
