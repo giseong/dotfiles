@@ -1,66 +1,11 @@
 # ---------------------------------------------------------------------
-# 1. OS & PLATFORM DETECTION
+# 1. SHARED ENVIRONMENT
 # ---------------------------------------------------------------------
-# Identify Operating System
-export OS_TYPE=$(uname -s)
-[[ "$OS_TYPE" == "Darwin" ]] && IS_MAC=true || IS_MAC=false
-
-# Ensure SHELL variable is set to zsh
-[[ -z "$SHELL" ]] && export SHELL=$(which zsh)
-
-# ---------------------------------------------------------------------
-# 2. LOCALE & LANGUAGE SETTINGS
-# ---------------------------------------------------------------------
-# Standardization for cross-platform compatibility
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# ---------------------------------------------------------------------
-# 3. PACKAGE MANAGER & RUNTIME INITIALIZATION
-# ---------------------------------------------------------------------
-# Homebrew initialization (macOS Apple Silicon)
-if [[ "$IS_MAC" == true && -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -f "$HOME/.config/zsh/env.shared.zsh" ]]; then
+  source "$HOME/.config/zsh/env.shared.zsh"
 fi
 
-# Pyenv setup
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    # Avoid noisy rehash warnings in restricted non-interactive environments.
-    [[ ! -o interactive ]] && export PYENV_DISABLE_AUTOREHASH=1
-    command -v pyenv &>/dev/null && eval "$(pyenv init --path)"
-fi
-
-# NVM (Node Version Manager) directory
-export NVM_DIR="$HOME/.nvm"
-
-# Android SDK & Java configuration
-if [[ "$IS_MAC" == true ]]; then
-    export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-else
-    export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-fi
-
-# Go environment
-export GOPATH="$HOME/go"
-
 # ---------------------------------------------------------------------
-# 4. PATH CONFIGURATION
+# 2. LOGIN-SHELL ONLY SETTINGS
 # ---------------------------------------------------------------------
-# Consolidate all binary paths
-export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$GOPATH/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH:/usr/local/sbin"
-
-# ---------------------------------------------------------------------
-# 5. MISC
-# ---------------------------------------------------------------------
-export NODE_USE_SYSTEM_CA=1
-
-# ---------------------------------------------------------------------
-# 6. REMOTE SESSION COMPATIBILITY
-# ---------------------------------------------------------------------
-# Force load .zshrc for non-interactive login shells (e.g., Termius SSH)
-if [[ -n "$SSH_CONNECTION" || -n "$SSH_CLIENT" ]]; then
-    [[ -f ~/.zshrc ]] && source ~/.zshrc
-fi
+# Add login-specific settings here when needed.

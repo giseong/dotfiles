@@ -1,34 +1,46 @@
 # ---------------------------------------------------------------------
+# 0. SHARED ENVIRONMENT
+# ---------------------------------------------------------------------
+if [[ -f "$HOME/.config/zsh/env.shared.zsh" ]]; then
+  source "$HOME/.config/zsh/env.shared.zsh"
+fi
+
+# .zshrc is intended for interactive shells; exit fast otherwise.
+[[ -o interactive ]] || return 0
+HAS_TTY=false
+[[ -t 0 && -t 1 ]] && HAS_TTY=true
+
+# ---------------------------------------------------------------------
 # 1. SYSTEM APPEARANCE DETECTION
 # ---------------------------------------------------------------------
 # Detect Dark/Light mode for macOS and Linux (KDE Plasma 6)
 function get_system_appearance() {
-    # 1. macOS Detection
-    if [[ "$IS_MAC" == true ]]; then
-        [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
-        return
-    fi
+  # 1. macOS Detection
+  if [[ "$IS_MAC" == true ]]; then
+    [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
+    return
+  fi
 
-    # 2. Linux (KDE/CachyOS) Detection
-    local KDE_CONFIG="$HOME/.config/kdeglobals"
+  # 2. Linux (KDE/CachyOS) Detection
+  local KDE_CONFIG="$HOME/.config/kdeglobals"
 
-    # Look for "dark" (case-insensitive) in ColorScheme or LookAndFeelPackage
-    if [[ -f "$KDE_CONFIG" ]] && grep -iq "dark" "$KDE_CONFIG"; then
-        echo "dark"
-    else
-        # Default to dark for CachyOS since it's the standard
-        echo "dark"
-    fi
+  # Look for "dark" (case-insensitive) in ColorScheme or LookAndFeelPackage
+  if [[ -f "$KDE_CONFIG" ]] && grep -iq "dark" "$KDE_CONFIG"; then
+    echo "dark"
+  else
+    # Default to dark for CachyOS since it's the standard
+    echo "dark"
+  fi
 }
 export SYSTEM_APPEARANCE=$(get_system_appearance)
 
 # Tool-specific theme mapping (Catppuccin)
 if [[ "$SYSTEM_APPEARANCE" == "light" ]]; then
-    export BAT_THEME="Catppuccin Latte"
-    export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
+  export BAT_THEME="Catppuccin Latte"
+  export FZF_DEFAULT_OPTS="--color=bg+:#e6e9ef,bg:#eff1f5,spinner:#d20f39,hl:#ea76cb --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#d20f39 --color=marker:#fe640b,fg+:#4c4f69,prompt:#8839ef,hl+:#ea76cb --color=selected-bg:#dce0e8 --multi"
 else
-    export BAT_THEME="Catppuccin Mocha"
-    export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --multi"
+  export BAT_THEME="Catppuccin Mocha"
+  export FZF_DEFAULT_OPTS="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a --multi"
 fi
 
 # ---------------------------------------------------------------------
@@ -41,47 +53,59 @@ export ZSH_TMUX_AUTOSTART_ONCE=true
 
 # Enable only for SSH sessions
 if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
-    export ZSH_TMUX_AUTOSTART=true
+  export ZSH_TMUX_AUTOSTART=true
 fi
 
 # ---------------------------------------------------------------------
 # 3. PLUGIN MANAGEMENT (Zinit) - Multi-OS Path Support
 # ---------------------------------------------------------------------
-if [ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]; then
-    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-elif [ "$IS_MAC" = true ] && command -v brew &>/dev/null; then
-    source "$(brew --prefix zinit)/zinit.zsh"
+if [[ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
+  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+elif command -v brew &>/dev/null && [[ -f "$(brew --prefix zinit 2>/dev/null)/zinit.zsh" ]]; then
+  source "$(brew --prefix zinit)/zinit.zsh"
 fi
 
-# Load tmux plugin first to ensure autostart triggers correctly
-zinit light daiaji/zsh-tmux-plugin
+if command -v zinit &>/dev/null; then
+  # Load tmux plugin first to ensure autostart triggers correctly
+  zinit light daiaji/zsh-tmux-plugin
 
-# Load other core plugins in light-mode
-zinit light-mode for \
+  # Load core plugins
+  zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zsh-users/zsh-syntax-highlighting \
     zsh-users/zsh-history-substring-search \
     zsh-users/zsh-completions \
-    zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab
+    zsh-users/zsh-autosuggestions
 
-# Load Oh My Zsh snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::vi-mode
-zinit snippet OMZP::fzf
-zinit snippet OMZP::zoxide
-zinit snippet OMZP::eza
-zinit snippet OMZP::thefuck
+  # fzf-tab registers ZLE widgets; skip it in non-TTY scripted shells.
+  [[ "$HAS_TTY" == true ]] && zinit light Aloxaf/fzf-tab
+
+  # Load Oh My Zsh snippets
+  zinit snippet OMZP::git
+  zinit snippet OMZP::vi-mode
+  [[ "$HAS_TTY" == true ]] && zinit snippet OMZP::fzf
+  zinit snippet OMZP::zoxide
+  zinit snippet OMZP::eza
+  zinit snippet OMZP::thefuck
+fi
 
 # ---------------------------------------------------------------------
 # 4. PROMPT & EXTERNAL TOOLS
 # ---------------------------------------------------------------------
 if command -v oh-my-posh &>/dev/null; then
-    [[ "$IS_MAC" == true ]] && THEME_DIR="$(brew --prefix oh-my-posh)/themes" || THEME_DIR="/usr/share/oh-my-posh/themes"
-    POSH_THEME="$THEME_DIR/catppuccin_mocha.omp.json"
-    [[ "$SYSTEM_APPEARANCE" == "light" ]] && POSH_THEME="$THEME_DIR/catppuccin_latte.omp.json"
-    eval "$(oh-my-posh init zsh --config $POSH_THEME)"
+  if [[ "$IS_MAC" == true ]] && command -v brew &>/dev/null; then
+    THEME_DIR="$(brew --prefix oh-my-posh)/themes"
+  else
+    THEME_DIR="/usr/share/oh-my-posh/themes"
+  fi
+
+  POSH_THEME="$THEME_DIR/catppuccin_mocha.omp.json"
+  [[ "$SYSTEM_APPEARANCE" == "light" ]] && POSH_THEME="$THEME_DIR/catppuccin_latte.omp.json"
+
+  if [[ -f "$POSH_THEME" ]]; then
+    eval "$(oh-my-posh init zsh --config "$POSH_THEME")"
+  fi
 fi
 
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
@@ -95,8 +119,10 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+if [[ "$HAS_TTY" == true ]]; then
+  [[ -n "${terminfo[kcuu1]:-}" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
+  [[ -n "${terminfo[kcud1]:-}" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
+fi
 
 # ---------------------------------------------------------------------
 # 6. HISTORY & COMPLETION SETTINGS
@@ -106,14 +132,15 @@ HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 
 # History Options
-setopt appendhistory       # Append to history file instead of overwriting
-setopt sharehistory        # Share history between different sessions
-setopt hist_ignore_space   # Do not record lines starting with a space
+setopt appendhistory        # Append to history file instead of overwriting
+setopt sharehistory         # Share history between different sessions
+setopt hist_ignore_space    # Do not record lines starting with a space
 setopt hist_ignore_all_dups # Delete old duplicate when a new one is typed
-setopt hist_save_no_dups   # Do not write duplicate entries to history file
-setopt hist_find_no_dups   # Do not display a line previously found
+setopt hist_save_no_dups    # Do not write duplicate entries to history file
+setopt hist_find_no_dups    # Do not display a line previously found
 
 # Initialize completions
 autoload -Uz compinit && compinit
-zinit cdreplay -q
-
+if command -v zinit &>/dev/null; then
+  zinit cdreplay -q
+fi
