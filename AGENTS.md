@@ -1,146 +1,147 @@
 # AGENTS.md
 
-This repository is a personal dotfiles setup managed with GNU Stow.
-It targets macOS (Apple Silicon) and Arch Linux (CachyOS).
+Personal dotfiles managed with GNU Stow.
+Targets macOS (Apple Silicon) and Arch Linux (CachyOS).
 
-If you are an agent working here, keep changes minimal and consistent with
-existing patterns. Prefer editing within existing Stow packages rather than
-adding new top-level folders.
+**Ground rules**: Keep changes minimal. Edit within existing Stow packages.
+Do not add new top-level directories without explicit approval.
 
-## Quick Facts
+## Repository Layout
 
-- Stow packages live at the repo root (e.g., `zsh/`, `tmux/`, `nvim/`, `ghostty-macos/`).
-- Files named `dot-*` map to `.*` when stowed (configured by `.stowrc`).
-- Theme: Catppuccin (Mocha dark, Latte light) across tools.
-- Neovim is LazyVim-based and uses `lazy.nvim`.
-- Profile-specific packages exist for Git and OpenCode:
-  - Git: `git-work`, `git-personal` (populate `~/.gitconfig-local`)
-  - OpenCode: `opencode-work`, `opencode-personal` (populate `~/.config/opencode/`)
+Stow packages live at the repo root. `.stowrc` enables `--dotfiles` so
+files named `dot-*` are symlinked as `.*` under `~/`.
 
-## Commands (Build / Lint / Test)
+| Package | Targets |
+|---------|---------|
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `wezterm`, `fabric` | All platforms |
+| `ghostty-macos`, `ghostty-linux` | OS-specific |
+| `git-work`, `git-personal` | Profile overlay (`~/.gitconfig-local`) |
+| `opencode-work`, `opencode-personal` | Profile overlay (`~/.config/opencode/`) |
 
-This repo does not define a conventional build/test/lint pipeline.
-No `package.json`, `Makefile`, `Taskfile`, or CI configs were found.
+Package directory pattern: `<pkg>/dot-config/<tool>/...` for XDG configs,
+or `<pkg>/dot-<filename>` for home-directory dotfiles.
 
-Use these operational commands instead:
+Theme: **Catppuccin** everywhere (Mocha = dark, Latte = light).
+Neovim: LazyVim-based (`lazy.nvim`). Formatter: `stylua`.
 
-- Install/bootstrap all dotfiles:
-  - `./install.sh`
-- Apply a single Stow package:
-  - `stow <package>`
-  - Example: `stow zsh`
-- Remove a package:
-  - `stow -D <package>`
-- Apply OS/profile-specific packages when needed:
-  - `stow ghostty-macos` or `stow ghostty-linux`
-  - `stow git-work` or `stow git-personal`
-  - `stow opencode-work` or `stow opencode-personal`
+## Commands
 
-Optional maintenance scripts:
+No build/test/lint pipeline. No CI.
 
-- System and tool updates:
-  - `./bin/dot-local/bin/update_packages`
+```bash
+./install.sh                           # Full bootstrap (detects OS, installs pkgs, stows)
+stow <package>                         # Apply one package
+stow -D <package>                      # Remove one package
+./bin/dot-local/bin/update_packages    # Update system + dev tools
+```
+
+Profile-specific stowing:
+```bash
+stow ghostty-macos   # or ghostty-linux
+stow git-work        # or git-personal
+stow opencode-work   # or opencode-personal
+```
 
 ### Running a Single Test
 
-No test runner is configured in this repository.
-If you add tests in the future, document the single-test command here.
+No test runner. Verify changes by:
+1. `stow <modified-package>` — confirm no stow conflicts
+2. Run affected scripts manually and check output
+3. For `install.sh` edits — test in a safe/disposable environment
 
-## Code Style and Conventions
+## Code Style
 
-### EditorConfig (Global Formatting)
+### EditorConfig (`editorconfig/dot-editorconfig`)
 
-File: `editorconfig/dot-editorconfig`
+| Scope | Style | Size |
+|-------|-------|------|
+| Default | Spaces | 4 |
+| Shell (`.sh`, `.bash`, `.zsh`) | Spaces | 2 |
+| Web/JSON/YAML/Lua/Markdown | Spaces | 2 |
+| Python | Spaces | 4 |
+| Go / C / C++ / Makefile / Git config | Tabs | 4 |
 
-- Default: spaces, 4-space indentation
-- Trim trailing whitespace, insert final newline
-- Line endings: LF, charset: UTF-8
-
-Overrides:
-
-- Markdown: 2-space indentation, do not trim trailing whitespace
-- JSON/YAML/JS/TS/HTML/CSS: 2-space indentation
-- Python: 4-space indentation
-- Makefile: tabs
-- C/C++: tabs (tab width 4)
-- Git config: tabs
+All files: LF line endings, UTF-8, trim trailing whitespace, final newline.
+Exception: Markdown does not trim trailing whitespace.
 
 ### Lua (Neovim, WezTerm)
 
-File: `nvim/dot-config/nvim/stylua.toml`
+Config: `nvim/dot-config/nvim/stylua.toml` — 2-space indent, 120 col width.
 
-- Indentation: 2 spaces
-- Max column width: 120
-- Use `stylua` if formatting is needed
+- Use `require("...")` at top of file
+- Follow LazyVim plugin spec conventions in `lua/plugins/*.lua`
+- WezTerm config uses `wezterm.config_builder()` pattern
 
-### Shell Scripts (bash)
+### Shell Scripts (Bash)
 
 Files: `install.sh`, `bin/dot-local/bin/update_packages`
 
-- Use `#!/usr/bin/env bash`
-- Start with `set -euo pipefail`
-- Prefer small helper functions for logging
-- For non-critical commands, guard with `|| true` or explicit logging
-- Keep OS detection explicit and centralized
+- Shebang: `#!/usr/bin/env bash`
+- Always start with `set -euo pipefail`
+- Define colored log helpers: `log_info`, `log_success`, `log_warn`, `log_error`
+- Use `=====` banner comments to separate numbered sections
+- OS detection via `uname -s` with case statement
+- Guard non-critical commands with `|| true` or explicit logging
+- 2-space indentation (per editorconfig)
 
 ### Zsh Configuration
 
 Files: `zsh/dot-zprofile`, `zsh/dot-zshrc`
 
-- Sections are clearly numbered and separated by comment banners
-- Preserve section ordering (system detection, paths, plugins, aliases, etc.)
-- Prefer explicit conditionals for OS-specific behavior
+- Numbered sections separated by `# ---` banner comments
+- `dot-zprofile`: OS detection, PATH, runtime setup (pyenv, nvm, Go, Android)
+- `dot-zshrc`: appearance detection, tmux, Zinit plugins, prompt, aliases, history
+- Preserve section ordering — do not rearrange
+- OS-specific behavior via explicit `[[ "$IS_MAC" == true ]]` conditionals
 
-### Tmux Configuration
+### Tmux Configuration (`tmux/dot-tmux.conf`)
 
-File: `tmux/dot-tmux.conf`
+- Numbered sections with `# =====` banner comments
+- Prefix: `Ctrl-a`, vi mode keys
+- Catppuccin theme loads before status line customization
+- Plugin list (TPM) grouped together at end
 
-- Structured in numbered sections with banner comments
-- Keep plugin list together and near the end
+### Ghostty Configuration
+
+- macOS config has `macos-*` specific options; Linux config does not
+- Shared pattern: term, theme, font, window, cursor, shell-integration
+- Key-value format, no quoting needed except font family
 
 ### Python Scripts
 
 File: `bin/dot-local/bin/extract_wisdom_kr`
 
-- Standard library only (sys, subprocess, re)
-- Use `subprocess.run(..., check=True, capture_output=True, text=True)`
-- Handle exceptions with clear user-facing messages
+- Standard library only (`sys`, `subprocess`, `re`)
+- `subprocess.run(..., shell=True, check=True, capture_output=True, text=True)`
+- Catch `subprocess.CalledProcessError`, print `e.stderr`
+- 4-space indentation (per editorconfig)
 
-### Git Configuration
+### Git Configuration (`git/dot-gitconfig`)
 
-File: `git/dot-gitconfig`
-
-- Uses tabs per `.editorconfig`
-- Avoid reformatting without need
+- Tab indentation (per editorconfig)
+- Uses delta as pager with side-by-side diffs
+- Includes `~/.gitconfig-local` for profile-specific identity
+- Pull default: rebase. Push default: simple.
+- Do not reformat without reason
 
 ## Naming Conventions
 
-- Stow packages: lower-case directory names (e.g., `nvim`, `tmux`)
-- Dotfiles within packages: `dot-*` prefix
-- Scripts: snake_case (e.g., `update_packages`, `extract_wisdom_kr`)
-- Lua modules: use `require("...")` at top when needed
+- Stow package dirs: lowercase (e.g., `nvim`, `tmux`, `ghostty-macos`)
+- Dotfiles inside packages: `dot-*` prefix (stowed as `.*`)
+- Scripts: `snake_case` (e.g., `update_packages`, `extract_wisdom_kr`)
+- Lua modules: `require("...")` imports at top
 
-## Error Handling Guidelines
+## Error Handling
 
-- Bash: fail fast with `set -euo pipefail`, log errors with context
-- Bash: use `|| true` only when failure is acceptable and logged
-- Python: catch `subprocess.CalledProcessError` and print stderr
+- Bash: fail fast via `set -euo pipefail`; use `|| true` only for non-critical ops
+- Python: catch `subprocess.CalledProcessError` and surface stderr
 
-## Imports and Dependencies
+## Dependencies
 
-- Prefer standard library in scripts unless a new dependency is required
-- Avoid adding new dependencies unless clearly necessary
+- Prefer standard library in all scripts
+- Do not add new external dependencies without clear justification
 
-## Notes on External Rules
+## External Rules
 
-- No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` files
-  were found in this repository.
-- If you add such files later, update this document accordingly.
-
-## Suggested Verification
-
-Since there is no test suite, verify changes by:
-
-- Running `./install.sh` in a safe environment when editing install logic
-- Running `stow <package>` for the modified package
-- Running affected scripts manually and checking output
+No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` exist.
+Update this section if any are added.
