@@ -9,6 +9,8 @@ fi
 [[ -o interactive ]] || return 0
 HAS_TTY=false
 [[ -t 0 && -t 1 ]] && HAS_TTY=true
+# Required for prompt command substitution used by OMZ vi-mode and prompt engines.
+setopt promptsubst
 
 # ---------------------------------------------------------------------
 # 1. SYSTEM APPEARANCE DETECTION
@@ -94,16 +96,30 @@ fi
 # 4. PROMPT & EXTERNAL TOOLS
 # ---------------------------------------------------------------------
 if command -v oh-my-posh &>/dev/null; then
-  if [[ "$IS_MAC" == true ]] && command -v brew &>/dev/null; then
-    THEME_DIR="$(brew --prefix oh-my-posh)/themes"
-  else
-    THEME_DIR="/usr/share/oh-my-posh/themes"
+  theme_name="catppuccin_mocha.omp.json"
+  [[ "$SYSTEM_APPEARANCE" == "light" ]] && theme_name="catppuccin_latte.omp.json"
+
+  POSH_THEME=""
+  for candidate_dir in \
+    "${POSH_THEMES_PATH:-}" \
+    "$HOME/.cache/oh-my-posh/themes" \
+    "/opt/homebrew/opt/oh-my-posh/themes" \
+    "/usr/local/opt/oh-my-posh/themes" \
+    "/usr/share/oh-my-posh/themes"
+  do
+    [[ -z "$candidate_dir" ]] && continue
+    if [[ -f "$candidate_dir/$theme_name" ]]; then
+      POSH_THEME="$candidate_dir/$theme_name"
+      break
+    fi
+  done
+
+  if [[ -z "$POSH_THEME" ]] && command -v brew &>/dev/null; then
+    brew_prefix="$(brew --prefix oh-my-posh 2>/dev/null || true)"
+    [[ -n "$brew_prefix" && -f "$brew_prefix/themes/$theme_name" ]] && POSH_THEME="$brew_prefix/themes/$theme_name"
   fi
 
-  POSH_THEME="$THEME_DIR/catppuccin_mocha.omp.json"
-  [[ "$SYSTEM_APPEARANCE" == "light" ]] && POSH_THEME="$THEME_DIR/catppuccin_latte.omp.json"
-
-  if [[ -f "$POSH_THEME" ]]; then
+  if [[ -n "$POSH_THEME" && -f "$POSH_THEME" ]]; then
     eval "$(oh-my-posh init zsh --config "$POSH_THEME")"
   fi
 fi
