@@ -13,12 +13,11 @@ cd ~/.dotfiles
 
 `install.sh` will:
 - Detect OS (macOS or Arch-based Linux)
-- Install core formulae (Homebrew or pacman/AUR)
-- On macOS: install cask apps (Ghostty, fonts, VS Code, 1Password, Chrome, Alfred, Alt-Tab, Obsidian)
+- Install core packages from manifests (`manifests/macos/core.brewfile` on macOS, `manifests/arch/core.*` on Arch)
 - Install OpenCode and optionally oh-my-opencode
 - Apply stow packages and prompt for Git / OpenCode profile selection
 - Set `zsh` as the default shell
-- Prompt for optional package groups (dev tools, work apps, media & design)
+- Prompt for optional package groups on both platforms (CLI, GUI, dev, work, media)
 
 ## Manual Stow Usage
 
@@ -49,7 +48,6 @@ Common profile-specific packages:
 | `git-personal` | Personal Git identity/profile overlay |
 | `ghostty-macos` | Ghostty config for macOS |
 | `ghostty-linux` | Ghostty config for Linux |
-| `wezterm` | WezTerm config |
 | `opencode-work` | Work OpenCode profile |
 | `opencode-personal` | Personal OpenCode profile |
 | `fabric` | Fabric AI patterns |
@@ -58,23 +56,37 @@ Common profile-specific packages:
 
 ## Installed by `install.sh`
 
+macOS (Homebrew manifests):
+
 Core formulae (both platforms):
 - `git`, `git-delta`, `stow`, `zsh`, `tmux`, `neovim`
-- `fzf`, `zoxide`, `eza`, `bat`, `thefuck`
-- `fd`, `ripgrep`, `git-lfs`, `htop`, `wget`, `tree`
+- `fzf`, `zoxide`, `eza`, `bat`, `thefuck`, `gh`
+- `fd`, `ripgrep`
 - `oh-my-posh`, `zinit`
 
-macOS extras (formulae): `gh`, `lazygit`, `tlrc`, `mas`, `gnu-sed`, `editorconfig`
+macOS optional CLI extras (formulae): maintained in `manifests/macos/cli.brewfile`
 
-macOS casks (always):
-- `ghostty`, `visual-studio-code`, `1password`, `google-chrome`
-- `alfred`, `alt-tab`, `obsidian`
-- Fonts: `JetBrainsMono Nerd Font`, `Noto Sans/Serif CJK KR`
+macOS optional bootstrap essentials (formulae): maintained in `manifests/macos/cli.brewfile`
+
+macOS optional default GUI casks:
+- maintained in `manifests/macos/gui.brewfile`
 
 macOS optional groups (prompted):
-- Dev tools: `go`, `rust`, `node`, `yarn`, `pyenv`, `rbenv`
-- Work apps: Slack, Docker Desktop, Microsoft Office, Microsoft Teams
-- Media & design: IINA, Telegram, Postman, Figma
+- Dev tools group (`manifests/macos/dev.brewfile`)
+- Work apps group (`manifests/macos/work.brewfile`)
+- Media and design apps group (`manifests/macos/media.brewfile`)
+
+macOS manifests used by `install.sh`:
+- `manifests/macos/core.brewfile` (always-installed core packages)
+- `manifests/macos/cli.brewfile`, `manifests/macos/gui.brewfile`, `manifests/macos/dev.brewfile`, `manifests/macos/work.brewfile`, `manifests/macos/media.brewfile` (optional prompted groups)
+
+Arch manifests used by `install.sh`:
+- `manifests/arch/core.pacman`, `manifests/arch/core.aur` (always-installed core packages)
+- `manifests/arch/cli.pacman`, `manifests/arch/cli.aur` (optional CLI extras group)
+- `manifests/arch/gui.pacman`, `manifests/arch/gui.aur` (optional default GUI apps group)
+- `manifests/arch/dev.pacman`, `manifests/arch/dev.aur` (optional dev tools group)
+- `manifests/arch/work.pacman`, `manifests/arch/work.aur` (optional work apps group)
+- `manifests/arch/media.pacman`, `manifests/arch/media.aur` (optional media and design apps group)
 
 Additional behavior:
 - Installs `opencode` when available
