@@ -1,11 +1,11 @@
 # ---------------------------------------------------------------------
 # SHARED ENVIRONMENT (Login + Non-login Interactive)
 # ---------------------------------------------------------------------
-# Guard against double-loading in login shells (.zprofile + .zshrc)
-if [[ -n "${DOTFILES_ENV_SHARED_LOADED:-}" ]]; then
+# Guard against double-loading in the same shell process (.zprofile + .zshrc)
+if [[ "${DOTFILES_ENV_SHARED_LOADED_PID:-}" == "$$" ]]; then
   return
 fi
-export DOTFILES_ENV_SHARED_LOADED=1
+typeset -g DOTFILES_ENV_SHARED_LOADED_PID="$$"
 
 # ---------------------------------------------------------------------
 # 1. OS & PLATFORM DETECTION
