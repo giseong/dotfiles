@@ -13,12 +13,12 @@ cd ~/.dotfiles
 
 `install.sh` will:
 - Detect OS (macOS or Arch-based Linux)
-- Install core packages (Homebrew or pacman/AUR)
-- Attempt OpenCode installation
-- Apply stow packages
-- Prompt for Git and OpenCode profile package selection
+- Install core formulae (Homebrew or pacman/AUR)
+- On macOS: install cask apps (Ghostty, fonts, VS Code, 1Password, Chrome, Alfred, Alt-Tab, Obsidian)
+- Install OpenCode and optionally oh-my-opencode
+- Apply stow packages and prompt for Git / OpenCode profile selection
 - Set `zsh` as the default shell
-- Optionally install `pyenv` and `nvm`
+- Prompt for optional package groups (dev tools, work apps, media & design)
 
 ## Manual Stow Usage
 
@@ -58,10 +58,23 @@ Common profile-specific packages:
 
 ## Installed by `install.sh`
 
-Core packages:
-- `git`, `stow`, `zsh`, `tmux`, `neovim`
+Core formulae (both platforms):
+- `git`, `git-delta`, `stow`, `zsh`, `tmux`, `neovim`
 - `fzf`, `zoxide`, `eza`, `bat`, `thefuck`
-- `delta`/`git-delta`, `oh-my-posh`, `zinit`
+- `fd`, `ripgrep`, `git-lfs`, `htop`, `wget`, `tree`
+- `oh-my-posh`, `zinit`
+
+macOS extras (formulae): `gh`, `lazygit`, `tlrc`, `mas`, `gnu-sed`, `editorconfig`
+
+macOS casks (always):
+- `ghostty`, `visual-studio-code`, `1password`, `google-chrome`
+- `alfred`, `alt-tab`, `obsidian`
+- Fonts: `JetBrainsMono Nerd Font`, `Noto Sans/Serif CJK KR`
+
+macOS optional groups (prompted):
+- Dev tools: `go`, `rust`, `node`, `yarn`, `pyenv`, `rbenv`
+- Work apps: Slack, Docker Desktop, Microsoft Office, Microsoft Teams
+- Media & design: IINA, Telegram, Postman, Figma
 
 Additional behavior:
 - Installs `opencode` when available
