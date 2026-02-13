@@ -1,12 +1,12 @@
 # AGENTS.md
 Repository: personal dotfiles managed with GNU Stow.
 Platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
-Audience: agentic coding tools working in `/home/gsb/.dotfiles`.
-Keep edits minimal and local. Do not add new top-level directories unless requested.
+Audience: agentic coding tools operating in `/home/gsb/.dotfiles`.
+Rule of thumb: make minimal, local edits; do not add top-level directories unless requested.
 
 ## Repository Layout
 - Stow packages are top-level directories.
-- `.stowrc` uses `--dotfiles`, so `dot-*` maps to hidden files in `~/`.
+- `.stowrc` enables `--dotfiles`, so `dot-*` maps to hidden files in `~/`.
 - Package path conventions:
   - XDG config: `<pkg>/dot-config/<tool>/...`
   - Home dotfile: `<pkg>/dot-<name>`
@@ -19,10 +19,13 @@ Primary package groups:
 | `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
 | `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
 
-Manifest files:
-- macOS: `manifests/macos/*.brewfile`
-- Arch: `manifests/arch/*.pacman` and `manifests/arch/*.aur`
-Theme direction: Catppuccin (Mocha dark / Latte light).
+## OpenCode / Superpowers Bootstrap
+- Before first OpenCode `init`, run `./install.sh` once.
+- `install.sh` installs or updates `~/.config/opencode/superpowers`.
+- `install.sh` refreshes these symlinks:
+  - `~/.config/opencode/plugins/superpowers.js`
+  - `~/.config/opencode/skills/superpowers`
+- `./bin/dot-local/bin/update_packages` also updates superpowers via `git pull --ff-only`.
 
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.
@@ -45,17 +48,17 @@ brew bundle list --file=manifests/macos/core.brewfile
 ```
 
 ### Single test equivalent (most important)
-Use this as the closest "single test" flow:
+Use this as the closest "single test" workflow:
 1. Re-apply only the changed package: `stow <modified-package>`
-2. Run file-level check for the changed artifact (for scripts, `bash -n <file>`)
-3. Start/reload the target tool and confirm no runtime errors
+2. Run file-level checks for changed artifacts (for scripts, `bash -n <file>`)
+3. Reload/start the target tool and confirm no runtime errors
 
 Quick verification map:
 - `install.sh` -> `bash -n install.sh`
 - `bin/dot-local/bin/update_packages` -> `bash -n bin/dot-local/bin/update_packages`
 - `zsh/*` -> open a new shell and verify clean startup
-- `tmux/dot-tmux.conf` -> reload config (`prefix + r` binding)
-- `nvim/*` -> start Neovim and verify plugin/config load
+- `tmux/dot-tmux.conf` -> reload config using `prefix + r`
+- `nvim/*` -> start Neovim and verify plugins/config load
 - macOS manifest -> `brew bundle list --file=<brewfile>`
 - Arch manifest -> manual format check (one package per line, `#` comments)
 
@@ -70,45 +73,41 @@ Global defaults:
 
 Indentation:
 - Default: 4 spaces
-- 2 spaces: shell, lua, markdown, json/yaml, web files
+- 2 spaces: shell, lua, markdown, JSON/YAML, web files
 - Tabs (width 4): `Makefile`, `*.go`, `*.c`, `*.cpp`, `*.h`, `*.hpp`, `*.gitconfig`
 
 ## Language-Specific Conventions
 ### Bash (`install.sh`, `bin/dot-local/bin/*`)
 - Shebang: `#!/usr/bin/env bash`
 - Start scripts with `set -euo pipefail`
-- Use `snake_case` for functions/variables
-- Prefer `local` inside functions
-- Use explicit OS branching with `case`
+- Use `snake_case` for functions and variables
 - Keep logger helpers (`log_info`, `log_success`, `log_warn`, `log_error`)
-- Use `|| true` only for intentional non-critical fallback/cleanup
+- Use `|| true` only for intentional non-critical cleanup/fallback
 
 ### Zsh (`zsh/dot-zprofile`, `zsh/dot-zshrc`, `zsh/dot-config/zsh/env.shared.zsh`)
-- Preserve section structure and comments
-- Keep shared env sourcing from `env.shared.zsh`
+- Preserve section structure and existing comments
+- Keep shared env sourcing via `env.shared.zsh`
 - Preserve PID guard: `DOTFILES_ENV_SHARED_LOADED_PID`
-- Keep explicit exported environment variables for runtime paths
-- Avoid bash-specific syntax that is not zsh-compatible
+- Avoid bash-only syntax that is incompatible with zsh
 
 ### Lua / Neovim (`nvim/dot-config/nvim/lua/**`)
-- Stylua config: `nvim/dot-config/nvim/stylua.toml`
-- 2-space indent, 120 column width
+- Stylua config is in `nvim/dot-config/nvim/stylua.toml`
+- Use 2-space indentation and 120 column width
 - Use `require("...")` module imports
-- Keep modular layout: `lua/config/*` and `lua/plugins/*`
-- Preserve plugin spec table-return style
-- Keep Lua annotations when present (example: `---@type opencode.Opts`)
+- Keep modular layout (`lua/config/*`, `lua/plugins/*`)
+- Preserve existing Lua annotations (e.g. `---@type ...`)
 
 ### Python (`bin/dot-local/bin/extract_wisdom_kr`)
 - 4-space indentation
-- `snake_case` names
-- stdlib imports at top
-- explicit subprocess error handling (`subprocess.CalledProcessError`)
+- `snake_case` naming
+- keep stdlib imports at top
+- handle subprocess failures explicitly (`subprocess.CalledProcessError`)
 - print actionable stderr on failures
 
 ### Tmux (`tmux/dot-tmux.conf`)
 - Keep prefix `Ctrl-a` unless explicitly asked to change
 - Preserve grouped sections (global, bindings, theme, TPM)
-- Keep Catppuccin setup before status line customization
+- Keep Catppuccin setup before status-line customization
 
 ### Git config (`git/dot-gitconfig`)
 - Preserve tab indentation
@@ -117,35 +116,35 @@ Indentation:
 
 ## Imports, Types, Naming, Error Handling
 Imports:
-- Lua: `require("module")` style used in existing Neovim config
-- Python: keep imports simple and standard-library-first
+- Python: standard-library-first, simple explicit imports
 
 Typing:
-- Shell: rely on strict mode and checks, not type annotations
+- Shell: rely on strict mode and runtime checks, not type annotations
 - Lua: preserve existing EmmyLua annotations
-- Python: if adding hints, keep minimal and consistent with file style
+- Python: add minimal hints only when consistent with surrounding file
 
 Naming:
-- Package dirs: lowercase hyphenated (`ghostty-macos`)
-- Dotfile entries: `dot-*`
-- Scripts/functions: `snake_case`
-- Manifest groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
+- package dirs: lowercase-hyphenated (e.g. `ghostty-macos`)
+- dotfile entries: `dot-*`
+- shell functions/scripts: `snake_case`
+- manifest groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
 
 Error handling expectations:
-- Fail fast by default in shell (`set -euo pipefail`)
-- Validate prerequisites (`command -v`, file existence checks)
-- Emit clear logs for failure and skip paths
-- Avoid empty catch/silent ignore patterns
+- fail fast by default in shell (`set -euo pipefail`)
+- validate prerequisites (`command -v`, file/path checks)
+- emit clear logs for failures and skip paths
+- avoid silent ignores and empty error handlers
 
 ## Dependency and Change Policy
 - Prefer existing tools already declared in manifests
-- Keep package-manager-specific entries in correct manifest files
+- Keep package-manager-specific changes in the correct manifest files
 - Do not silently migrate formats/tooling
-- For bug fixes, use minimal edits and avoid opportunistic refactors
+- For bug fixes, prefer minimal edits over opportunistic refactors
 
 ## External Instruction Files
 Checked in this repository:
 - `.cursor/rules/` not found
 - `.cursorrules` not found
 - `.github/copilot-instructions.md` not found
+
 If these appear later, treat them as higher-priority instructions and update this file.
