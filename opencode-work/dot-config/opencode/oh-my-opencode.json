@@ -19,11 +19,11 @@
       "model": "openai/gpt-5.2"
     },
     "prometheus": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.3-codex",
       "variant": "high"
     },
     "metis": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.3-codex",
       "variant": "high"
     },
     "momus": {
@@ -54,7 +54,7 @@
       "model": "openai/gpt-5.2"
     },
     "unspecified-low": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.2",
       "variant": "medium"
     },
     "unspecified-high": {
