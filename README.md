@@ -13,6 +13,13 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
+## Before `init`
+
+Before running your first OpenCode `init` flow, run `./install.sh` once so Superpowers is installed and linked:
+
+- Plugin: `~/.config/opencode/plugins/superpowers.js`
+- Skills: `~/.config/opencode/skills/superpowers`
+
 ## What `install.sh` Does
 
 The bootstrap script runs this flow:
@@ -26,8 +33,9 @@ The bootstrap script runs this flow:
 7. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
    - OpenCode: `opencode-work` or `opencode-personal`
-8. Set `zsh` as the default shell
-9. Prompt for optional package groups: CLI, GUI, dev, work, media
+8. Install or update Superpowers and refresh plugin/skills symlinks
+9. Set `zsh` as the default shell
+10. Prompt for optional package groups: CLI, GUI, dev, work, media
 
 ## Repository Layout
 
@@ -89,6 +97,9 @@ bash -n install.sh
 
 # package updater syntax check
 bash -n bin/dot-local/bin/update_packages
+
+# run updater
+./bin/dot-local/bin/update_packages
 
 # optional: inspect Homebrew core manifest
 brew bundle list --file=manifests/macos/core.brewfile

@@ -210,6 +210,48 @@ install_oh_my_opencode() {
     fi
 }
 
+install_superpowers() {
+    local opencode_dir="$HOME/.config/opencode"
+    local superpowers_repo="$opencode_dir/superpowers"
+    local plugin_link="$opencode_dir/plugins/superpowers.js"
+    local plugin_target="$superpowers_repo/.opencode/plugins/superpowers.js"
+    local skills_link="$opencode_dir/skills/superpowers"
+    local skills_target="$superpowers_repo/skills"
+
+    if ! command -v git &>/dev/null; then
+        log_warn "git not found, skipping superpowers install"
+        return
+    fi
+
+    mkdir -p "$opencode_dir"
+
+    if [[ -d "$superpowers_repo/.git" ]]; then
+        log_info "Updating superpowers..."
+        git -C "$superpowers_repo" pull --ff-only || log_warn "Failed to update superpowers repository"
+    elif [[ -e "$superpowers_repo" ]]; then
+        log_warn "Path exists and is not a git repo: $superpowers_repo"
+        return
+    else
+        log_info "Installing superpowers..."
+        git clone https://github.com/obra/superpowers.git "$superpowers_repo" || {
+            log_warn "Failed to clone superpowers repository"
+            return
+        }
+    fi
+
+    if [[ ! -f "$plugin_target" || ! -d "$skills_target" ]]; then
+        log_warn "Superpowers install incomplete, skipping symlink setup"
+        return
+    fi
+
+    mkdir -p "$opencode_dir/plugins" "$opencode_dir/skills"
+    rm -f "$plugin_link"
+    ln -s "$plugin_target" "$plugin_link"
+    rm -rf "$skills_link"
+    ln -s "$skills_target" "$skills_link"
+    log_success "Superpowers installed and linked"
+}
+
 # =============================================================================
 # Zinit Installation (fallback if not installed via package manager)
 # =============================================================================
@@ -449,6 +491,7 @@ main() {
     install_oh_my_opencode
     install_zinit
     stow_packages
+    install_superpowers
     set_zsh_default
 
     case "$OS" in
