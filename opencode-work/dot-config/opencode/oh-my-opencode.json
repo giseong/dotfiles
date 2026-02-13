@@ -71,6 +71,13 @@
       "variant": "high"
     }
   },
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60,
+    "main_pane_min_width": 120,
+    "agent_pane_min_width": 40
+  },
   "lsp": {
     "bash": {
       "command": [
