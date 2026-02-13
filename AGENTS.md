@@ -1,38 +1,32 @@
 # AGENTS.md
-
-Personal dotfiles managed with GNU Stow.
-Targets: macOS (Apple Silicon) and Arch Linux (CachyOS).
-
-Keep changes minimal and local to existing Stow packages.
-Do not add new top-level directories unless explicitly requested.
+Repository: personal dotfiles managed with GNU Stow.
+Platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
+Audience: agentic coding tools working in `/home/gsb/.dotfiles`.
+Keep edits minimal and local. Do not add new top-level directories unless requested.
 
 ## Repository Layout
+- Stow packages are top-level directories.
+- `.stowrc` uses `--dotfiles`, so `dot-*` maps to hidden files in `~/`.
+- Package path conventions:
+  - XDG config: `<pkg>/dot-config/<tool>/...`
+  - Home dotfile: `<pkg>/dot-<name>`
 
-Stow packages live at repo root. `.stowrc` uses `--dotfiles`, so `dot-*` files
-symlink as hidden files under `~/`.
+Primary package groups:
+| Package | Purpose |
+| --- | --- |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `fabric` | Cross-platform base configs/scripts |
+| `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
+| `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
+| `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
 
-| Package | Scope |
-|---|---|
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `fabric` | Cross-platform |
-| `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
-| `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
-| `opencode-work`, `opencode-personal` | `~/.config/opencode/` profile overlay |
-
-Manifest layout (package installation inputs):
-- `manifests/macos/*.brewfile`
-- `manifests/arch/*.pacman`
-- `manifests/arch/*.aur`
-
-Package directory pattern:
-- XDG config: `<package>/dot-config/<tool>/...`
-- Home dotfiles: `<package>/dot-<name>`
-
-Theme direction: Catppuccin everywhere (Mocha = dark, Latte = light).
+Manifest files:
+- macOS: `manifests/macos/*.brewfile`
+- Arch: `manifests/arch/*.pacman` and `manifests/arch/*.aur`
+Theme direction: Catppuccin (Mocha dark / Latte light).
 
 ## Build, Lint, Test, Verify
-
-No CI and no centralized test runner.
-Verification is command-based and manual for changed scope.
+There is no centralized CI and no formal unit-test suite.
+Verification is scoped to changed files/packages.
 
 Core commands:
 ```bash
@@ -42,121 +36,116 @@ stow -D <package>
 ./bin/dot-local/bin/update_packages
 ```
 
-### Single-change verification (closest thing to single test)
-
-1. Re-apply only the touched package: `stow <modified-package>`
-2. Run the affected command/tool manually (script, shell startup, app config)
-3. For installer edits, run syntax check and safe-environment dry validation
-
-Useful checks:
+Syntax/lint-style checks:
 ```bash
 bash -n install.sh
 bash -n bin/dot-local/bin/update_packages
+stow -n -v <package>
 brew bundle list --file=manifests/macos/core.brewfile
 ```
 
-Arch manifest sanity (format check by inspection):
-- One package per line
-- `#` for comments
-- No commas/quotes
+### Single test equivalent (most important)
+Use this as the closest "single test" flow:
+1. Re-apply only the changed package: `stow <modified-package>`
+2. Run file-level check for the changed artifact (for scripts, `bash -n <file>`)
+3. Start/reload the target tool and confirm no runtime errors
 
-## Code Style
+Quick verification map:
+- `install.sh` -> `bash -n install.sh`
+- `bin/dot-local/bin/update_packages` -> `bash -n bin/dot-local/bin/update_packages`
+- `zsh/*` -> open a new shell and verify clean startup
+- `tmux/dot-tmux.conf` -> reload config (`prefix + r` binding)
+- `nvim/*` -> start Neovim and verify plugin/config load
+- macOS manifest -> `brew bundle list --file=<brewfile>`
+- Arch manifest -> manual format check (one package per line, `#` comments)
 
-Source of truth: `editorconfig/dot-editorconfig`.
+## Code Style Source of Truth
+Formatting baseline: `editorconfig/dot-editorconfig`.
 
 Global defaults:
-- UTF-8, LF, final newline
-- Trim trailing whitespace (except Markdown)
+- UTF-8
+- LF line endings
+- final newline required
+- trim trailing whitespace (except Markdown)
 
-Indentation rules:
+Indentation:
 - Default: 4 spaces
-- Shell/Lua/JSON/YAML/Markdown: 2 spaces
-- Go/C/C++/Makefile/Git config: tabs (width 4)
+- 2 spaces: shell, lua, markdown, json/yaml, web files
+- Tabs (width 4): `Makefile`, `*.go`, `*.c`, `*.cpp`, `*.h`, `*.hpp`, `*.gitconfig`
 
-### Bash (`install.sh`, `bin/dot-local/bin/update_packages`)
-
+## Language-Specific Conventions
+### Bash (`install.sh`, `bin/dot-local/bin/*`)
 - Shebang: `#!/usr/bin/env bash`
-- Start with `set -euo pipefail`
-- Keep colored logger helpers (`log_info`, `log_success`, `log_warn`, `log_error`)
-- Keep numbered/bannered sections intact
-- Prefer explicit OS branching with `case "$(uname -s)"`
-- Use `|| true` only for intentionally non-critical paths
-- Keep prompts group-based (avoid hardcoded app-name prompts)
+- Start scripts with `set -euo pipefail`
+- Use `snake_case` for functions/variables
+- Prefer `local` inside functions
+- Use explicit OS branching with `case`
+- Keep logger helpers (`log_info`, `log_success`, `log_warn`, `log_error`)
+- Use `|| true` only for intentional non-critical fallback/cleanup
 
-### Zsh (`zsh/dot-zprofile`, `zsh/dot-zshrc`)
+### Zsh (`zsh/dot-zprofile`, `zsh/dot-zshrc`, `zsh/dot-config/zsh/env.shared.zsh`)
+- Preserve section structure and comments
+- Keep shared env sourcing from `env.shared.zsh`
+- Preserve PID guard: `DOTFILES_ENV_SHARED_LOADED_PID`
+- Keep explicit exported environment variables for runtime paths
+- Avoid bash-specific syntax that is not zsh-compatible
 
-- Preserve existing section order and banner comments
-- `dot-zprofile`: OS detection, PATH/runtime setup (pyenv, nvm, Go, Android)
-- `dot-zshrc`: appearance/theme detection, tmux, zinit plugins, prompt, aliases
-- Keep OS branches explicit (`IS_MAC` checks)
-
-### Lua / Neovim
-
-Neovim is LazyVim-based with Lazy.nvim.
-
-Formatting config: `nvim/dot-config/nvim/stylua.toml`
-- 2-space indent
-- 120 column width
-
-Conventions:
-- Keep `require("...")` style imports at top when practical
-- Follow plugin spec structure in `nvim/dot-config/nvim/lua/plugins/*.lua`
-- Keep config modular (`lua/config/*.lua`, `lua/plugins/*.lua`)
-
-### Tmux (`tmux/dot-tmux.conf`)
-
-- Keep section banners
-- Prefix remains `Ctrl-a`
-- Vi-mode key behavior stays enabled
-- Catppuccin theme settings load before status customization
-- TPM plugin block remains grouped near end
-
-### Ghostty (`ghostty-macos`, `ghostty-linux`)
-
-- Key-value config format (`key = value`)
-- Keep shared structure consistent across OS variants
-- macOS-only `macos-*` options must stay macOS-only
+### Lua / Neovim (`nvim/dot-config/nvim/lua/**`)
+- Stylua config: `nvim/dot-config/nvim/stylua.toml`
+- 2-space indent, 120 column width
+- Use `require("...")` module imports
+- Keep modular layout: `lua/config/*` and `lua/plugins/*`
+- Preserve plugin spec table-return style
+- Keep Lua annotations when present (example: `---@type opencode.Opts`)
 
 ### Python (`bin/dot-local/bin/extract_wisdom_kr`)
+- 4-space indentation
+- `snake_case` names
+- stdlib imports at top
+- explicit subprocess error handling (`subprocess.CalledProcessError`)
+- print actionable stderr on failures
 
-- Standard library style is preferred
-- Use explicit subprocess error handling
-- Surface stderr on failure (`subprocess.CalledProcessError`)
-- 4-space indentation per EditorConfig
+### Tmux (`tmux/dot-tmux.conf`)
+- Keep prefix `Ctrl-a` unless explicitly asked to change
+- Preserve grouped sections (global, bindings, theme, TPM)
+- Keep Catppuccin setup before status line customization
 
 ### Git config (`git/dot-gitconfig`)
-
 - Preserve tab indentation
 - Keep include layering via `~/.gitconfig-local`
-- Preserve delta pager setup and existing aliases/defaults
-- Avoid broad reformatting of git config blocks
+- Avoid reordering unrelated alias/section blocks
 
-## Naming Conventions
+## Imports, Types, Naming, Error Handling
+Imports:
+- Lua: `require("module")` style used in existing Neovim config
+- Python: keep imports simple and standard-library-first
 
-- Stow package directories: lowercase kebab-like names (`ghostty-macos`)
-- Dotfiles in packages: `dot-*`
-- Scripts: `snake_case`
+Typing:
+- Shell: rely on strict mode and checks, not type annotations
+- Lua: preserve existing EmmyLua annotations
+- Python: if adding hints, keep minimal and consistent with file style
+
+Naming:
+- Package dirs: lowercase hyphenated (`ghostty-macos`)
+- Dotfile entries: `dot-*`
+- Scripts/functions: `snake_case`
 - Manifest groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
-- macOS manifests: `<group>.brewfile`
-- Arch manifests: `<group>.pacman` and `<group>.aur`
 
-## Error Handling Expectations
+Error handling expectations:
+- Fail fast by default in shell (`set -euo pipefail`)
+- Validate prerequisites (`command -v`, file existence checks)
+- Emit clear logs for failure and skip paths
+- Avoid empty catch/silent ignore patterns
 
-- Bash: fail fast by default; no silent failures except intentional `|| true`
-- Installer functions should validate input files before running package managers
-- Python scripts should catch and report command execution failures clearly
+## Dependency and Change Policy
+- Prefer existing tools already declared in manifests
+- Keep package-manager-specific entries in correct manifest files
+- Do not silently migrate formats/tooling
+- For bug fixes, use minimal edits and avoid opportunistic refactors
 
-## Dependency Policy
-
-- Prefer existing tools already in manifests
-- Avoid adding dependencies without clear need
-- Keep package-manager-specific entries in the proper manifest type
-
-## External Agent Rules
-
-No Cursor or Copilot instruction files are present:
-- `.cursor/rules/` (not found)
-- `.cursorrules` (not found)
-- `.github/copilot-instructions.md` (not found)
-
-If any of these are added later, update this file and treat them as higher-priority guidance.
+## External Instruction Files
+Checked in this repository:
+- `.cursor/rules/` not found
+- `.cursorrules` not found
+- `.github/copilot-instructions.md` not found
+If these appear later, treat them as higher-priority instructions and update this file.

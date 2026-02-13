@@ -1,7 +1,9 @@
 # Dotfiles
 
 Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
-Supported platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
+
+- Supported platforms: macOS (Apple Silicon) and Arch Linux (CachyOS)
+- Stow mode: `.stowrc` enables `--dotfiles`, so `dot-*` files are linked as hidden files in `~/`
 
 ## Quick Start
 
@@ -11,13 +13,37 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-`install.sh` will:
-- Detect OS (macOS or Arch-based Linux)
-- Install core packages from manifests (`manifests/macos/core.brewfile` on macOS, `manifests/arch/core.*` on Arch)
-- Install OpenCode and optionally oh-my-opencode
-- Apply stow packages and prompt for Git / OpenCode profile selection
-- Set `zsh` as the default shell
-- Prompt for optional package groups on both platforms (CLI, GUI, dev, work, media)
+## What `install.sh` Does
+
+The bootstrap script runs this flow:
+
+1. Detect OS (`macos` or Arch-based Linux with `pacman`)
+2. Install core packages from manifests
+3. Install OpenCode (if available for the platform)
+4. Offer optional `oh-my-opencode` installation when OpenCode config exists
+5. Ensure Zinit is installed
+6. Apply Stow packages
+7. Prompt for profile overlays:
+   - Git: `git-work` or `git-personal`
+   - OpenCode: `opencode-work` or `opencode-personal`
+8. Set `zsh` as the default shell
+9. Prompt for optional package groups: CLI, GUI, dev, work, media
+
+## Repository Layout
+
+Top-level Stow packages:
+
+| Package | Scope |
+|---|---|
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `fabric` | Cross-platform |
+| `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
+| `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
+| `opencode-work`, `opencode-personal` | `~/.config/opencode/` profile overlay |
+
+Manifest layout:
+
+- macOS: `manifests/macos/*.brewfile`
+- Arch: `manifests/arch/*.pacman` and `manifests/arch/*.aur`
 
 ## Manual Stow Usage
 
@@ -29,71 +55,48 @@ stow <package>
 stow -D <package>
 ```
 
-`.stowrc` enables `--dotfiles`, so files named `dot-*` are linked as `.*`.
+Common profile packages:
 
-Common profile-specific packages:
 - Ghostty: `ghostty-macos` or `ghostty-linux`
-- Git profile: `git-work` or `git-personal` (writes `~/.gitconfig-local`)
-- OpenCode profile: `opencode-work` or `opencode-personal` (writes `~/.config/opencode/`)
+- Git profile: `git-work` or `git-personal`
+- OpenCode profile: `opencode-work` or `opencode-personal`
 
-## Packages
+## Manifest Groups Used by `install.sh`
 
-| Package | Description |
-|---------|-------------|
-| `zsh` | Zsh config (Zinit, aliases, OS-specific setup) |
-| `tmux` | Tmux config and plugins |
-| `nvim` | LazyVim-based Neovim config |
-| `git` | Shared Git config |
-| `git-work` | Work Git identity/profile overlay |
-| `git-personal` | Personal Git identity/profile overlay |
-| `ghostty-macos` | Ghostty config for macOS |
-| `ghostty-linux` | Ghostty config for Linux |
-| `opencode-work` | Work OpenCode profile |
-| `opencode-personal` | Personal OpenCode profile |
-| `fabric` | Fabric AI patterns |
-| `editorconfig` | Cross-editor formatting rules |
-| `bin` | User scripts (`~/.local/bin`) |
+Always installed:
 
-## Installed by `install.sh`
+- macOS: `manifests/macos/core.brewfile`
+- Arch: `manifests/arch/core.pacman`, `manifests/arch/core.aur`
 
-macOS (Homebrew manifests):
+Optional prompted groups:
 
-Core formulae (both platforms):
-- `git`, `git-delta`, `stow`, `zsh`, `tmux`, `neovim`
-- `fzf`, `zoxide`, `eza`, `bat`, `thefuck`, `gh`
-- `fd`, `ripgrep`
-- `oh-my-posh`, `zinit`
+- CLI extras: `manifests/macos/cli.brewfile` or `manifests/arch/cli.*`
+- Default GUI apps: `manifests/macos/gui.brewfile` or `manifests/arch/gui.*`
+- Dev tools: `manifests/macos/dev.brewfile` or `manifests/arch/dev.*`
+- Work apps: `manifests/macos/work.brewfile` or `manifests/arch/work.*`
+- Media/design apps: `manifests/macos/media.brewfile` or `manifests/arch/media.*`
 
-macOS optional CLI extras (formulae): maintained in `manifests/macos/cli.brewfile`
+## Verification
 
-macOS optional bootstrap essentials (formulae): maintained in `manifests/macos/cli.brewfile`
+There is no centralized CI for this repo. Verify per changed scope:
 
-macOS optional default GUI casks:
-- maintained in `manifests/macos/gui.brewfile`
+```bash
+# re-apply touched package
+stow <modified-package>
 
-macOS optional groups (prompted):
-- Dev tools group (`manifests/macos/dev.brewfile`)
-- Work apps group (`manifests/macos/work.brewfile`)
-- Media and design apps group (`manifests/macos/media.brewfile`)
+# installer syntax check
+bash -n install.sh
 
-macOS manifests used by `install.sh`:
-- `manifests/macos/core.brewfile` (always-installed core packages)
-- `manifests/macos/cli.brewfile`, `manifests/macos/gui.brewfile`, `manifests/macos/dev.brewfile`, `manifests/macos/work.brewfile`, `manifests/macos/media.brewfile` (optional prompted groups)
+# package updater syntax check
+bash -n bin/dot-local/bin/update_packages
 
-Arch manifests used by `install.sh`:
-- `manifests/arch/core.pacman`, `manifests/arch/core.aur` (always-installed core packages)
-- `manifests/arch/cli.pacman`, `manifests/arch/cli.aur` (optional CLI extras group)
-- `manifests/arch/gui.pacman`, `manifests/arch/gui.aur` (optional default GUI apps group)
-- `manifests/arch/dev.pacman`, `manifests/arch/dev.aur` (optional dev tools group)
-- `manifests/arch/work.pacman`, `manifests/arch/work.aur` (optional work apps group)
-- `manifests/arch/media.pacman`, `manifests/arch/media.aur` (optional media and design apps group)
-
-Additional behavior:
-- Installs `opencode` when available
-- Offers optional `oh-my-opencode` installer when OpenCode config exists
+# optional: inspect Homebrew core manifest
+brew bundle list --file=manifests/macos/core.brewfile
+```
 
 ## Theme
 
 Catppuccin is used across tools:
+
 - Dark: Mocha
 - Light: Latte
