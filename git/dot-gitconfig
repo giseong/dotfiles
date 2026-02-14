@@ -5,7 +5,7 @@
 	path = ~/.gitconfig-local
 
 [credential]
-	helper = cache
+	helper = cache --timeout=3600
 	useHttpPath = true
 
 [core]
@@ -27,6 +27,10 @@
 	conflictstyle = diff3
 	tool = nvim
 
+[mergetool "nvim"]
+	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED"
+	trustExitCode = true
+
 [diff]
 	colorMoved = dimmed-zebra
 
@@ -35,6 +39,9 @@
 
 [pull]
 	rebase = true
+
+[rebase]
+	autoStash = true
 
 [filter "lfs"]
 	process = git-lfs filter-process
@@ -54,3 +61,6 @@
 
 [color]
 	ui = true
+
+[init]
+	defaultBranch = main

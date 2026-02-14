@@ -78,6 +78,10 @@
     "main_pane_min_width": 120,
     "agent_pane_min_width": 40
   },
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false
+  },
   "lsp": {
     "bash": {
       "command": [
