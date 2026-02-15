@@ -21,7 +21,7 @@ export OS_TYPE="$(uname -s)"
 # ---------------------------------------------------------------------
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# Intentionally avoid global LC_ALL to prevent overriding tool-specific locale behavior.
 
 # ---------------------------------------------------------------------
 # 3. PACKAGE MANAGER & RUNTIME INITIALIZATION
@@ -29,20 +29,6 @@ export LC_ALL=en_US.UTF-8
 if [[ -o login && "$IS_MAC" == true && -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-
-if [[ -d "$HOME/.pyenv" ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  case ":$PATH:" in
-    *":$PYENV_ROOT/bin:"*) ;;
-    *) export PATH="$PYENV_ROOT/bin:$PATH" ;;
-  esac
-  [[ ! -o interactive ]] && export PYENV_DISABLE_AUTOREHASH=1
-  if [[ -o login ]] && command -v pyenv &>/dev/null; then
-    eval "$(pyenv init --path)"
-  fi
-fi
-
-export NVM_DIR="$HOME/.nvm"
 
 if [[ "$IS_MAC" == true ]]; then
   export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
@@ -59,7 +45,6 @@ for path_entry in \
   "/usr/local/sbin" \
   "$ANDROID_SDK_ROOT/platform-tools" \
   "$GOPATH/bin" \
-  "$HOME/.npm-global/bin" \
   "$HOME/.local/bin"
 do
   [[ -d "$path_entry" ]] || continue

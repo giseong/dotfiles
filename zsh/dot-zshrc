@@ -25,14 +25,25 @@ function get_system_appearance() {
 
   # 2. Linux (KDE/CachyOS) Detection
   local KDE_CONFIG="$HOME/.config/kdeglobals"
+  local kde_theme_text=""
 
-  # Look for "dark" (case-insensitive) in ColorScheme or LookAndFeelPackage
-  if [[ -f "$KDE_CONFIG" ]] && grep -iq "dark" "$KDE_CONFIG"; then
-    echo "dark"
-  else
-    # Default to dark for CachyOS since it's the standard
-    echo "dark"
+  if [[ -f "$KDE_CONFIG" ]]; then
+    kde_theme_text="$(grep -Ei '^(ColorScheme|LookAndFeelPackage)=' "$KDE_CONFIG" 2>/dev/null)"
+    kde_theme_text="${kde_theme_text:l}"
+
+    if [[ "$kde_theme_text" == *"light"* ]]; then
+      echo "light"
+      return
+    fi
+
+    if [[ "$kde_theme_text" == *"dark"* ]]; then
+      echo "dark"
+      return
+    fi
   fi
+
+  # Default to dark for CachyOS since it's the standard
+  echo "dark"
 }
 export SYSTEM_APPEARANCE=$(get_system_appearance)
 
@@ -67,33 +78,32 @@ elif [[ -f "/opt/homebrew/opt/zinit/zinit.zsh" ]]; then
   source "/opt/homebrew/opt/zinit/zinit.zsh"
 elif [[ -f "/usr/local/opt/zinit/zinit.zsh" ]]; then
   source "/usr/local/opt/zinit/zinit.zsh"
-elif command -v brew &>/dev/null && [[ -f "$(brew --prefix zinit 2>/dev/null)/zinit.zsh" ]]; then
-  source "$(brew --prefix zinit)/zinit.zsh"
+elif command -v brew &>/dev/null; then
+  zinit_brew_prefix="$(brew --prefix zinit 2>/dev/null || true)"
+  if [[ -n "$zinit_brew_prefix" && -f "$zinit_brew_prefix/zinit.zsh" ]]; then
+    source "$zinit_brew_prefix/zinit.zsh"
+  fi
 fi
 
 if command -v zinit &>/dev/null; then
-  # Load tmux plugin first to ensure autostart triggers correctly
-  zinit light daiaji/zsh-tmux-plugin
 
   # Load core plugins
   zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zsh-users/zsh-syntax-highlighting \
-    zsh-users/zsh-history-substring-search \
-    zsh-users/zsh-completions \
-    zsh-users/zsh-autosuggestions
-
-  # fzf-tab registers ZLE widgets; skip it in non-TTY scripted shells.
-  [[ "$HAS_TTY" == true ]] && zinit light Aloxaf/fzf-tab
+      zdharma-continuum/zinit-annex-as-monitor \
+      zdharma-continuum/zinit-annex-bin-gem-node \
+      zsh-users/zsh-syntax-highlighting \
+      zsh-users/zsh-history-substring-search \
+      zsh-users/zsh-completions \
+      zsh-users/zsh-autosuggestions \
+      Aloxaf/fzf-tab \
+      daiaji/zsh-tmux-plugin
 
   # Load Oh My Zsh snippets
   zinit snippet OMZP::git
   zinit snippet OMZP::vi-mode
-  [[ "$HAS_TTY" == true ]] && zinit snippet OMZP::fzf
+  zinit snippet OMZP::fzf
   zinit snippet OMZP::zoxide
   zinit snippet OMZP::eza
-  zinit snippet OMZP::thefuck
 fi
 
 # ---------------------------------------------------------------------
@@ -128,21 +138,20 @@ if command -v oh-my-posh &>/dev/null; then
   fi
 fi
 
-if [[ -s "$NVM_DIR/nvm.sh" ]] && ! command -v nvm &>/dev/null; then
-  nvm() {
-    unset -f nvm
-    source "$NVM_DIR/nvm.sh" --no-use
-    nvm "$@"
-  }
-fi
-
 # ---------------------------------------------------------------------
 # 5. ALIASES & KEYBINDINGS
 # ---------------------------------------------------------------------
-export EDITOR=$(which nvim 2>/dev/null || which vim)
-alias v="$EDITOR"
-alias vi="$EDITOR"
-alias vim="$EDITOR"
+if (( $+commands[nvim] )); then
+  export EDITOR="nvim"
+elif (( $+commands[vim] )); then
+  export EDITOR="vim"
+fi
+
+if [[ -n "${EDITOR:-}" ]]; then
+  alias v="$EDITOR"
+  alias vi="$EDITOR"
+  alias vim="$EDITOR"
+fi
 
 zmodload zsh/terminfo
 if [[ "$HAS_TTY" == true ]]; then
@@ -172,7 +181,15 @@ if [[ -d "$HOME/.local/share/zinit/completions" ]]; then
     [[ -e "$stale_link" ]] || rm -f -- "$stale_link"
   done
 fi
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
+else
+  compinit
+fi
 if command -v zinit &>/dev/null; then
   zinit cdreplay -q
+fi
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
 fi
