@@ -45,7 +45,8 @@ for path_entry in \
   "/usr/local/sbin" \
   "$ANDROID_SDK_ROOT/platform-tools" \
   "$GOPATH/bin" \
-  "$HOME/.local/bin"
+  "$HOME/.local/bin" \
+  "$HOME/.npm-global/bin"
 do
   [[ -d "$path_entry" ]] || continue
   case ":$PATH:" in
