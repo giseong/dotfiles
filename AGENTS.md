@@ -14,7 +14,7 @@ Rule of thumb: make minimal, local edits; do not add top-level directories unles
 Primary package groups:
 | Package | Purpose |
 | --- | --- |
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `fabric` | Cross-platform base configs/scripts |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
 | `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
 | `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
@@ -25,7 +25,7 @@ Primary package groups:
 - `install.sh` refreshes these symlinks:
   - `~/.config/opencode/plugins/superpowers.js`
   - `~/.config/opencode/skills/superpowers`
-- `./bin/dot-local/bin/update_packages` also updates superpowers via `git pull --ff-only`.
+- `./update_packages.sh` also updates superpowers via `git pull --ff-only`.
 
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.
@@ -36,13 +36,13 @@ Core commands:
 ./install.sh
 stow <package>
 stow -D <package>
-./bin/dot-local/bin/update_packages
+./update_packages.sh
 ```
 
 Syntax/lint-style checks:
 ```bash
 bash -n install.sh
-bash -n bin/dot-local/bin/update_packages
+bash -n update_packages.sh
 stow -n -v <package>
 brew bundle list --file=manifests/macos/core.brewfile
 ```
@@ -55,7 +55,7 @@ Use this as the closest "single test" workflow:
 
 Quick verification map:
 - `install.sh` -> `bash -n install.sh`
-- `bin/dot-local/bin/update_packages` -> `bash -n bin/dot-local/bin/update_packages`
+- `update_packages.sh` -> `bash -n update_packages.sh`
 - `zsh/*` -> open a new shell and verify clean startup
 - `tmux/dot-tmux.conf` -> reload config using `prefix + r`
 - `nvim/*` -> start Neovim and verify plugins/config load
@@ -77,7 +77,7 @@ Indentation:
 - Tabs (width 4): `Makefile`, `*.go`, `*.c`, `*.cpp`, `*.h`, `*.hpp`, `*.gitconfig`
 
 ## Language-Specific Conventions
-### Bash (`install.sh`, `bin/dot-local/bin/*`)
+### Bash (`install.sh`, `update_packages.sh`)
 - Shebang: `#!/usr/bin/env bash`
 - Start scripts with `set -euo pipefail`
 - Use `snake_case` for functions and variables
@@ -97,13 +97,6 @@ Indentation:
 - Keep modular layout (`lua/config/*`, `lua/plugins/*`)
 - Preserve existing Lua annotations (e.g. `---@type ...`)
 
-### Python (`bin/dot-local/bin/extract_wisdom_kr`)
-- 4-space indentation
-- `snake_case` naming
-- keep stdlib imports at top
-- handle subprocess failures explicitly (`subprocess.CalledProcessError`)
-- print actionable stderr on failures
-
 ### Tmux (`tmux/dot-tmux.conf`)
 - Keep prefix `Ctrl-a` unless explicitly asked to change
 - Preserve grouped sections (global, bindings, theme, TPM)
@@ -116,12 +109,11 @@ Indentation:
 
 ## Imports, Types, Naming, Error Handling
 Imports:
-- Python: standard-library-first, simple explicit imports
+- None (no Python modules currently tracked in this repository)
 
 Typing:
 - Shell: rely on strict mode and runtime checks, not type annotations
 - Lua: preserve existing EmmyLua annotations
-- Python: add minimal hints only when consistent with surrounding file
 
 Naming:
 - package dirs: lowercase-hyphenated (e.g. `ghostty-macos`)

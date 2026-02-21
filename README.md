@@ -43,7 +43,7 @@ Top-level Stow packages:
 
 | Package | Scope |
 |---|---|
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `bin`, `fabric` | Cross-platform |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform |
 | `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
 | `opencode-work`, `opencode-personal` | `~/.config/opencode/` profile overlay |
@@ -96,10 +96,10 @@ stow <modified-package>
 bash -n install.sh
 
 # package updater syntax check
-bash -n bin/dot-local/bin/update_packages
+bash -n update_packages.sh
 
 # run updater
-./bin/dot-local/bin/update_packages
+./update_packages.sh
 
 # optional: inspect Homebrew core manifest
 brew bundle list --file=manifests/macos/core.brewfile
