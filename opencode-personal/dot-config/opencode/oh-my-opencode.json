@@ -10,22 +10,20 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "google/gemini-3-flash",
-      "variant": "medium"
+      "model": "opencode/big-pickle"
     },
     "explore": {
-      "model": "google/gemini-3-flash"
+      "model": "opencode/gpt-5-nano"
     },
     "multimodal-looker": {
-      "model": "google/gemini-3-flash",
-      "variant": "medium"
+      "model": "google/gemini-3-flash"
     },
     "prometheus": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.2",
       "variant": "high"
     },
     "metis": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.2",
       "variant": "high"
     },
     "momus": {
@@ -34,10 +32,6 @@
     },
     "atlas": {
       "model": "openai/gpt-5.2"
-    },
-    "sisyphus": {
-      "model": "openai/gpt-5.3-codex",
-      "variant": "high"
     }
   },
   "categories": {
@@ -53,11 +47,15 @@
       "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
+    "artistry": {
+      "model": "google/gemini-3-pro",
+      "variant": "high"
+    },
     "quick": {
       "model": "google/gemini-3-flash"
     },
     "unspecified-low": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "unspecified-high": {
@@ -65,46 +63,7 @@
       "variant": "medium"
     },
     "writing": {
-      "model": "google/gemini-3-flash",
-      "variant": "medium"
-    },
-    "artistry": {
-      "model": "google/gemini-3-pro",
-      "variant": "high"
-    }
-  },
-  "tmux": {
-    "enabled": true,
-    "layout": "main-vertical",
-    "main_pane_size": 60,
-    "main_pane_min_width": 120,
-    "agent_pane_min_width": 40
-  },
-  "git_master": {
-    "commit_footer": false,
-    "include_co_authored_by": false
-  },
-  "lsp": {
-    "bash": {
-      "command": [
-        "bash-language-server",
-        "start"
-      ],
-      "extensions": [
-        ".sh",
-        ".bash",
-        ".zsh",
-        ".ksh"
-      ]
-    },
-    "markdown": {
-      "command": [
-        "marksman",
-        "server"
-      ],
-      "extensions": [
-        ".md"
-      ]
+      "model": "google/gemini-3-flash"
     }
   }
 }

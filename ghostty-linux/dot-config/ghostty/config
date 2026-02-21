@@ -5,7 +5,8 @@ term = "xterm-256color"
 theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 
 # Fonts
-font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "Noto Sans CJK KR"
 font-size = 13
 font-thicken = true
 
