@@ -16,7 +16,7 @@ Primary package groups:
 | --- | --- |
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
-| `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
+| `git-work`, `git-personal`, `git-work-ci` | Writes `~/.gitconfig-local` overlay |
 | `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
 
 ## Build, Lint, Test, Verify
@@ -25,17 +25,18 @@ Verification is scoped to changed files/packages.
 
 Core commands:
 ```bash
-./install.sh
-stow <package>
-stow -D <package>
-./update_packages.sh
+./install.sh              # Full system bootstrap
+stow <package>            # Apply package
+cd <package> && stow .    # Apply from inside package
+stow -D <package>         # Remove package
+./update_packages.sh      # Update system packages and dev tools
 ```
 
 Syntax/lint-style checks:
 ```bash
 bash -n install.sh
 bash -n update_packages.sh
-stow -n -v <package>
+stow -n -v <package>      # Dry-run stow (check for conflicts)
 brew bundle list --file=manifests/macos/core.brewfile
 ```
 
@@ -46,13 +47,16 @@ Use this as the closest "single test" workflow:
 3. Reload/start the target tool and confirm no runtime errors
 
 Quick verification map:
-- `install.sh` -> `bash -n install.sh`
-- `update_packages.sh` -> `bash -n update_packages.sh`
-- `zsh/*` -> open a new shell and verify clean startup
-- `tmux/dot-tmux.conf` -> reload config using `prefix + r`
-- `nvim/*` -> start Neovim and verify plugins/config load
-- macOS manifest -> `brew bundle list --file=<brewfile>`
-- Arch manifest -> manual format check (one package per line, `#` comments)
+| File/Package | Verification Command |
+| --- | --- |
+| `install.sh` | `bash -n install.sh` |
+| `update_packages.sh` | `bash -n update_packages.sh` |
+| `zsh/*` | Open new shell, verify clean startup |
+| `tmux/dot-tmux.conf` | `prefix + r` (reload) |
+| `nvim/*` | Start Neovim, verify plugins load |
+| `*.lua` | `stylua --check <file>` (if stylua installed) |
+| macOS manifest | `brew bundle list --file=<brewfile>` |
+| Arch manifest | Manual format check (one package per line, `#` comments) |
 
 ## Code Style Source of Truth
 Formatting baseline: `editorconfig/dot-editorconfig`.
@@ -60,13 +64,15 @@ Formatting baseline: `editorconfig/dot-editorconfig`.
 Global defaults:
 - UTF-8
 - LF line endings
-- final newline required
-- trim trailing whitespace (except Markdown)
+- Final newline required
+- Trim trailing whitespace (except Markdown)
 
 Indentation:
-- Default: 4 spaces
-- 2 spaces: shell, lua, markdown, JSON/YAML, web files
-- Tabs (width 4): `Makefile`, `*.go`, `*.c`, `*.cpp`, `*.h`, `*.hpp`, `*.gitconfig`
+| Language | Indent |
+| --- | --- |
+| Default | 4 spaces |
+| Shell, Lua, Markdown, JSON/YAML, web files | 2 spaces |
+| Make, Go, C/C++, Git config | Tabs (width 4) |
 
 ## Language-Specific Conventions
 ### Bash (`install.sh`, `update_packages.sh`)
@@ -88,6 +94,7 @@ Indentation:
 - Use `require("...")` module imports
 - Keep modular layout (`lua/config/*`, `lua/plugins/*`)
 - Preserve existing Lua annotations (e.g. `---@type ...`)
+- Run `stylua <file>` to auto-format
 
 ### Tmux (`tmux/dot-tmux.conf`)
 - Keep prefix `Ctrl-a` unless explicitly asked to change
@@ -98,6 +105,12 @@ Indentation:
 - Preserve tab indentation
 - Keep include layering via `~/.gitconfig-local`
 - Avoid reordering unrelated alias/section blocks
+
+### Package Manifests
+- macOS: `manifests/macos/<group>.brewfile` (Homebrew Bundle format)
+- Arch: `manifests/arch/<group>.pacman` (one package per line)
+- Arch AUR: `manifests/arch/<group>.aur` (one package per line)
+- Groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
 
 ## Imports, Types, Naming, Error Handling
 Imports:
@@ -114,10 +127,10 @@ Naming:
 - manifest groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
 
 Error handling expectations:
-- fail fast by default in shell (`set -euo pipefail`)
-- validate prerequisites (`command -v`, file/path checks)
-- emit clear logs for failures and skip paths
-- avoid silent ignores and empty error handlers
+- Fail fast by default in shell (`set -euo pipefail`)
+- Validate prerequisites (`command -v`, file/path checks)
+- Emit clear logs for failures and skip paths
+- Avoid silent ignores and empty error handlers
 
 ## Dependency and Change Policy
 - Prefer existing tools already declared in manifests
