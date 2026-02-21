@@ -142,23 +142,6 @@ update_dev_tools() {
         log_success "pip done"
     fi
 
-    update_superpowers
-}
-
-update_superpowers() {
-    local superpowers_repo="$HOME/.config/opencode/superpowers"
-
-    if [[ ! -d "$superpowers_repo/.git" ]]; then
-        log_warn "Superpowers not found, skipping"
-        return
-    fi
-
-    log_info "Updating superpowers..."
-    git -C "$superpowers_repo" pull --ff-only 2>/dev/null || {
-        log_warn "Superpowers update failed"
-        return
-    }
-    log_success "Superpowers done"
 }
 
 # =============================================================================

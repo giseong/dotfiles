@@ -19,14 +19,6 @@ Primary package groups:
 | `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
 | `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
 
-## OpenCode / Superpowers Bootstrap
-- Before first OpenCode `init`, run `./install.sh` once.
-- `install.sh` installs or updates `~/.config/opencode/superpowers`.
-- `install.sh` refreshes these symlinks:
-  - `~/.config/opencode/plugins/superpowers.js`
-  - `~/.config/opencode/skills/superpowers`
-- `./update_packages.sh` also updates superpowers via `git pull --ff-only`.
-
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.
 Verification is scoped to changed files/packages.
