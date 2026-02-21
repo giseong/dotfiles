@@ -10,20 +10,20 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "openai/gpt-5.2"
+      "model": "opencode/big-pickle"
     },
     "explore": {
-      "model": "openai/gpt-5.2"
+      "model": "opencode/gpt-5-nano"
     },
     "multimodal-looker": {
       "model": "openai/gpt-5.2"
     },
     "prometheus": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.2",
       "variant": "high"
     },
     "metis": {
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.2",
       "variant": "high"
     },
     "momus": {
@@ -32,16 +32,11 @@
     },
     "atlas": {
       "model": "openai/gpt-5.2"
-    },
-    "sisyphus": {
-      "model": "openai/gpt-5.3-codex",
-      "variant": "high"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "openai/gpt-5.2",
-      "variant": "medium"
+      "model": "opencode/big-pickle"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.3-codex",
@@ -52,23 +47,18 @@
       "variant": "medium"
     },
     "quick": {
-      "model": "openai/gpt-5.2"
+      "model": "opencode/big-pickle"
     },
     "unspecified-low": {
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "unspecified-high": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "high"
-    },
-    "writing": {
-      "model": "openai/gpt-5.2",
       "variant": "medium"
     },
-    "artistry": {
-      "model": "openai/gpt-5.2",
-      "variant": "high"
+    "writing": {
+      "model": "opencode/big-pickle"
     }
   },
   "tmux": {
