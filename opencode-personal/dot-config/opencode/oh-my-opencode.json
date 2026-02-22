@@ -3,7 +3,7 @@
   "agents": {
     "hephaestus": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "high"
+      "variant": "medium"
     },
     "oracle": {
       "model": "openai/gpt-5.2",
@@ -46,25 +46,25 @@
     },
     "deep": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "high"
+      "variant": "medium"
     },
     "artistry": {
       "model": "google/antigravity-gemini-3-pro",
       "variant": "high"
     },
     "quick": {
-      "model": "google/antigravity-gemini-3-flash",
+      "model": "google/antigravity-gemini-3-flash"
     },
     "unspecified-low": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "low"
+      "variant": "medium"
     },
     "unspecified-high": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "medium"
+      "variant": "high"
     },
     "writing": {
-      "model": "google/antigravity-gemini-3-flash",
+      "model": "google/antigravity-gemini-3-flash"
     }
   }
 }
