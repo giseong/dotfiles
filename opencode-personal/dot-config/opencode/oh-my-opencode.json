@@ -3,7 +3,7 @@
   "agents": {
     "hephaestus": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "medium"
+      "variant": "high"
     },
     "oracle": {
       "model": "openai/gpt-5.2",
@@ -19,8 +19,7 @@
       "model": "opencode/kimi-k2.5"
     },
     "prometheus": {
-      "model": "openai/gpt-5.2",
-      "variant": "high"
+      "model": "opencode/kimi-k2.5"
     },
     "metis": {
       "model": "opencode/kimi-k2.5"
@@ -47,7 +46,7 @@
     },
     "deep": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "medium"
+      "variant": "high"
     },
     "artistry": {
       "model": "google/antigravity-gemini-3-pro",
@@ -58,14 +57,14 @@
     },
     "unspecified-low": {
       "model": "openai/gpt-5.3-codex",
-      "variant": "medium"
+      "variant": "low"
     },
     "unspecified-high": {
-      "model": "openai/gpt-5.2",
-      "variant": "high"
+      "model": "openai/gpt-5.3-codex",
+      "variant": "medium"
     },
     "writing": {
-      "model": "opencode/kimi-k2.5"
+      "model": "google/antigravity-gemini-3-flash",
     }
   }
 }
