@@ -37,8 +37,7 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "google/antigravity-gemini-3-pro",
-      "variant": "high"
+      "model": "opencode/glm-5-free"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.3-codex",
@@ -49,11 +48,11 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "google/antigravity-gemini-3-pro",
+      "model": "openai/gpt-5.2",
       "variant": "high"
     },
     "quick": {
-      "model": "google/antigravity-gemini-3-flash"
+      "model": "opencode/gpt-5-nano"
     },
     "unspecified-low": {
       "model": "openai/gpt-5.3-codex",
@@ -64,7 +63,7 @@
       "variant": "high"
     },
     "writing": {
-      "model": "google/antigravity-gemini-3-flash"
+      "model": "opencode/kimi-k2.5"
     }
   },
   "tmux": {
