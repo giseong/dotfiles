@@ -5,3 +5,5 @@ yarn
 pyenv
 rbenv
 nvm
+yaml-language-server
+lua-language-server
