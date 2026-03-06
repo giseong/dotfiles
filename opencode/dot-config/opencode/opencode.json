@@ -1,9 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "catppuccin",
-  "plugin": [
-    "oh-my-opencode@latest"
-  ],
   "mcp": {
     "atlassian": {
       "type": "remote",

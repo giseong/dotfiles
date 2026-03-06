@@ -179,48 +179,6 @@ install_opencode() {
 }
 
 # =============================================================================
-# Oh My OpenCode Installation
-# =============================================================================
-install_oh_my_opencode() {
-    local opencode_config=""
-    if [[ -f "$HOME/.config/opencode/opencode.json" ]]; then
-        opencode_config="$HOME/.config/opencode/opencode.json"
-    elif [[ -f "$HOME/.config/opencode/opencode.jsonc" ]]; then
-        opencode_config="$HOME/.config/opencode/opencode.jsonc"
-    fi
-
-    if [[ -z "$opencode_config" ]]; then
-        log_warn "OpenCode config not found, skipping oh-my-opencode install"
-        return
-    fi
-
-    if grep -q "oh-my-opencode" "$opencode_config"; then
-        log_success "oh-my-opencode is already configured"
-        return
-    fi
-
-    local installer=""
-    if command -v bunx &>/dev/null; then
-        installer="bunx"
-    elif command -v npx &>/dev/null; then
-        installer="npx"
-    else
-        log_warn "bunx or npx not found, skipping oh-my-opencode installer"
-        return
-    fi
-
-    read -p "Run oh-my-opencode installer now? [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Installing oh-my-opencode..."
-        $installer oh-my-opencode install
-        log_success "oh-my-opencode installer finished"
-    else
-        log_info "Skipping oh-my-opencode installer"
-    fi
-}
-
-# =============================================================================
 # Zinit Installation (fallback if not installed via package manager)
 # =============================================================================
 install_zinit() {
@@ -447,7 +405,6 @@ main() {
     esac
 
     install_opencode
-    install_oh_my_opencode
     install_zinit
     stow_packages
     set_zsh_default

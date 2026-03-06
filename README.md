@@ -20,14 +20,13 @@ The bootstrap script runs this flow:
 1. Detect OS (`macos` or Arch-based Linux with `pacman`)
 2. Install core packages from manifests
 3. Install OpenCode (if available for the platform)
-4. Offer optional `oh-my-opencode` installation when OpenCode config exists
-5. Ensure Zinit is installed
-6. Apply Stow packages
-7. Prompt for profile overlays:
+4. Ensure Zinit is installed
+5. Apply Stow packages
+6. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
    - OpenCode: `opencode`
-8. Set `zsh` as the default shell
-9. Prompt for optional package groups: CLI, GUI, dev, work, media
+7. Set `zsh` as the default shell
+8. Prompt for optional package groups: CLI, GUI, dev, work, media
 
 ## Repository Layout
 
@@ -38,12 +37,11 @@ Top-level Stow packages:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform |
 | `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
-| `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`, `oh-my-opencode.json`) |
+| `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`) |
 
 OpenCode config roles:
 
-- `opencode.json`: OpenCode base config (theme, plugins, MCP servers, shared LSPs)
-- `oh-my-opencode.json`: `oh-my-opencode` agent, tmux, and git helper settings
+- `opencode.json`: OpenCode base config (theme, MCP servers, shared LSPs)
 
 Manifest layout:
 
@@ -64,11 +62,10 @@ Common profile packages:
 
 - Ghostty: `ghostty-macos` or `ghostty-linux`
 - Git profile: `git-work` or `git-personal`
-- OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`, `~/.config/opencode/oh-my-opencode.json`)
+- OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`)
 
 OpenCode runtime notes:
 
-- `oh-my-opencode` installer requires `bunx` or `npx`
 - The bundled MCP setup uses `npx` for local servers
 - The bundled LSP set is intentionally minimal and manifest-backed: Bash, YAML, Lua, Markdown
 - The filesystem MCP is scoped to the current working directory instead of all of `HOME`
