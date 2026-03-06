@@ -14,7 +14,7 @@ Rule of thumb: make minimal, local edits; do not add top-level directories unles
 Primary package groups:
 | Package | Purpose |
 | --- | --- |
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform base configs/scripts |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
 | `git-work`, `git-personal`, `git-work-ci` | Writes `~/.gitconfig-local` overlay |
 | `opencode` | Writes `~/.config/opencode/` overlay |

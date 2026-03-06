@@ -34,7 +34,7 @@ Top-level Stow packages:
 
 | Package | Scope |
 |---|---|
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform |
 | `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
 | `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`) |

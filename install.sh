@@ -199,7 +199,7 @@ stow_packages() {
     cd "$DOTFILES_DIR"
 
     # List of packages to stow
-    local packages=(zsh tmux nvim git editorconfig fabric)
+    local packages=(zsh tmux nvim git editorconfig)
     if [[ "$OS" == "macos" ]]; then
         packages+=(ghostty-macos)
     elif [[ "$OS" == "arch" ]]; then
