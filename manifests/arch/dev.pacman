@@ -5,6 +5,8 @@ yarn
 pyenv
 rbenv
 nvm
+bash-language-server
+marksman
 yaml-language-server
 lua-language-server
 bun

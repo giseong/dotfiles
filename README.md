@@ -40,6 +40,11 @@ Top-level Stow packages:
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
 | `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`, `oh-my-opencode.json`) |
 
+OpenCode config roles:
+
+- `opencode.json`: OpenCode base config (theme, plugins, MCP servers, shared LSPs)
+- `oh-my-opencode.json`: `oh-my-opencode` agent, tmux, and git helper settings
+
 Manifest layout:
 
 - macOS: `manifests/macos/*.brewfile`
@@ -60,6 +65,13 @@ Common profile packages:
 - Ghostty: `ghostty-macos` or `ghostty-linux`
 - Git profile: `git-work` or `git-personal`
 - OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`, `~/.config/opencode/oh-my-opencode.json`)
+
+OpenCode runtime notes:
+
+- `oh-my-opencode` installer requires `bunx` or `npx`
+- The bundled MCP setup uses `npx` for local servers
+- The bundled LSP set is intentionally minimal and manifest-backed: Bash, YAML, Lua, Markdown
+- The filesystem MCP is scoped to the current working directory instead of all of `HOME`
 
 ## Manifest Groups Used by `install.sh`
 

@@ -196,6 +196,7 @@ install_oh_my_opencode() {
 
     if grep -q "oh-my-opencode" "$opencode_config"; then
         log_success "oh-my-opencode is already configured"
+        return
     fi
 
     local installer=""
@@ -214,6 +215,8 @@ install_oh_my_opencode() {
         log_info "Installing oh-my-opencode..."
         $installer oh-my-opencode install
         log_success "oh-my-opencode installer finished"
+    else
+        log_info "Skipping oh-my-opencode installer"
     fi
 }
 
