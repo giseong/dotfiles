@@ -182,12 +182,19 @@ install_opencode() {
 # Oh My OpenCode Installation
 # =============================================================================
 install_oh_my_opencode() {
-    if [[ ! -f "$HOME/.config/opencode/opencode.json" ]]; then
+    local opencode_config=""
+    if [[ -f "$HOME/.config/opencode/opencode.json" ]]; then
+        opencode_config="$HOME/.config/opencode/opencode.json"
+    elif [[ -f "$HOME/.config/opencode/opencode.jsonc" ]]; then
+        opencode_config="$HOME/.config/opencode/opencode.jsonc"
+    fi
+
+    if [[ -z "$opencode_config" ]]; then
         log_warn "OpenCode config not found, skipping oh-my-opencode install"
         return
     fi
 
-    if grep -q "oh-my-opencode" "$HOME/.config/opencode/opencode.json"; then
+    if grep -q "oh-my-opencode" "$opencode_config"; then
         log_success "oh-my-opencode is already configured"
     fi
 
@@ -289,44 +296,35 @@ stow_packages() {
     fi
 
     # OpenCode profile selection
-    if [[ -d "opencode-work" || -d "opencode-personal" ]]; then
+    if [[ -d "opencode" ]]; then
         echo
-        echo "Select opencode profile to stow:"
-        echo "  [w] Work"
-        echo "  [p] Personal"
+        echo "Apply opencode config package?"
+        echo "  [y] Yes"
         echo "  [s] Skip"
-        read -r -p "Choice [w/p/s] (default: p): " -n 1 opencode_choice
+        read -r -p "Choice [y/s] (default: y): " -n 1 opencode_choice
         echo
         case "$opencode_choice" in
-            w|W)
-                if [[ -d "opencode-work" ]]; then
-                    log_info "Stowing opencode-work..."
-                    stow -v "opencode-work" 2>&1 | grep -v "^LINK:" || true
+            y|Y)
+                if [[ -d "opencode" ]]; then
+                    log_info "Stowing opencode..."
+                    stow -v "opencode" 2>&1 | grep -v "^LINK:" || true
                 else
-                    log_warn "opencode-work package not found, skipping"
-                fi
-                ;;
-            p|P)
-                if [[ -d "opencode-personal" ]]; then
-                    log_info "Stowing opencode-personal..."
-                    stow -v "opencode-personal" 2>&1 | grep -v "^LINK:" || true
-                else
-                    log_warn "opencode-personal package not found, skipping"
+                    log_warn "opencode package not found, skipping"
                 fi
                 ;;
             s|S)
-                log_info "Skipping opencode profile stow"
+                log_info "Skipping opencode package stow"
                 ;;
             "")
-                if [[ -d "opencode-personal" ]]; then
-                    log_info "Stowing opencode-personal..."
-                    stow -v "opencode-personal" 2>&1 | grep -v "^LINK:" || true
+                if [[ -d "opencode" ]]; then
+                    log_info "Stowing opencode..."
+                    stow -v "opencode" 2>&1 | grep -v "^LINK:" || true
                 else
-                    log_warn "opencode-personal package not found, skipping"
+                    log_warn "opencode package not found, skipping"
                 fi
                 ;;
             *)
-                log_warn "Unknown choice, skipping opencode profile stow"
+                log_warn "Unknown choice, skipping opencode package stow"
                 ;;
         esac
     fi

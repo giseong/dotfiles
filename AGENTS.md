@@ -17,7 +17,7 @@ Primary package groups:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
 | `git-work`, `git-personal`, `git-work-ci` | Writes `~/.gitconfig-local` overlay |
-| `opencode-work`, `opencode-personal` | Writes `~/.config/opencode/` overlay |
+| `opencode` | Writes `~/.config/opencode/` overlay |
 
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.

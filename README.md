@@ -25,7 +25,7 @@ The bootstrap script runs this flow:
 6. Apply Stow packages
 7. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
-   - OpenCode: `opencode-work` or `opencode-personal`
+   - OpenCode: `opencode`
 8. Set `zsh` as the default shell
 9. Prompt for optional package groups: CLI, GUI, dev, work, media
 
@@ -38,7 +38,7 @@ Top-level Stow packages:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig`, `fabric` | Cross-platform |
 | `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
-| `opencode-work`, `opencode-personal` | `~/.config/opencode/` profile overlay |
+| `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`, `oh-my-opencode.json`) |
 
 Manifest layout:
 
@@ -59,7 +59,7 @@ Common profile packages:
 
 - Ghostty: `ghostty-macos` or `ghostty-linux`
 - Git profile: `git-work` or `git-personal`
-- OpenCode profile: `opencode-work` or `opencode-personal`
+- OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`, `~/.config/opencode/oh-my-opencode.json`)
 
 ## Manifest Groups Used by `install.sh`
 

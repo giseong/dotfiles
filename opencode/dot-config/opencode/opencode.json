@@ -11,15 +11,27 @@
     },
     "sequential-thinking": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "memory": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     },
     "filesystem": {
       "type": "local",
-      "command": ["sh", "-c", "npx -y @modelcontextprotocol/server-filesystem $HOME"]
+      "command": [
+        "sh",
+        "-c",
+        "npx -y @modelcontextprotocol/server-filesystem $HOME"
+      ]
     }
   },
   "lsp": {
