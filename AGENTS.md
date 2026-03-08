@@ -1,8 +1,10 @@
 # AGENTS.md
 Repository: personal dotfiles managed with GNU Stow.
 Platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
-Audience: agentic coding tools operating in `/home/gsb/.dotfiles`.
-Rule of thumb: make minimal, local edits; do not add top-level directories unless requested.
+Audience: agentic coding tools operating in this workspace checkout (for example `/Users/t1100175/.dotfiles` on the current host).
+Rule of thumb: make minimal, local edits; do not add new top-level directories unless requested. Existing support/generated directories such as `.worktrees/` are intentional.
+
+`AGENTS.md` is the source of truth for agent editing behavior. Use [`README.md`](README.md) for bootstrap steps and operator-oriented workflows. If docs drift from scripts, treat executable behavior in `install.sh` and `update_packages.sh` as authoritative.
 
 ## Repository Layout
 - Stow packages are top-level directories.
@@ -16,9 +18,12 @@ Primary package groups:
 | --- | --- |
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
-| `git-work`, `git-personal`, `git-work-ci` | Writes `~/.gitconfig-local` overlay |
+| `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
 | `agents` | Writes shared cross-agent skills to `~/.agents/` |
 | `opencode` | Writes `~/.config/opencode/` overlay |
+
+Additional overlays:
+- `git-work-ci` is a niche `~/.gitconfig-local` overlay for CI/work automation contexts. Do not treat it as the default human profile choice unless the task explicitly targets that workflow.
 
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.
@@ -39,7 +44,7 @@ bash -n install.sh
 bash -n update_packages.sh
 stow -n -v agents         # Dry-run shared agents package
 stow -n -v <package>      # Dry-run stow (check for conflicts)
-brew bundle list --file=manifests/macos/core.brewfile
+brew bundle list --file=manifests/macos/core.brewfile  # macOS only
 ```
 
 ### Single test equivalent (most important)
@@ -58,7 +63,7 @@ Quick verification map:
 | `tmux/dot-tmux.conf` | `prefix + r` (reload) |
 | `nvim/*` | Start Neovim, verify plugins load |
 | `*.lua` | `stylua --check <file>` (if stylua installed) |
-| macOS manifest | `brew bundle list --file=<brewfile>` |
+| macOS manifest | `brew bundle list --file=<brewfile>` (macOS only) |
 | Arch manifest | Manual format check (one package per line, `#` comments) |
 
 ## Code Style Source of Truth

@@ -25,6 +25,7 @@ The bootstrap script runs this flow:
 6. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
    - OpenCode: `opencode`
+   - Shared agent skills: `agents`
 7. Set `zsh` as the default shell
 8. Prompt for optional package groups: CLI, GUI, dev, work, media
 
@@ -37,6 +38,8 @@ Top-level Stow packages:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform |
 | `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
+| `git-work-ci` | `~/.gitconfig-local` overlay for CI/work automation contexts |
+| `agents` | `~/.agents/` shared skills overlay |
 | `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`) |
 
 OpenCode config roles:
@@ -62,6 +65,7 @@ Common profile packages:
 
 - Ghostty: `ghostty-macos` or `ghostty-linux`
 - Git profile: `git-work` or `git-personal`
+- Shared skills: `agents`
 - OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`)
 
 OpenCode runtime notes:
@@ -99,10 +103,13 @@ bash -n install.sh
 # package updater syntax check
 bash -n update_packages.sh
 
+# dry-run shared agent package
+stow -n -v agents
+
 # run updater
 ./update_packages.sh
 
-# optional: inspect Homebrew core manifest
+# optional: inspect Homebrew core manifest (macOS only)
 brew bundle list --file=manifests/macos/core.brewfile
 ```
 
