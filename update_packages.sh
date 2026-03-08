@@ -36,6 +36,10 @@ detect_os() {
 
 OS=$(detect_os)
 
+MANAGED_GIT_REPO_ROOTS=(
+    "agents/dot-agents/skills"
+)
+
 # =============================================================================
 # macOS Updates
 # =============================================================================
@@ -104,6 +108,49 @@ update_arch() {
 # =============================================================================
 update_dev_tools() {
     log_section "Development Tools"
+
+    update_git_repos() {
+        local script_dir root repo_path has_repo
+
+        script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+        log_info "Updating managed git repositories..."
+
+        for root in "${MANAGED_GIT_REPO_ROOTS[@]}"; do
+            root="$script_dir/$root"
+
+            if [[ ! -d "$root" ]]; then
+                continue
+            fi
+
+            has_repo=false
+
+            while IFS= read -r repo_path; do
+                has_repo=true
+
+                if [[ -n "$(git -C "$repo_path" status --porcelain 2>/dev/null)" ]]; then
+                    log_warn "Skipping $(basename "$repo_path"): repository has local changes"
+                    continue
+                fi
+
+                if ! git -C "$repo_path" rev-parse --abbrev-ref --symbolic-full-name '@{u}' &>/dev/null; then
+                    log_warn "Skipping $(basename "$repo_path"): no upstream branch configured"
+                    continue
+                fi
+
+                log_info "Updating $(basename "$repo_path")..."
+                git -C "$repo_path" pull --ff-only 2>/dev/null || log_warn "Failed to update $(basename "$repo_path")"
+            done < <(find "$root" -type d -name .git -prune -print0 -o -type f -name .git -print0 | xargs -0 -I{} dirname "{}" | sort -u)
+
+            if [[ "$has_repo" == false ]]; then
+                log_warn "No git repositories found in $root"
+            fi
+        done
+
+        log_success "Managed git repositories done"
+    }
+
+    update_git_repos
 
     # Zinit (Zsh plugins)
     if [[ -d "$HOME/.local/share/zinit" ]]; then
