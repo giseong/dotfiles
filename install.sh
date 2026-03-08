@@ -290,6 +290,40 @@ stow_packages() {
         esac
     fi
 
+    # Shared agent skills selection
+    if [[ -d "agents" ]]; then
+        echo
+        echo "Apply shared agents skills package?"
+        echo "  [y] Yes"
+        echo "  [s] Skip"
+        read -r -p "Choice [y/s] (default: y): " -n 1 agents_choice
+        echo
+        case "$agents_choice" in
+            y|Y)
+                if [[ -d "agents" ]]; then
+                    log_info "Stowing agents..."
+                    stow -v "agents" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "agents package not found, skipping"
+                fi
+                ;;
+            s|S)
+                log_info "Skipping agents package stow"
+                ;;
+            "")
+                if [[ -d "agents" ]]; then
+                    log_info "Stowing agents..."
+                    stow -v "agents" 2>&1 | grep -v "^LINK:" || true
+                else
+                    log_warn "agents package not found, skipping"
+                fi
+                ;;
+            *)
+                log_warn "Unknown choice, skipping agents package stow"
+                ;;
+        esac
+    fi
+
     log_success "Dotfiles applied"
 }
 

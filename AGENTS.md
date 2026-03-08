@@ -17,6 +17,7 @@ Primary package groups:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform base configs/scripts |
 | `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
 | `git-work`, `git-personal`, `git-work-ci` | Writes `~/.gitconfig-local` overlay |
+| `agents` | Writes shared cross-agent skills to `~/.agents/` |
 | `opencode` | Writes `~/.config/opencode/` overlay |
 
 ## Build, Lint, Test, Verify
@@ -36,6 +37,7 @@ Syntax/lint-style checks:
 ```bash
 bash -n install.sh
 bash -n update_packages.sh
+stow -n -v agents         # Dry-run shared agents package
 stow -n -v <package>      # Dry-run stow (check for conflicts)
 brew bundle list --file=manifests/macos/core.brewfile
 ```
@@ -51,6 +53,7 @@ Quick verification map:
 | --- | --- |
 | `install.sh` | `bash -n install.sh` |
 | `update_packages.sh` | `bash -n update_packages.sh` |
+| `agents/*` | `stow -n -v agents` |
 | `zsh/*` | Open new shell, verify clean startup |
 | `tmux/dot-tmux.conf` | `prefix + r` (reload) |
 | `nvim/*` | Start Neovim, verify plugins load |
