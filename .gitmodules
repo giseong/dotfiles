@@ -1,3 +1,0 @@
-[submodule "agents/dot-agents/skills/superpowers"]
-	path = agents/dot-agents/skills/superpowers
-	url = https://github.com/obra/superpowers.git

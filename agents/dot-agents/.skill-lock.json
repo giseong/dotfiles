@@ -1,0 +1,90 @@
+{
+  "version": 3,
+  "skills": {
+    "1password": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/1password/SKILL.md",
+      "skillFolderHash": "6ee7e52bb2d37e98d9515d0eb6a70690e23235f9",
+      "installedAt": "2026-03-08T02:05:00.736Z",
+      "updatedAt": "2026-03-08T02:05:00.736Z"
+    },
+    "obsidian": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/obsidian/SKILL.md",
+      "skillFolderHash": "2df79afb3d74115e292d71524ed64bff7693c3d5",
+      "installedAt": "2026-03-08T02:05:00.987Z",
+      "updatedAt": "2026-03-08T02:05:00.987Z"
+    },
+    "skill-creator": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "skillFolderHash": "2b14736ee769b6a24e4316a7b4ec18c486af4f8d",
+      "installedAt": "2026-03-08T02:05:01.209Z",
+      "updatedAt": "2026-03-08T02:05:01.209Z"
+    },
+    "slack": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/slack/SKILL.md",
+      "skillFolderHash": "88173d91231e08b16a1a65278d7a6b8a7485b339",
+      "installedAt": "2026-03-08T02:05:01.448Z",
+      "updatedAt": "2026-03-08T02:05:01.448Z"
+    },
+    "things-mac": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/things-mac/SKILL.md",
+      "skillFolderHash": "855a82a05dc18ef335b28abe25356169a638d463",
+      "installedAt": "2026-03-08T02:05:01.660Z",
+      "updatedAt": "2026-03-08T02:05:01.660Z"
+    },
+    "summarize": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/summarize/SKILL.md",
+      "skillFolderHash": "49dc6809bdf16e0e7e3ab478302389d419bcc19f",
+      "installedAt": "2026-03-08T02:05:01.871Z",
+      "updatedAt": "2026-03-08T02:05:01.871Z"
+    },
+    "tmux": {
+      "source": "openclaw/openclaw",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "skillPath": "skills/tmux/SKILL.md",
+      "skillFolderHash": "fe5794748cd8df81a85802357f34233531b3efd4",
+      "installedAt": "2026-03-08T02:05:02.077Z",
+      "updatedAt": "2026-03-08T02:05:02.077Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
+      "installedAt": "2026-03-08T02:05:07.534Z",
+      "updatedAt": "2026-03-08T02:05:07.534Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-cli",
+    "opencode"
+  ]
+}
