@@ -4,7 +4,8 @@
   "plugin": [
     "opencode-shell-strategy",
     "opencode-dynamic-context-pruning",
-    "opencode-md-table-formatter"
+    "opencode-md-table-formatter",
+    "oh-my-opencode"
   ],
   "compaction": {
     "auto": true,
