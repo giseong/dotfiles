@@ -20,13 +20,14 @@
       "updatedAt": "2026-03-08T02:05:00.987Z"
     },
     "skill-creator": {
-      "source": "openclaw/openclaw",
+      "source": "anthropics/skills",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/openclaw/openclaw.git",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
       "skillPath": "skills/skill-creator/SKILL.md",
-      "skillFolderHash": "2b14736ee769b6a24e4316a7b4ec18c486af4f8d",
+      "skillFolderHash": "98a510d1cfef9f82c3b1eec200229ca68725e613",
+      "pluginName": "example-skills",
       "installedAt": "2026-03-08T02:05:01.209Z",
-      "updatedAt": "2026-03-08T02:05:01.209Z"
+      "updatedAt": "2026-03-11T23:08:43.307Z"
     },
     "slack": {
       "source": "openclaw/openclaw",
@@ -71,7 +72,7 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
       "installedAt": "2026-03-08T02:05:07.534Z",
-      "updatedAt": "2026-03-11T12:12:38.935Z"
+      "updatedAt": "2026-03-11T23:09:04.188Z"
     }
   },
   "dismissed": {
