@@ -71,7 +71,7 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
       "installedAt": "2026-03-08T02:05:07.534Z",
-      "updatedAt": "2026-03-08T02:05:07.534Z"
+      "updatedAt": "2026-03-11T12:12:38.935Z"
     }
   },
   "dismissed": {
@@ -85,6 +85,7 @@
     "gemini-cli",
     "github-copilot",
     "kimi-cli",
-    "opencode"
+    "opencode",
+    "openclaw"
   ]
 }
