@@ -1,61 +1,52 @@
 # ---------------------------------------------------------------------
 # SHARED ENVIRONMENT (Login + Non-login Interactive)
 # ---------------------------------------------------------------------
-# Guard against double-loading in the same shell process (.zprofile + .zshrc)
+# Both `.zprofile` and `.zshrc` source this file. Guard against double-loading
+# in the same shell process while still allowing both entrypoints to share it.
 if [[ "${DOTFILES_ENV_SHARED_LOADED_PID:-}" == "$$" ]]; then
   return
 fi
 typeset -g DOTFILES_ENV_SHARED_LOADED_PID="$$"
 
-# ---------------------------------------------------------------------
-# 1. OS & PLATFORM DETECTION
-# ---------------------------------------------------------------------
-export OS_TYPE="$(uname -s)"
-[[ "$OS_TYPE" == "Darwin" ]] && export IS_MAC=true || export IS_MAC=false
-
-# Ensure SHELL variable is set to zsh
+# Ensure SHELL variable is set to zsh.
 [[ -z "${SHELL:-}" ]] && export SHELL="$(command -v zsh)"
 
 # ---------------------------------------------------------------------
-# 2. LOCALE & LANGUAGE SETTINGS
+# 1. LOCALE & SHARED ENVIRONMENT
 # ---------------------------------------------------------------------
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 # Intentionally avoid global LC_ALL to prevent overriding tool-specific locale behavior.
 
-# ---------------------------------------------------------------------
-# 3. PACKAGE MANAGER & RUNTIME INITIALIZATION
-# ---------------------------------------------------------------------
-if [[ -o login && "$IS_MAC" == true && -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if [[ "$IS_MAC" == true ]]; then
-  export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-else
-  export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-fi
-
 export GOPATH="$HOME/go"
+export PYENV_ROOT="$HOME/.pyenv"
 
 # ---------------------------------------------------------------------
-# 4. PATH CONFIGURATION
+# 2. PATH CONFIGURATION
 # ---------------------------------------------------------------------
-for path_entry in \
-  "/usr/local/sbin" \
-  "$ANDROID_SDK_ROOT/platform-tools" \
+typeset -gU path PATH
+
+prepend_path_entries() {
+  local entry
+  local -a new_entries=()
+
+  for entry in "$@"; do
+    [[ -d "$entry" ]] || continue
+    new_entries+=("$entry")
+  done
+
+  (( ${#new_entries[@]} == 0 )) && return
+  path=("${new_entries[@]}" "${path[@]}")
+}
+
+prepend_path_entries \
+  "$PYENV_ROOT/bin" \
   "$GOPATH/bin" \
   "$HOME/.local/bin" \
-  "$HOME/.npm-global/bin"
-do
-  [[ -d "$path_entry" ]] || continue
-  case ":$PATH:" in
-    *":$path_entry:"*) ;;
-    *) export PATH="$path_entry:$PATH" ;;
-  esac
-done
+  "$HOME/.npm-global/bin" \
+  "/usr/local/sbin"
 
 # ---------------------------------------------------------------------
-# 5. MISC
+# 3. MISC
 # ---------------------------------------------------------------------
 export NODE_USE_SYSTEM_CA=1

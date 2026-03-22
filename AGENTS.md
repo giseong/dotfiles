@@ -1,6 +1,6 @@
 # AGENTS.md
 Repository: personal dotfiles managed with GNU Stow.
-Platforms: macOS (Apple Silicon) and Arch Linux (CachyOS).
+Platform: macOS (Apple Silicon).
 Audience: agentic coding tools operating in this workspace checkout (for example `/Users/t1100175/.dotfiles` on the current host).
 Rule of thumb: make minimal, local edits; do not add new top-level directories unless requested. Existing support/generated directories such as `.worktrees/` are intentional.
 
@@ -16,14 +16,13 @@ Rule of thumb: make minimal, local edits; do not add new top-level directories u
 Primary package groups:
 | Package | Purpose |
 | --- | --- |
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform base configs/scripts |
-| `ghostty-macos`, `ghostty-linux` | OS-specific terminal overlays |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Base configs and editor tooling |
+| `ghostty` | Terminal overlay |
 | `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
-| `agents` | Writes shared cross-agent skills to `~/.agents/` |
 | `opencode` | Writes `~/.config/opencode/` overlay |
 
-Additional overlays:
-- `git-work-ci` is a niche `~/.gitconfig-local` overlay for CI/work automation contexts. Do not treat it as the default human profile choice unless the task explicitly targets that workflow.
+Supporting directories:
+- `manifests/macos/` contains Homebrew Bundle manifests grouped by `core`, `cli`, `gui`, `dev`, `work`, `media`.
 
 ## Build, Lint, Test, Verify
 There is no centralized CI and no formal unit-test suite.
@@ -31,7 +30,7 @@ Verification is scoped to changed files/packages.
 
 Core commands:
 ```bash
-./install.sh              # Full system bootstrap
+./install.sh              # Full macOS bootstrap
 stow <package>            # Apply package
 cd <package> && stow .    # Apply from inside package
 stow -D <package>         # Remove package
@@ -42,9 +41,8 @@ Syntax/lint-style checks:
 ```bash
 bash -n install.sh
 bash -n update_packages.sh
-stow -n -v agents         # Dry-run shared agents package
 stow -n -v <package>      # Dry-run stow (check for conflicts)
-brew bundle list --file=manifests/macos/core.brewfile  # macOS only
+brew bundle list --file=manifests/macos/core.brewfile
 ```
 
 ### Single test equivalent (most important)
@@ -58,13 +56,12 @@ Quick verification map:
 | --- | --- |
 | `install.sh` | `bash -n install.sh` |
 | `update_packages.sh` | `bash -n update_packages.sh` |
-| `agents/*` | `stow -n -v agents` |
+| `ghostty/*` | `stow -n -v ghostty` |
 | `zsh/*` | Open new shell, verify clean startup |
 | `tmux/dot-tmux.conf` | `prefix + r` (reload) |
 | `nvim/*` | Start Neovim, verify plugins load |
 | `*.lua` | `stylua --check <file>` (if stylua installed) |
-| macOS manifest | `brew bundle list --file=<brewfile>` (macOS only) |
-| Arch manifest | Manual format check (one package per line, `#` comments) |
+| macOS manifest | `brew bundle list --file=<brewfile>` |
 
 ## Code Style Source of Truth
 Formatting baseline: `editorconfig/dot-editorconfig`.
@@ -116,8 +113,6 @@ Indentation:
 
 ### Package Manifests
 - macOS: `manifests/macos/<group>.brewfile` (Homebrew Bundle format)
-- Arch: `manifests/arch/<group>.pacman` (one package per line)
-- Arch AUR: `manifests/arch/<group>.aur` (one package per line)
 - Groups: `core`, `cli`, `gui`, `dev`, `work`, `media`
 
 ## Imports, Types, Naming, Error Handling
@@ -129,7 +124,7 @@ Typing:
 - Lua: preserve existing EmmyLua annotations
 
 Naming:
-- package dirs: lowercase-hyphenated (e.g. `ghostty-macos`)
+- package dirs: lowercase-hyphenated (for example `git-personal`)
 - dotfile entries: `dot-*`
 - shell functions/scripts: `snake_case`
 - manifest groups: `core`, `cli`, `gui`, `dev`, `work`, `media`

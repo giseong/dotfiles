@@ -25,13 +25,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Linux
-.fuse_hidden*
-.directory
-.Trash-*
-.nfs*
-nohup.out
-
 # Windows
 Thumbs.db
 Thumbs.db:encryptable

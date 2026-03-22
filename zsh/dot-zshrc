@@ -4,6 +4,9 @@
 # ---------------------------------------------------------------------
 # 0. SHARED ENVIRONMENT
 # ---------------------------------------------------------------------
+# Source shared exports here for interactive non-login shells. `.zprofile`
+# sources the same file for login shells, and the shared file guards against
+# double-loading in a single process.
 if [[ -f "$HOME/.config/zsh/env.shared.zsh" ]]; then
   source "$HOME/.config/zsh/env.shared.zsh"
 fi
@@ -15,35 +18,8 @@ setopt promptsubst
 # ---------------------------------------------------------------------
 # 1. SYSTEM APPEARANCE DETECTION
 # ---------------------------------------------------------------------
-# Detect Dark/Light mode for macOS and Linux (KDE Plasma 6)
 function get_system_appearance() {
-  # 1. macOS Detection
-  if [[ "$IS_MAC" == true ]]; then
-    [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
-    return
-  fi
-
-  # 2. Linux (KDE/CachyOS) Detection
-  local KDE_CONFIG="$HOME/.config/kdeglobals"
-  local kde_theme_text=""
-
-  if [[ -f "$KDE_CONFIG" ]]; then
-    kde_theme_text="$(grep -Ei '^(ColorScheme|LookAndFeelPackage)=' "$KDE_CONFIG" 2>/dev/null)"
-    kde_theme_text="${kde_theme_text:l}"
-
-    if [[ "$kde_theme_text" == *"light"* ]]; then
-      echo "light"
-      return
-    fi
-
-    if [[ "$kde_theme_text" == *"dark"* ]]; then
-      echo "dark"
-      return
-    fi
-  fi
-
-  # Default to dark for CachyOS since it's the standard
-  echo "dark"
+  [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]] && echo "dark" || echo "light"
 }
 export SYSTEM_APPEARANCE=$(get_system_appearance)
 
@@ -70,27 +46,18 @@ if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
 fi
 
 # ---------------------------------------------------------------------
-# 3. PLUGIN MANAGEMENT (Zinit) - Multi-OS Path Support
+# 3. PLUGIN MANAGEMENT (Zinit)
 # ---------------------------------------------------------------------
 if [[ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
   source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 elif [[ -f "/opt/homebrew/opt/zinit/zinit.zsh" ]]; then
   source "/opt/homebrew/opt/zinit/zinit.zsh"
-elif [[ -f "/usr/local/opt/zinit/zinit.zsh" ]]; then
-  source "/usr/local/opt/zinit/zinit.zsh"
-elif command -v brew &>/dev/null; then
-  zinit_brew_prefix="$(brew --prefix zinit 2>/dev/null || true)"
-  if [[ -n "$zinit_brew_prefix" && -f "$zinit_brew_prefix/zinit.zsh" ]]; then
-    source "$zinit_brew_prefix/zinit.zsh"
-  fi
 fi
 
 if command -v zinit &>/dev/null; then
 
   # Load core plugins
   zinit light-mode for \
-      zdharma-continuum/zinit-annex-as-monitor \
-      zdharma-continuum/zinit-annex-bin-gem-node \
       zsh-users/zsh-syntax-highlighting \
       zsh-users/zsh-history-substring-search \
       zsh-users/zsh-completions \
@@ -117,9 +84,7 @@ if command -v oh-my-posh &>/dev/null; then
   for candidate_dir in \
     "${POSH_THEMES_PATH:-}" \
     "$HOME/.cache/oh-my-posh/themes" \
-    "/opt/homebrew/opt/oh-my-posh/themes" \
-    "/usr/local/opt/oh-my-posh/themes" \
-    "/usr/share/oh-my-posh/themes"
+    "/opt/homebrew/opt/oh-my-posh/themes"
   do
     [[ -z "$candidate_dir" ]] && continue
     if [[ -f "$candidate_dir/$theme_name" ]]; then
@@ -128,14 +93,13 @@ if command -v oh-my-posh &>/dev/null; then
     fi
   done
 
-  if [[ -z "$POSH_THEME" ]] && command -v brew &>/dev/null; then
-    brew_prefix="$(brew --prefix oh-my-posh 2>/dev/null || true)"
-    [[ -n "$brew_prefix" && -f "$brew_prefix/themes/$theme_name" ]] && POSH_THEME="$brew_prefix/themes/$theme_name"
-  fi
-
   if [[ -n "$POSH_THEME" && -f "$POSH_THEME" ]]; then
     eval "$(oh-my-posh init zsh --config "$POSH_THEME")"
   fi
+fi
+
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init - zsh)"
 fi
 
 # ---------------------------------------------------------------------
@@ -174,7 +138,7 @@ setopt hist_ignore_all_dups # Delete old duplicate when a new one is typed
 setopt hist_save_no_dups    # Do not write duplicate entries to history file
 setopt hist_find_no_dups    # Do not display a line previously found
 
-# Initialize completions
+# Initialize completions before replaying plugin-provided completion setup.
 # Prune stale zinit completion symlinks to prevent noisy compinit startup errors.
 if [[ -d "$HOME/.local/share/zinit/completions" ]]; then
   for stale_link in "$HOME"/.local/share/zinit/completions/_*(N@); do
@@ -190,15 +154,20 @@ fi
 if command -v zinit &>/dev/null; then
   zinit cdreplay -q
 fi
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
+
+# Keep Tab on the completion widget provided by fzf-tab after completion init.
+if (( ${+widgets[fzf-tab-complete]} )); then
+  bindkey '^I' fzf-tab-complete
 fi
 
-# OpenClaw Completion
-if [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]]; then
-  source "$HOME/.openclaw/completions/openclaw.zsh"
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
 fi
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
+
+if (( $+commands[fnm] )); then
+  eval "$(fnm env --use-on-cd)"
+fi

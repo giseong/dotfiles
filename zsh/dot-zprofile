@@ -1,6 +1,9 @@
 # ---------------------------------------------------------------------
 # 1. SHARED ENVIRONMENT
 # ---------------------------------------------------------------------
+# Source shared exports here for login shells. `.zshrc` sources the same file
+# for interactive non-login shells, and the shared file guards against
+# double-loading in a single process.
 if [[ -f "$HOME/.config/zsh/env.shared.zsh" ]]; then
   source "$HOME/.config/zsh/env.shared.zsh"
 fi
@@ -8,4 +11,10 @@ fi
 # ---------------------------------------------------------------------
 # 2. LOGIN-SHELL ONLY SETTINGS
 # ---------------------------------------------------------------------
-# Add login-specific settings here when needed.
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init --path)"
+fi

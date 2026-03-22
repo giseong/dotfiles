@@ -3,7 +3,7 @@ set -euo pipefail
 
 # =============================================================================
 # System Update Script
-# Supports: macOS (Homebrew) / Arch Linux (pacman/yay)
+# Supports: macOS (Homebrew)
 # =============================================================================
 
 # Colors
@@ -19,34 +19,16 @@ log_warn()    { echo -e "${YELLOW}==>${NC} $1"; }
 log_error()   { echo -e "${RED}==>${NC} $1"; }
 log_section() { echo -e "\n${YELLOW}━━━ $1 ━━━${NC}\n"; }
 
-# Detect OS
-detect_os() {
-    case "$(uname -s)" in
-        Darwin) echo "macos" ;;
-        Linux)
-            if command -v pacman &>/dev/null; then
-                echo "arch"
-            else
-                echo "linux"
-            fi
-            ;;
-        *) echo "unknown" ;;
-    esac
+require_macos() {
+    if [[ "$(uname -s)" != "Darwin" ]]; then
+        log_error "Unsupported OS. This repository supports macOS only."
+        exit 1
+    fi
 }
 
-OS=$(detect_os)
-
-MANAGED_GIT_REPO_ROOTS=(
-    "agents/dot-agents/skills"
-)
-
-# =============================================================================
-# macOS Updates
-# =============================================================================
 update_macos() {
     log_section "macOS System Updates"
 
-    # Homebrew
     if command -v brew &>/dev/null; then
         log_info "Updating Homebrew..."
         brew update
@@ -59,7 +41,6 @@ update_macos() {
         log_warn "Homebrew not found, skipping"
     fi
 
-    # Mac App Store (mas)
     if command -v mas &>/dev/null; then
         log_info "Updating App Store apps..."
         mas upgrade
@@ -69,145 +50,54 @@ update_macos() {
     fi
 }
 
-# =============================================================================
-# Arch Linux Updates
-# =============================================================================
-update_arch() {
-    log_section "Arch Linux System Updates"
-
-    # Pacman
-    log_info "Updating system with pacman..."
-    sudo pacman -Syu --noconfirm
-    log_success "Pacman done"
-
-    # AUR (paru or yay)
-    if command -v paru &>/dev/null; then
-        log_info "Updating AUR packages with paru..."
-        paru -Sua --noconfirm
-        log_success "AUR done"
-    elif command -v yay &>/dev/null; then
-        log_info "Updating AUR packages with yay..."
-        yay -Sua --noconfirm
-        log_success "AUR done"
-    else
-        log_warn "No AUR helper found, skipping AUR"
-    fi
-
-    # Clean package cache
-    log_info "Cleaning package cache..."
-    sudo pacman -Sc --noconfirm 2>/dev/null || true
-    if command -v paru &>/dev/null; then
-        paru -Sc --noconfirm 2>/dev/null || true
-    elif command -v yay &>/dev/null; then
-        yay -Sc --noconfirm 2>/dev/null || true
-    fi
-}
-
-# =============================================================================
-# Development Tools Updates
-# =============================================================================
 update_dev_tools() {
     log_section "Development Tools"
 
-    update_git_repos() {
-        local script_dir root repo_path has_repo
-
-        script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-
-        log_info "Updating managed git repositories..."
-
-        for root in "${MANAGED_GIT_REPO_ROOTS[@]}"; do
-            root="$script_dir/$root"
-
-            if [[ ! -d "$root" ]]; then
-                continue
-            fi
-
-            has_repo=false
-
-            while IFS= read -r repo_path; do
-                has_repo=true
-
-                if [[ -n "$(git -C "$repo_path" status --porcelain 2>/dev/null)" ]]; then
-                    log_warn "Skipping $(basename "$repo_path"): repository has local changes"
-                    continue
-                fi
-
-                if ! git -C "$repo_path" rev-parse --abbrev-ref --symbolic-full-name '@{u}' &>/dev/null; then
-                    log_warn "Skipping $(basename "$repo_path"): no upstream branch configured"
-                    continue
-                fi
-
-                log_info "Updating $(basename "$repo_path")..."
-                git -C "$repo_path" pull --ff-only 2>/dev/null || log_warn "Failed to update $(basename "$repo_path")"
-            done < <(find "$root" -type d -name .git -prune -print0 -o -type f -name .git -print0 | xargs -0 -I{} dirname "{}" | sort -u)
-
-            if [[ "$has_repo" == false ]]; then
-                log_warn "No git repositories found in $root"
-            fi
-        done
-
-        log_success "Managed git repositories done"
-    }
-
-    update_git_repos
-
-    # Zinit (Zsh plugins)
     if [[ -d "$HOME/.local/share/zinit" ]]; then
         log_info "Updating Zinit plugins..."
         zsh -ic "zinit self-update && zinit update --parallel" 2>/dev/null || log_warn "Zinit update failed"
         log_success "Zinit done"
     fi
 
-    # Tmux plugins (TPM)
     if [[ -d "$HOME/.tmux/plugins/tpm" ]]; then
         log_info "Updating Tmux plugins..."
         "$HOME/.tmux/plugins/tpm/bin/update_plugins" all 2>/dev/null || log_warn "TPM update failed"
         log_success "Tmux plugins done"
     fi
 
-    # Neovim plugins (lazy.nvim)
     if command -v nvim &>/dev/null; then
         log_info "Updating Neovim plugins..."
         nvim --headless "+Lazy! sync" +qa 2>/dev/null || log_warn "Neovim update failed"
         log_success "Neovim plugins done"
     fi
 
-    # npm global packages
     if command -v npm &>/dev/null; then
         log_info "Updating npm global packages..."
         npm update -g 2>/dev/null || log_warn "npm update failed"
         log_success "npm done"
     fi
 
-    # pip (user packages)
     if command -v pip &>/dev/null; then
         log_info "Checking pip packages..."
         pip list --outdated --user 2>/dev/null | tail -n +3 | cut -d' ' -f1 | while read -r pkg; do
+            [[ -z "$pkg" ]] && continue
             pip install --user --upgrade "$pkg" 2>/dev/null || true
         done
         log_success "pip done"
     fi
-
 }
 
-# =============================================================================
-# Main
-# =============================================================================
 main() {
     echo ""
     echo "╔════════════════════════════════════════╗"
     echo "║        System Update Script            ║"
     echo "╚════════════════════════════════════════╝"
     echo ""
-    log_info "Detected OS: $OS"
 
-    case "$OS" in
-        macos) update_macos ;;
-        arch)  update_arch ;;
-        *)     log_error "Unsupported OS"; exit 1 ;;
-    esac
+    require_macos
+    log_info "Detected OS: macos"
 
+    update_macos
     update_dev_tools
 
     log_section "Complete"

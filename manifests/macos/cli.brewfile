@@ -1,5 +1,3 @@
-tap "homebrew/core"
-
 brew "git-lfs"
 brew "lazygit"
 brew "htop"

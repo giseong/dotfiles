@@ -1,8 +1,8 @@
 # Dotfiles
 
-Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal macOS dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-- Supported platforms: macOS (Apple Silicon) and Arch Linux (CachyOS)
+- Supported platform: macOS (Apple Silicon)
 - Stow mode: `.stowrc` enables `--dotfiles`, so `dot-*` files are linked as hidden files in `~/`
 
 ## Quick Start
@@ -17,39 +17,38 @@ cd ~/.dotfiles
 
 The bootstrap script runs this flow:
 
-1. Detect OS (`macos` or Arch-based Linux with `pacman`)
-2. Install core packages from manifests
-3. Install OpenCode (if available for the platform)
-4. Ensure Zinit is installed
-5. Apply Stow packages
-6. Prompt for profile overlays:
+1. Verify the host is macOS
+2. Install Homebrew if needed
+3. Install core packages from `manifests/macos/core.brewfile`
+4. Install OpenCode when available
+5. Ensure Zinit is installed
+6. Apply Stow packages
+7. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
    - OpenCode: `opencode`
-   - Shared agent skills: `agents`
-7. Set `zsh` as the default shell
-8. Prompt for optional package groups: CLI, GUI, dev, work, media
+8. Set `zsh` as the default shell
+9. Prompt for optional Homebrew package groups: CLI, GUI, dev, work, media
 
 ## Repository Layout
 
 Top-level Stow packages:
 
 | Package | Scope |
-|---|---|
-| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Cross-platform |
-| `ghostty-macos`, `ghostty-linux` | OS-specific overlays |
+| --- | --- |
+| `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Base shell, editor, and Git configuration |
+| `ghostty` | Ghostty terminal configuration |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
-| `git-work-ci` | `~/.gitconfig-local` overlay for CI/work automation contexts |
-| `agents` | `~/.agents/` shared skills overlay |
 | `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`) |
 
-OpenCode config roles:
+Supporting directories:
 
-- `opencode.json`: OpenCode base config (theme, MCP servers, shared LSPs)
+- `manifests/macos/`: Homebrew Bundle manifests grouped by `core`, `cli`, `gui`, `dev`, `work`, `media`
 
-Manifest layout:
+OpenCode runtime notes:
 
-- macOS: `manifests/macos/*.brewfile`
-- Arch: `manifests/arch/*.pacman` and `manifests/arch/*.aur`
+- The bundled MCP setup uses `npx` for local servers
+- The bundled LSP set is intentionally minimal and manifest-backed: Bash, YAML, Lua, Markdown
+- The filesystem MCP is scoped to the current working directory instead of all of `HOME`
 
 ## Manual Stow Usage
 
@@ -63,31 +62,23 @@ stow -D <package>
 
 Common profile packages:
 
-- Ghostty: `ghostty-macos` or `ghostty-linux`
+- Ghostty: `ghostty`
 - Git profile: `git-work` or `git-personal`
-- Shared skills: `agents`
 - OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`)
-
-OpenCode runtime notes:
-
-- The bundled MCP setup uses `npx` for local servers
-- The bundled LSP set is intentionally minimal and manifest-backed: Bash, YAML, Lua, Markdown
-- The filesystem MCP is scoped to the current working directory instead of all of `HOME`
 
 ## Manifest Groups Used by `install.sh`
 
 Always installed:
 
-- macOS: `manifests/macos/core.brewfile`
-- Arch: `manifests/arch/core.pacman`, `manifests/arch/core.aur`
+- `manifests/macos/core.brewfile`
 
 Optional prompted groups:
 
-- CLI extras: `manifests/macos/cli.brewfile` or `manifests/arch/cli.*`
-- Default GUI apps: `manifests/macos/gui.brewfile` or `manifests/arch/gui.*`
-- Dev tools: `manifests/macos/dev.brewfile` or `manifests/arch/dev.*`
-- Work apps: `manifests/macos/work.brewfile` or `manifests/arch/work.*`
-- Media/design apps: `manifests/macos/media.brewfile` or `manifests/arch/media.*`
+- `manifests/macos/cli.brewfile`
+- `manifests/macos/gui.brewfile`
+- `manifests/macos/dev.brewfile`
+- `manifests/macos/work.brewfile`
+- `manifests/macos/media.brewfile`
 
 ## Verification
 
@@ -103,14 +94,16 @@ bash -n install.sh
 # package updater syntax check
 bash -n update_packages.sh
 
-# dry-run shared agent package
-stow -n -v agents
+# dry-run core packages
+stow -n -v ghostty
+stow -n -v zsh
+stow -n -v git
+
+# inspect Homebrew manifests
+brew bundle list --file=manifests/macos/core.brewfile
 
 # run updater
 ./update_packages.sh
-
-# optional: inspect Homebrew core manifest (macOS only)
-brew bundle list --file=manifests/macos/core.brewfile
 ```
 
 ## Theme

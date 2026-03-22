@@ -6,19 +6,23 @@ theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 
 # Fonts
 font-family = "JetBrainsMono Nerd Font Mono"
-font-family = "Noto Sans CJK KR"
-font-size = 13
+font-family = "Pretendard"
+font-size = 16
 font-thicken = true
 
 # Window
-window-width = 80
-window-height = 26
+window-width = 100
+window-height = 28
 
 # Cursor
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
 cursor-click-to-move = true
+
+# macOS
+macos-titlebar-style = transparent
+macos-option-as-alt = true
 
 # Mouse: copy on select
 copy-on-select = clipboard
