@@ -155,6 +155,10 @@ if command -v zinit &>/dev/null; then
   zinit cdreplay -q
 fi
 
+if [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]]; then
+  source "$HOME/.openclaw/completions/openclaw.zsh"
+fi
+
 # Keep Tab on the completion widget provided by fzf-tab after completion init.
 if (( ${+widgets[fzf-tab-complete]} )); then
   bindkey '^I' fzf-tab-complete

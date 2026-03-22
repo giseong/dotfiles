@@ -40,6 +40,7 @@ prepend_path_entries() {
 }
 
 prepend_path_entries \
+  "$HOME/.antigravity/antigravity/bin" \
   "$PYENV_ROOT/bin" \
   "$GOPATH/bin" \
   "$HOME/.local/bin" \
