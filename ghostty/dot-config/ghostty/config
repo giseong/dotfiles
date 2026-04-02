@@ -8,7 +8,10 @@ theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Pretendard"
 font-size = 16
-font-thicken = true
+font-thicken = false
+font-feature = -calt
+adjust-cell-height = 2
+adjust-cell-width = 1
 
 # Window
 window-width = 100
