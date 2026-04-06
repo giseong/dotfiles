@@ -5,13 +5,11 @@ term = "xterm-256color"
 theme = light:Catppuccin Latte, dark:Catppuccin Mocha
 
 # Fonts
-font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "JetBrainsMono Nerd Font"
 font-family = "Pretendard"
 font-size = 16
-font-thicken = false
+font-thicken = true
 font-feature = -calt
-adjust-cell-height = 2
-adjust-cell-width = 1
 
 # Window
 window-width = 100
