@@ -20,14 +20,12 @@ The bootstrap script runs this flow:
 1. Verify the host is macOS
 2. Install Homebrew if needed
 3. Install core packages from `manifests/macos/core.brewfile`
-4. Install OpenCode when available
-5. Ensure Zinit is installed
-6. Apply Stow packages
-7. Prompt for profile overlays:
+4. Ensure Zinit is installed
+5. Apply Stow packages
+6. Prompt for profile overlays:
    - Git: `git-work` or `git-personal`
-   - OpenCode: `opencode`
-8. Set `zsh` as the default shell
-9. Prompt for optional Homebrew package groups: CLI, GUI, dev, work, media
+7. Set `zsh` as the default shell
+8. Prompt for optional Homebrew package groups: CLI, GUI, dev, work, media
 
 ## Repository Layout
 
@@ -38,17 +36,10 @@ Top-level Stow packages:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Base shell, editor, and Git configuration |
 | `ghostty` | Ghostty terminal configuration |
 | `git-work`, `git-personal` | `~/.gitconfig-local` profile overlay |
-| `opencode` | `~/.config/opencode/` profile overlay (`opencode.json`) |
 
 Supporting directories:
 
 - `manifests/macos/`: Homebrew Bundle manifests grouped by `core`, `cli`, `gui`, `dev`, `work`, `media`
-
-OpenCode runtime notes:
-
-- The bundled MCP setup uses `npx` for local servers
-- The bundled LSP set is intentionally minimal and manifest-backed: Bash, YAML, Lua, Markdown
-- The filesystem MCP is scoped to the current working directory instead of all of `HOME`
 
 ## Manual Stow Usage
 
@@ -64,7 +55,6 @@ Common profile packages:
 
 - Ghostty: `ghostty`
 - Git profile: `git-work` or `git-personal`
-- OpenCode profile: `opencode` (`~/.config/opencode/opencode.json`)
 
 ## Manifest Groups Used by `install.sh`
 

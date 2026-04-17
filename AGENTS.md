@@ -19,7 +19,6 @@ Primary package groups:
 | `zsh`, `tmux`, `nvim`, `git`, `editorconfig` | Base configs and editor tooling |
 | `ghostty` | Terminal overlay |
 | `git-work`, `git-personal` | Writes `~/.gitconfig-local` overlay |
-| `opencode` | Writes `~/.config/opencode/` overlay |
 
 Supporting directories:
 - `manifests/macos/` contains Homebrew Bundle manifests grouped by `core`, `cli`, `gui`, `dev`, `work`, `media`.

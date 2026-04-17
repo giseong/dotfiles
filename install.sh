@@ -56,21 +56,6 @@ install_packages_macos() {
     install_brewfile "$DOTFILES_DIR/manifests/macos/core.brewfile" "core packages"
 }
 
-install_opencode() {
-    if command -v opencode &>/dev/null; then
-        log_success "OpenCode is already installed"
-        return
-    fi
-
-    if ! command -v brew &>/dev/null; then
-        log_warn "Homebrew not found, skipping OpenCode"
-        return
-    fi
-
-    log_info "Installing OpenCode via Homebrew (anomalyco tap)..."
-    brew install anomalyco/tap/opencode || log_warn "OpenCode install failed (Homebrew formula not found?)"
-}
-
 install_zinit() {
     if [[ -d "$HOME/.local/share/zinit/zinit.git" ]]; then
         log_success "Zinit is already installed"
@@ -118,21 +103,6 @@ stow_packages() {
             p|P|"") stow_package "git-personal" ;;
             s|S) log_info "Skipping git profile stow" ;;
             *) log_warn "Unknown choice, skipping git profile stow" ;;
-        esac
-    fi
-
-    if [[ -d "opencode" ]]; then
-        echo
-        echo "Apply opencode config package?"
-        echo "  [y] Yes"
-        echo "  [s] Skip"
-        read -r -p "Choice [y/s] (default: y): " -n 1 opencode_choice
-        echo
-
-        case "$opencode_choice" in
-            y|Y|"") stow_package "opencode" ;;
-            s|S) log_info "Skipping opencode package stow" ;;
-            *) log_warn "Unknown choice, skipping opencode package stow" ;;
         esac
     fi
 
@@ -193,7 +163,6 @@ main() {
 
     require_macos
     install_packages_macos
-    install_opencode
     install_zinit
     stow_packages
     set_zsh_default
