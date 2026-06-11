@@ -58,6 +58,10 @@ if command -v zinit &>/dev/null; then
 
   # Load core plugins
   zinit light-mode for \
+      zdharma-continuum/zinit-annex-as-monitor \
+      zdharma-continuum/zinit-annex-bin-gem-node \
+      zdharma-continuum/zinit-annex-patch-dl \
+      zdharma-continuum/zinit-annex-rust \
       zsh-users/zsh-syntax-highlighting \
       zsh-users/zsh-history-substring-search \
       zsh-users/zsh-completions \
@@ -176,12 +180,3 @@ if (( $+commands[fnm] )); then
   eval "$(fnm env --use-on-cd)"
 fi
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
